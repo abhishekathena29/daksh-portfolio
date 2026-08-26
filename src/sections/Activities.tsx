@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Dumbbell, Users, Code2, Compass } from 'lucide-react'
-import { Card, SectionHeading, Pill, Tag, FilterChips } from '../components/ui'
+import { Card, SectionHeading, Pill, Tag, FilterChips, EvidenceLinks } from '../components/ui'
 import { sports, clubsAndMun, skills, otherPursuits } from '../data/resume'
 import type { Activity } from '../data/resume'
 
@@ -40,6 +40,7 @@ export function Activities() {
             <div className="sport-card__meta">
               {s.level} · {s.date}
             </div>
+            <EvidenceLinks links={s.links} />
           </Card>
         ))}
         {filteredSports.length === 0 && <p className="filter-empty">No results in this category.</p>}

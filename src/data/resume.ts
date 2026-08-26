@@ -57,6 +57,8 @@ export const quickFacts = {
   languagesTools: ['Python', 'SQL', 'Flutter', 'Firebase', 'AWS', 'Azure'],
 }
 
+export type LinkRef = { label: string; href: string }
+
 export type Education = {
   institution: string
   period: string
@@ -64,6 +66,7 @@ export type Education = {
   subjects: string
   grades?: string
   current?: boolean
+  links?: LinkRef[]
 }
 
 export const education: Education[] = [
@@ -80,6 +83,7 @@ export const education: Education[] = [
     level: 'Cambridge AS Level, Grade 11',
     subjects: 'Mathematics (Grade A), Physics, Chemistry, Computer Science',
     grades: 'A',
+    links: [{ label: 'AS Maths result', href: 'https://drive.google.com/file/d/1Im3ibCb2XCFehqCHD4XcfQNGhADSxNXy/view?usp=drive_link' }],
   },
   {
     institution: 'Inventure Academy, Bangalore, India',
@@ -87,6 +91,7 @@ export const education: Education[] = [
     level: 'IGCSE',
     subjects:
       'English Language (A), English Literature (A*), Mathematics (A*), Additional Mathematics (A*), Biology (A*), Physics (A*), Chemistry (A*), Economics (A*), Computer Science (A*), Spanish (A)',
+    links: [{ label: 'IGCSE transcript', href: 'https://drive.google.com/file/d/1W1F8rVmEUo-SmG-obtuvAHWX0qTTnhys/view?usp=drive_link' }],
   },
 ]
 
@@ -98,6 +103,7 @@ export type Research = {
   summary: string
   status: string
   statusTone: 'live' | 'review' | 'published'
+  links?: LinkRef[]
 }
 
 export const research: Research[] = [
@@ -110,6 +116,7 @@ export const research: Research[] = [
       'Selected for RSI-India with a <2% acceptance rate (30 students nationally). Designed and coded a custom bifurcation diagram simulator analysing how discrete-time nonlinear equations transition into chaos. Developed a structural classification coefficient (ξ) that categorises equations into smooth unimodal, smooth multimodal, and piecewise linear classes — predicting dynamical behaviour directly from equation structure.',
     status: 'Manuscript submitted, under review',
     statusTone: 'review',
+    links: [{ label: 'RSI-India certificate', href: 'https://drive.google.com/file/d/1HWutFBOAX-pC94_uNatPPuL68f6S8O0W/view?usp=sharing' }],
   },
   {
     title: 'POS Tagging of Hindi–English Code-Mixed Text Using an Averaged Perceptron',
@@ -120,6 +127,10 @@ export const research: Research[] = [
       'Investigated sentence patterns causing tagging errors in LLMs due to informal Hindi-English (Hinglish) text. Error analysis revealed the most frequent misclassifications occurred between nouns, verbs, proper nouns, and adjectives.',
     status: 'Submitted to an international AI conference, under review',
     statusTone: 'review',
+    links: [
+      { label: 'Read paper draft', href: 'https://drive.google.com/file/d/1y3q5K-0w3I0z-vRRER7IhwKthSH9aLeV/view?usp=sharing' },
+      { label: 'CCIR certificate', href: 'https://drive.google.com/file/d/1veAT00OPD--xoj47pVC24f9_rSDbqmai/view?usp=sharing' },
+    ],
   },
   {
     title:
@@ -130,8 +141,8 @@ export const research: Research[] = [
       'Investigates the transformative impact of the Unified Payments Interface (UPI) on consumer behaviour, financial inclusion, and economic growth in India.',
     status: 'Published',
     statusTone: 'published',
-    link: 'https://doi.org/10.46609/IJSSER.2025.v10i07.021',
-  } as Research & { link: string },
+    links: [{ label: 'Read publication', href: 'https://doi.org/10.46609/IJSSER.2025.v10i07.021' }],
+  },
 ]
 
 export type ProjectT = {
@@ -142,6 +153,7 @@ export type ProjectT = {
   description: string[]
   stack?: string[]
   highlights: { label: string; value: string }[]
+  links?: LinkRef[]
 }
 
 export const projects: ProjectT[] = [
@@ -160,6 +172,13 @@ export const projects: ProjectT[] = [
       { label: 'Users onboarded', value: '4,000+' },
       { label: 'Patent status', value: 'Filed · Published' },
       { label: 'Platform', value: 'Google Play' },
+    ],
+    links: [
+      { label: 'Patent certificate', href: 'https://drive.google.com/file/d/1kg8lx8TX5Fw6qo7_mMGpcxSRizaRH2xL/view?usp=sharing' },
+      { label: 'Crest Gold award', href: 'https://drive.google.com/file/d/1yZziDh8KNX-sVQ6Y_UJy-U03HwLEIdsq/view?usp=sharing' },
+      { label: 'Persifolio letter', href: 'https://drive.google.com/file/d/1vJnF1p_6BioUTA5Mk2dkfTVe4FrJyZCf/view?usp=sharing' },
+      { label: 'LOR by MP', href: 'https://drive.google.com/file/d/1DpFGhfOzSgRK293YyhIaiFJR5BOXj3_n/view?usp=sharing' },
+      { label: 'Product images', href: 'https://drive.google.com/file/d/161ClOIRgpiNfUGrpCLBF9x7Kry0g41Iw/view?usp=drive_link' },
     ],
   },
   {
@@ -185,6 +204,7 @@ export type Internship = {
   location: string
   contact?: string
   points: string[]
+  links?: LinkRef[]
 }
 
 export const internships: Internship[] = [
@@ -199,6 +219,11 @@ export const internships: Internship[] = [
       'Developed proficiency in SQL and SQLite, performing CRUD operations within web applications.',
       'Integrated chatbots and LLM APIs to build conversational AI tools; explored Retrieval-Augmented Generation (RAG), vector embeddings, and their applications in enhancing AI responses.',
     ],
+    links: [
+      { label: 'Completion certificate', href: 'https://drive.google.com/file/d/1rpM_m6VB4_ojvaVJMNqehVIJIuCMCLzv/view?usp=sharing' },
+      { label: 'Letter of recommendation', href: 'https://drive.google.com/file/d/1U_LCKccafM4xfieA72LKxiQBifj2_i4h/view?usp=sharing' },
+      { label: 'Noviro.ai', href: 'http://noviro.ai' },
+    ],
   },
   {
     role: 'Software Development Intern',
@@ -211,6 +236,7 @@ export const internships: Internship[] = [
       'Integrated multiple linguistic language models to serve users across regional-language preferences.',
       'Incorporated speech-to-text technology to enable voice-based customer interaction.',
     ],
+    links: [{ label: 'Letter of recommendation', href: 'https://drive.google.com/file/d/1fJtCHTTrZdre5L1bPGPzBD3SyzPtPNqv/view?usp=sharing' }],
   },
 ]
 
@@ -220,6 +246,7 @@ export type Course = {
   date: string
   grade?: string
   details?: string
+  links?: LinkRef[]
 }
 
 export const courses: Course[] = [
@@ -230,6 +257,7 @@ export const courses: Course[] = [
     grade: 'Grade 9',
     details:
       'Candlestick charting, support/resistance identification, pattern recognition, and momentum indicators (Moving Averages, RSI, MACD) for equity market analysis.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/10L67CeQa1BaTyxkSeR-qeiUA3Kf8KyP-/view?usp=sharing' }],
   },
   {
     name: 'Introduction to Psychology',
@@ -237,6 +265,7 @@ export const courses: Course[] = [
     date: 'Aug 2023',
     grade: 'Grade 10',
     details: 'Decision-making frameworks, risk perception, behavioural economics, and cognitive biases in competitive and financial contexts.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1-yq5X50lM-3LvxKBzOp5rvMAQZDz7hZv/view?usp=sharing' }],
   },
   {
     name: 'Certificate Course in Introduction to Data Science & AI',
@@ -245,6 +274,7 @@ export const courses: Course[] = [
     grade: 'Grade 11',
     details:
       'Cleaned and analysed real e-commerce transaction data; applied data extraction, preprocessing, and visualisation with Python-based data science workflows.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1LrQ-a1x4Ysw7y3rHCfPx5CwOlpc9QX-7/view?usp=sharing' }],
   },
   {
     name: 'FinTech: Foundations, Payments, and Regulations',
@@ -252,6 +282,7 @@ export const courses: Course[] = [
     date: 'Dec 2025',
     grade: 'Grade 11',
     details: 'Digital payment systems, peer-to-peer lending, robo-advisory algorithms, RegTech, and mobile banking infrastructure.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/10OlD0HDJmUO_lXlVGrQOvsmGZBxh6hkQ/view?usp=sharing' }],
   },
   {
     name: 'Cryptocurrency and Blockchain: An Introduction to Digital Currencies',
@@ -259,6 +290,7 @@ export const courses: Course[] = [
     date: 'Dec 2025',
     grade: 'Grade 11',
     details: 'Distributed ledger architecture, consensus mechanisms, smart contract development, and cryptocurrency transaction validation protocols.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1p_P_uMvSVpvQc60bkfEQnAVksXc_xrPv/view?usp=sharing' }],
   },
   {
     name: 'Lending, Crowdfunding, and Modern Investing',
@@ -267,6 +299,7 @@ export const courses: Course[] = [
     grade: 'Grade 11',
     details:
       'Robo-advisors, marketplace lending, crowdfunding infrastructure, Modern Portfolio Theory applied to algorithmic asset allocation, and credit-risk assessment via alternative data.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1UFH1qGyHExUGTnuC5X73uiBdGrlOdYbd/view?usp=sharing' }],
   },
   {
     name: 'Application of AI, InsurTech, and Real Estate Technology',
@@ -274,12 +307,14 @@ export const courses: Course[] = [
     date: 'Dec 2025',
     grade: 'Grade 11',
     details: 'AI in insurance claims automation, customer personalisation, and real-estate pricing optimisation via machine learning.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1XTR74TvOKzelgHtiNdwTAZth5RAJkp47/view?usp=drive_link' }],
   },
   {
     name: 'Fintech: Foundations & Applications of Financial Technology (Specialisation)',
     org: 'Coursera / University of Pennsylvania',
     date: 'Dec 2025',
     grade: 'Grade 11',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1yj9VjWFb_CcWDQ25fs3gTs-6x2DrS1K0/view?usp=sharing' }],
   },
   {
     name: 'Moneyball: AI, Sports, and Business',
@@ -288,6 +323,7 @@ export const courses: Course[] = [
     grade: 'Grade 10',
     details:
       'Applied Moneyball methodology to baseball player valuation using ML clustering to identify undervalued players. Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the highest-predictive-power metrics.',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1w11YS5zgq-R6gJc9Uec7bhIX0To3n0wG/view?usp=sharing' }],
   },
   {
     name: 'Commerce Club',
@@ -295,6 +331,7 @@ export const courses: Course[] = [
     date: 'Jun 2023 – Oct 2023',
     grade: 'Grade 9–10',
     details: 'Published an article, "The Economic Shift — The Invisible Hand", in the Commerce Club magazine, Feb 2024, Issue 1.',
+    links: [{ label: 'Magazine feature', href: 'https://drive.google.com/file/d/1yS2TjRKSEAyd0WogRbQkc8obtQmfNy-o/view?usp=sharing' }],
   },
 ]
 
@@ -303,28 +340,74 @@ export type Award = {
   detail?: string
   date: string
   tier?: 'gold' | 'silver' | 'bronze' | 'national' | 'distinction'
+  links?: LinkRef[]
 }
 
 export const honors: Award[] = [
-  { title: 'Crest Gold', detail: 'Persifolio: Personalised Portfolio & Virtual Stock Investment Simulator', date: 'Nov 2025', tier: 'gold' },
+  {
+    title: 'Crest Gold',
+    detail: 'Persifolio: Personalised Portfolio & Virtual Stock Investment Simulator',
+    date: 'Nov 2025',
+    tier: 'gold',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1yZziDh8KNX-sVQ6Y_UJy-U03HwLEIdsq/view?usp=sharing' }],
+  },
   {
     title: 'Harvard Hackathon — National Winner',
     detail: 'Designed and built a web app in 48 hours with a 5-member interdisciplinary team, reframing the résumé as a continuously evolving, AI-and-job-market-informed record of progress.',
     date: 'Jan 2026',
     tier: 'national',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1NV-4t_7RwapApyBkeH2ZJe8lTN6PJvie/view?usp=sharing' }],
   },
-  { title: 'Cambridge International Certificate of Education — Distinction', date: 'Jun 2025', tier: 'distinction' },
-  { title: 'Inventure Big Leap Award — English Literature', date: '2023–24' },
+  {
+    title: 'Cambridge International Certificate of Education — Distinction',
+    date: 'Jun 2025',
+    tier: 'distinction',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1zJPyjDMrFrb5SgOPcdOgqhMoTK3W0I0Y/view?usp=drive_link' }],
+  },
+  {
+    title: 'Inventure Big Leap Award — English Literature',
+    date: '2023–24',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/119UtFg9bJ9dPA69xYE3Vbkz6MnJOMiXB/view?usp=sharing' }],
+  },
 ]
 
 export const otherAwards: Award[] = [
-  { title: 'Award of Excellence — Community Outreach', date: '2024–25' },
-  { title: 'Award of Excellence — Inventure Sports Award', date: '2024–25' },
-  { title: 'Award of Excellence — Whiz Kid', date: '2025–26' },
-  { title: 'Award of Excellence — Inventure Scholar Award', date: '2025–26' },
-  { title: 'Award of Excellence — Computer Science Topper', date: '2025–26' },
-  { title: 'Award of Excellence — Multiachiever Award', date: '2025–26' },
-  { title: 'Portfolio Strategy Challenge — Winner, HDFC Credelia', detail: 'Designed a stock portfolio for a client; 1st place in the investment pitch competition.', date: 'Jan–Feb 2024' },
+  {
+    title: 'Award of Excellence — Community Outreach',
+    date: '2024–25',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/119UtFg9bJ9dPA69xYE3Vbkz6MnJOMiXB/view?usp=sharing' }],
+  },
+  {
+    title: 'Award of Excellence — Inventure Sports Award',
+    date: '2024–25',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+  },
+  {
+    title: 'Award of Excellence — Whiz Kid',
+    date: '2025–26',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1DUYTEkZhl9r8CX4keWYoeFqw6tYPlPqW/view?usp=sharing' }],
+  },
+  {
+    title: 'Award of Excellence — Inventure Scholar Award',
+    date: '2025–26',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1vlNIVk-0ANNTyWvwhKZ_ZGkUAlnuLiin/view?usp=sharing' }],
+  },
+  {
+    title: 'Award of Excellence — Computer Science Topper',
+    date: '2025–26',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/14a-PcLzrKh3qR1QyfRCvUmARi6wYFsVP/view?usp=sharing' }],
+  },
+  {
+    title: 'Award of Excellence — Multiachiever Award',
+    date: '2025–26',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/15yE7CeGr1JnULMhlt0wO6X0NeNg0N2IS/view?usp=sharing' }],
+  },
+  {
+    title: 'Portfolio Strategy Challenge — Winner, HDFC Credelia',
+    detail: 'Designed a stock portfolio for a client; 1st place in the investment pitch competition.',
+    date: 'Jan–Feb 2024',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1RsQmKGFUj4h30cvhG_U2lCPi6YVSQUUL/view?usp=sharing' }],
+  },
 ]
 
 export type Activity = {
@@ -333,16 +416,66 @@ export type Activity = {
   achievement: string
   date: string
   tier?: 'gold' | 'silver' | 'bronze' | 'national'
+  links?: LinkRef[]
 }
 
 export const sports: Activity[] = [
-  { name: 'TISB Swimming — 50m Butterfly (Under-15)', level: 'Inter-School', achievement: '3rd Prize', date: 'Jun 2023', tier: 'bronze' },
-  { name: 'ISSO Badminton', level: 'National', achievement: 'Participation', date: '2024', tier: 'national' },
-  { name: 'Head Start Interschool Basketball', level: 'Interschool', achievement: 'Silver Medal', date: '2024', tier: 'silver' },
-  { name: 'Interschool Athletic Relay', level: 'Interschool', achievement: 'Bronze', date: '2024', tier: 'bronze' },
-  { name: 'Inventure Shot Put Throw', level: 'Interschool', achievement: 'Gold', date: '2024', tier: 'gold' },
-  { name: 'Inventure Shot Put Throw', level: 'Interschool', achievement: 'Silver', date: '2025', tier: 'silver' },
-  { name: 'ISSO Shot Put Throw', level: 'National', achievement: 'Participation', date: '2025', tier: 'national' },
+  {
+    name: 'TISB Swimming — 50m Butterfly (Under-15)',
+    level: 'Inter-School',
+    achievement: '3rd Prize',
+    date: 'Jun 2023',
+    tier: 'bronze',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/15brCaAoZmHFYd7MqcjCkY_Wk8-j8QLUK/view?usp=sharing' }],
+  },
+  {
+    name: 'ISSO Badminton',
+    level: 'National',
+    achievement: 'Participation',
+    date: '2024',
+    tier: 'national',
+    links: [{ label: 'Photos', href: 'https://drive.google.com/drive/folders/1NR0REkqEwHmpy5Yr2QX1QBCR6RtX6DCp?usp=drive_link' }],
+  },
+  {
+    name: 'Head Start Interschool Basketball',
+    level: 'Interschool',
+    achievement: 'Silver Medal',
+    date: '2024',
+    tier: 'silver',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+  },
+  {
+    name: 'Interschool Athletic Relay',
+    level: 'Interschool',
+    achievement: 'Bronze',
+    date: '2024',
+    tier: 'bronze',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+  },
+  {
+    name: 'Inventure Shot Put Throw',
+    level: 'Interschool',
+    achievement: 'Gold',
+    date: '2024',
+    tier: 'gold',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+  },
+  {
+    name: 'Inventure Shot Put Throw',
+    level: 'Interschool',
+    achievement: 'Silver',
+    date: '2025',
+    tier: 'silver',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1O8wDrLp1YY1-mObKdJfGO8CWzCHTMH85/view?usp=sharing' }],
+  },
+  {
+    name: 'ISSO Shot Put Throw',
+    level: 'National',
+    achievement: 'Participation',
+    date: '2025',
+    tier: 'national',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZH194Y4ZaPIE4frQVb1D-c07XKK8hVYl/view?usp=sharing' }],
+  },
   { name: 'Badminton — Mixed Adult Doubles', level: 'Bangalore', achievement: 'Gold', date: '2023', tier: 'gold' },
 ]
 
@@ -374,6 +507,7 @@ export type Volunteer = {
   period: string
   contact?: string
   detail: string
+  links?: LinkRef[]
 }
 
 export const volunteering: Volunteer[] = [
@@ -383,6 +517,10 @@ export const volunteering: Volunteer[] = [
     period: '9th grade onwards',
     detail:
       'Raised ₹5,00,000 in corporate funding by presenting impact case studies and demonstrating technical expertise in urban reforestation. Led 7 plantation drives across Bangalore, planting 100,000+ trees in partnership with Indus International School and corporate sponsors.',
+    links: [
+      { label: 'Plantation drive photos', href: 'https://drive.google.com/drive/folders/17syK8LG4uxN-r_PJsEGGshw_SeEPkwOr?usp=drive_link' },
+      { label: 'Coverage write-up', href: 'https://drive.google.com/file/d/1apGyS7hLz_t5ZO0RSSssirwHZ5tTmKkZ/view?usp=sharing' },
+    ],
   },
   {
     name: 'RGH Government School — Tutoring',
@@ -399,6 +537,10 @@ export const volunteering: Volunteer[] = [
     contact: 'Jinal Rajpopat',
     detail:
       'Ran financial-literacy workshops on inflation and shrinkflation for young students and women from economically weaker sections; conducted finance workshops for peers at school. Completed 25 hours of community work.',
+    links: [
+      { label: 'Workshop video', href: 'https://youtu.be/zuuYRyHGc7M?si=bG5lUeEZEXshnJLz' },
+      { label: 'Project write-up', href: 'https://drive.google.com/file/d/1Y4WQIsRrOyl2DTArg6gPSVlXzSQ_0Yn6/view?usp=sharing' },
+    ],
   },
 ]
 

@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import { Paperclip } from 'lucide-react'
+import type { LinkRef } from '../data/resume'
 
 export function Card({
   children,
@@ -66,6 +68,20 @@ export function Tag({ children }: { children: ReactNode }) {
 
 export function StatusBadge({ tone, children }: { tone: 'live' | 'review' | 'published'; children: ReactNode }) {
   return <span className={`status-badge status-badge--${tone}`}>{children}</span>
+}
+
+export function EvidenceLinks({ links }: { links?: LinkRef[] }) {
+  if (!links || links.length === 0) return null
+  return (
+    <div className="evidence-links">
+      {links.map((l) => (
+        <a key={l.href} className="evidence-links__item" href={l.href} target="_blank" rel="noreferrer">
+          <Paperclip size={12} />
+          {l.label}
+        </a>
+      ))}
+    </div>
+  )
 }
 
 export function FilterChips<T extends string>({

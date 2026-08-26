@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Trophy, Medal } from 'lucide-react'
-import { Card, SectionHeading, Pill, FilterChips } from '../components/ui'
+import { Card, SectionHeading, Pill, FilterChips, EvidenceLinks } from '../components/ui'
 import { honors, otherAwards } from '../data/resume'
 import type { Award } from '../data/resume'
 
@@ -46,6 +46,7 @@ export function Awards() {
             <h4 className="award-card__title">{h.title}</h4>
             {h.detail && <p className="award-card__detail">{h.detail}</p>}
             <div className="award-card__date">{h.date}</div>
+            <EvidenceLinks links={h.links} />
           </Card>
         ))}
         {filtered.length === 0 && <p className="filter-empty">No honors in this category.</p>}
@@ -62,6 +63,7 @@ export function Awards() {
               <h4 className="award-card__title award-card__title--sm">{h.title}</h4>
               {h.detail && <p className="award-card__detail">{h.detail}</p>}
               <div className="award-card__date">{h.date}</div>
+              <EvidenceLinks links={h.links} />
             </div>
           </Card>
         ))}

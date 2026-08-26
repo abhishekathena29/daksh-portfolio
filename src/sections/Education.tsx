@@ -1,5 +1,5 @@
 import { GraduationCap, Calendar } from 'lucide-react'
-import { Card, SectionHeading, Pill } from '../components/ui'
+import { Card, SectionHeading, Pill, EvidenceLinks } from '../components/ui'
 import { education, courses, quickFacts } from '../data/resume'
 
 function gradeTone(grade: string): 'gold' | 'green' | 'default' {
@@ -48,6 +48,7 @@ export function Education() {
                 )}
               </div>
             )}
+            <EvidenceLinks links={e.links} />
           </Card>
         ))}
       </div>
@@ -82,6 +83,7 @@ export function Education() {
               <Calendar size={12} /> {c.date}
             </div>
             {c.details && <p className="course-card__details">{c.details}</p>}
+            <EvidenceLinks links={c.links} />
           </Card>
         ))}
       </div>

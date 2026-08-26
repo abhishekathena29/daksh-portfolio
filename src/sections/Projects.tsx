@@ -1,5 +1,5 @@
 import { Rocket } from 'lucide-react'
-import { Card, SectionHeading, Tag } from '../components/ui'
+import { Card, SectionHeading, Tag, EvidenceLinks } from '../components/ui'
 import { projects } from '../data/resume'
 
 export function Projects() {
@@ -49,6 +49,7 @@ export function Projects() {
                 ))}
               </div>
             )}
+            <EvidenceLinks links={p.links} />
           </Card>
         ))}
       </div>

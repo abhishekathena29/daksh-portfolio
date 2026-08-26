@@ -1,5 +1,5 @@
 import { Briefcase, HeartHandshake, User } from 'lucide-react'
-import { Card, SectionHeading } from '../components/ui'
+import { Card, SectionHeading, EvidenceLinks } from '../components/ui'
 import { internships, volunteering } from '../data/resume'
 
 export function Experience() {
@@ -34,6 +34,7 @@ export function Experience() {
                 <User size={12} /> {i.contact}
               </div>
             )}
+            <EvidenceLinks links={i.links} />
           </Card>
         ))}
       </div>
@@ -55,6 +56,7 @@ export function Experience() {
                 <User size={12} /> {v.contact}
               </div>
             )}
+            <EvidenceLinks links={v.links} />
           </Card>
         ))}
       </div>
