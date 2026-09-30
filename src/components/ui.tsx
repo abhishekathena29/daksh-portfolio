@@ -1,109 +1,103 @@
-import type { ReactNode } from 'react'
-import { Paperclip } from 'lucide-react'
+import type { ComponentType, ReactNode } from 'react'
+import { ExternalLink } from 'lucide-react'
 import type { LinkRef } from '../data/resume'
 
-export function Card({
-  children,
-  className = '',
-  padded = true,
-}: {
-  children: ReactNode
-  className?: string
-  padded?: boolean
-}) {
-  return <div className={`card ${padded ? 'card--padded' : ''} ${className}`}>{children}</div>
-}
+const TONES = {
+  emerald: 'bg-emerald-50 text-emerald-800 border-emerald-200 [&>svg]:text-emerald-600',
+  blue: 'bg-blue-50 text-blue-800 border-blue-200 [&>svg]:text-blue-600',
+  indigo: 'bg-indigo-50 text-indigo-800 border-indigo-200 [&>svg]:text-indigo-600',
+} as const
 
-export function SectionHeading({
+export function PageBanner({
+  icon: Icon,
   eyebrow,
   title,
   description,
+  tone = 'emerald',
+  children,
 }: {
-  eyebrow?: string
+  icon: ComponentType<{ className?: string }>
+  eyebrow: string
   title: string
-  description?: string
+  description: string
+  tone?: keyof typeof TONES
+  children?: ReactNode
 }) {
   return (
-    <div className="section-heading">
-      {eyebrow && <span className="section-heading__eyebrow">{eyebrow}</span>}
-      <h1 className="section-heading__title">{title}</h1>
-      {description && <p className="section-heading__desc">{description}</p>}
-    </div>
-  )
-}
-
-export function StatTile({
-  label,
-  value,
-  unit,
-}: {
-  label: string
-  value: ReactNode
-  unit?: string
-}) {
-  return (
-    <div className="stat-tile">
-      <span className="stat-tile__label">{label}</span>
-      <div className="stat-tile__value-row">
-        <span className="stat-tile__value">{value}</span>
-        {unit && <span className="stat-tile__unit">{unit}</span>}
+    <div className="bg-white rounded-3xl border border-slate-200/80 p-7 sm:p-9 shadow-xs">
+      <div className="max-w-3xl space-y-3">
+        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-mono font-semibold ${TONES[tone]}`}>
+          <Icon className="w-3.5 h-3.5" />
+          <span>{eyebrow}</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-bold font-display text-slate-900 tracking-tight">{title}</h1>
+        <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{description}</p>
       </div>
+      {children && <div className="pt-6 mt-6 border-t border-slate-100">{children}</div>}
     </div>
   )
 }
 
 export function Pill({
+  active,
+  onClick,
   children,
-  tone = 'default',
+  activeClass = 'bg-slate-900 text-white font-semibold shadow-2xs',
 }: {
+  active: boolean
+  onClick: () => void
   children: ReactNode
-  tone?: 'default' | 'gold' | 'silver' | 'bronze' | 'national' | 'green' | 'blue' | 'distinction'
+  activeClass?: string
 }) {
-  return <span className={`pill pill--${tone}`}>{children}</span>
-}
-
-export function Tag({ children }: { children: ReactNode }) {
-  return <span className="tag">{children}</span>
-}
-
-export function StatusBadge({ tone, children }: { tone: 'live' | 'review' | 'published'; children: ReactNode }) {
-  return <span className={`status-badge status-badge--${tone}`}>{children}</span>
-}
-
-export function EvidenceLinks({ links }: { links?: LinkRef[] }) {
-  if (!links || links.length === 0) return null
   return (
-    <div className="evidence-links">
+    <button
+      onClick={onClick}
+      className={`px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all cursor-pointer flex items-center gap-2 ${
+        active ? activeClass : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70 hover:text-slate-900'
+      }`}
+    >
+      {children}
+    </button>
+  )
+}
+
+export function Panel({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return <div className={`bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-7 shadow-xs ${className}`}>{children}</div>
+}
+
+export function PanelHead({ eyebrow, title, sub, right }: { eyebrow?: string; title: string; sub?: string; right?: ReactNode }) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-6">
+      <div>
+        {eyebrow && <span className="text-xs font-mono text-emerald-700 font-bold uppercase block">{eyebrow}</span>}
+        <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900 mt-0.5">{title}</h2>
+        {sub && <p className="text-xs sm:text-sm text-slate-500 mt-1">{sub}</p>}
+      </div>
+      {right}
+    </div>
+  )
+}
+
+export function LinkButtons({ links }: { links?: LinkRef[] }) {
+  if (!links?.length) return null
+  return (
+    <div className="flex flex-wrap gap-2">
       {links.map((l) => (
-        <a key={l.href} className="evidence-links__item" href={l.href} target="_blank" rel="noreferrer">
-          <Paperclip size={12} />
-          {l.label}
+        <a
+          key={l.href + l.label}
+          href={l.href}
+          target="_blank"
+          rel="noreferrer"
+          className="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-mono font-semibold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors"
+        >
+          <span>{l.label}</span>
+          <ExternalLink className="w-3 h-3 text-emerald-600" />
         </a>
       ))}
     </div>
   )
 }
 
-export function FilterChips<T extends string>({
-  options,
-  active,
-  onChange,
-}: {
-  options: { key: T; label: string }[]
-  active: T
-  onChange: (key: T) => void
-}) {
-  return (
-    <div className="filter-chips">
-      {options.map((opt) => (
-        <button
-          key={opt.key}
-          className={`filter-chips__btn ${active === opt.key ? 'filter-chips__btn--active' : ''}`}
-          onClick={() => onChange(opt.key)}
-        >
-          {opt.label}
-        </button>
-      ))}
-    </div>
-  )
+export function Chip({ children }: { children: ReactNode }) {
+  return <span className="text-[11px] font-mono bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">{children}</span>
 }

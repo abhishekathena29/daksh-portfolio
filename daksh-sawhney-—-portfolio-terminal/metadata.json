@@ -1,0 +1,6 @@
+{
+  "name": "Daksh Sawhney — Portfolio Terminal",
+  "description": "Daksh Sawhney's interactive personal investment terminal and college portfolio. Grade 11 researcher, builder, and investor in problems worth solving.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

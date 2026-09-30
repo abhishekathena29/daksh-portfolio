@@ -1,96 +1,73 @@
-:root {
-  --bg: #f2f3f6;
-  --surface: #ffffff;
-  --surface-2: #f7f8fa;
-  --border: #e7e8ee;
-  --border-strong: #d7d9e2;
+@import "tailwindcss";
 
-  --text: #6b7280;
-  --text-muted: #9aa1ac;
-  --text-h: #12131a;
-
-  --brand: #14213d;
-  --brand-2: #1f2f52;
-  --brand-bg: rgba(20, 33, 61, 0.06);
-
-  --accent: #16a34a;
-  --accent-bg: rgba(22, 163, 74, 0.1);
-  --accent-strong: #0f7a37;
-
-  --gold: #a16207;
-  --gold-bg: rgba(202, 138, 4, 0.12);
-  --silver: #556170;
-  --silver-bg: rgba(100, 116, 139, 0.12);
-  --bronze: #9a5b23;
-  --bronze-bg: rgba(180, 83, 9, 0.12);
-  --national: #6d28d9;
-  --national-bg: rgba(109, 40, 217, 0.1);
-  --blue: #1d4ed8;
-  --blue-bg: rgba(37, 99, 235, 0.1);
-
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
-
-  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
-  --shadow-md: 0 8px 24px rgba(16, 24, 40, 0.06);
-
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
-  --display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
-
-  font: 16px/150% var(--sans);
-  color-scheme: light;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
 }
 
-body {
-  margin: 0;
-  min-height: 100svh;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--sans);
-  color: var(--text-h);
-  margin: 0;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--display);
-  letter-spacing: -0.02em;
+/* Subtle fintech grid pattern */
+.terminal-grid {
+  background-size: 32px 32px;
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
 }
 
-p {
-  margin: 0;
+/* Infinite marquee ticker */
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-button {
-  font-family: var(--sans);
-  cursor: pointer;
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out both;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
