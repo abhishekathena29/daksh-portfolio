@@ -45,7 +45,7 @@ export function ContactView() {
             <h2 className="text-lg font-bold font-display text-slate-900 border-b border-slate-100 pb-3">Direct Contact Channels</h2>
 
             <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/70 space-y-2">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">Primary email</span>
+              <span className="text-[12px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">Primary email</span>
               <div className="flex items-center justify-between">
                 <a href={`mailto:${profile.email}`} className="font-mono text-sm sm:text-base font-bold text-slate-900 hover:text-emerald-700 transition-colors break-all">
                   {profile.email}
@@ -58,7 +58,7 @@ export function ContactView() {
                   {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
-              {copied && <span className="text-[11px] font-mono text-emerald-700 block">✓ Copied to clipboard</span>}
+              {copied && <span className="text-xs font-mono text-emerald-700 block">✓ Copied to clipboard</span>}
             </div>
 
             <div className="space-y-4 text-sm text-slate-600">
@@ -85,7 +85,7 @@ export function ContactView() {
             </div>
 
             <div className="pt-4 border-t border-slate-100 space-y-2">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">Links</span>
+              <span className="text-[12px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">Links</span>
               <div className="flex flex-col gap-2">
                 {blog && 'link' in blog && (
                   <a
@@ -158,7 +158,7 @@ export function ContactView() {
                   />
                 </label>
                 <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <span className="text-[11px] font-mono text-slate-400">* Required fields</span>
+                  <span className="text-xs font-mono text-slate-400">* Required fields</span>
                   <button
                     type="submit"
                     className="bg-slate-900 hover:bg-slate-800 text-white font-medium px-5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"

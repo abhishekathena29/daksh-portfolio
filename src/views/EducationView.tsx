@@ -1,5 +1,5 @@
-import { GraduationCap, MapPin, Sparkles } from 'lucide-react'
-import { courses, education, quickFacts } from '../data/resume'
+import { GraduationCap, MapPin, Sparkles, Wrench } from 'lucide-react'
+import { courses, education, quickFacts, skills } from '../data/resume'
 import { evidenceBy, type OpenEvidence } from '../data/evidence'
 import { EvidenceCard } from '../components/EvidenceCard'
 import { LinkButtons, PageBanner, Panel, PanelHead } from '../components/ui'
@@ -21,7 +21,7 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
       <PageBanner
         icon={GraduationCap}
         eyebrow="ACADEMIC TRAJECTORY & ACCREDITATIONS"
-        title="Education & University Coursework"
+        title="Education & Grades"
         description={`Cambridge curriculum at ${education[0].institution.split(',')[0]} with university-level coursework from the University of Pennsylvania, IIT Madras, Yale and Inspirit AI.`}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -71,13 +71,13 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
               </div>
 
               <div>
-                <span className="text-xs font-mono text-slate-400 font-semibold block uppercase mb-2">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
+                <span className="text-sm font-mono text-slate-500 font-semibold block uppercase mb-3">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
                 <div className="flex flex-wrap gap-2">
                   {subjects.map((s) => (
-                    <span key={s.name} className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200/70 rounded-xl pl-3 pr-1.5 py-1.5 text-xs text-slate-700">
+                    <span key={s.name} className="inline-flex items-center gap-2.5 bg-slate-50 border border-slate-200/70 rounded-xl pl-3.5 pr-2 py-2 text-base text-slate-800">
                       {s.name}
                       {s.grade && (
-                        <span className={`font-mono font-bold text-[11px] px-1.5 rounded ${s.grade === 'A*' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}`}>{s.grade}</span>
+                        <span className={`font-mono font-bold text-sm px-2 py-0.5 rounded-md ${s.grade === 'A*' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}`}>{s.grade}</span>
                       )}
                     </span>
                   ))}
@@ -101,6 +101,33 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
           </div>
         </div>
       </div>
+
+      <Panel>
+        <PanelHead eyebrow="Toolkit" title="Technical Skills" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {(
+            [
+              ['AI / ML', skills.aiml],
+              ['Programming', skills.programming],
+              ['Cloud', skills.cloud],
+              ['Databases', skills.databases],
+            ] as [string, string[]][]
+          ).map(([label, list]) => (
+            <div key={label}>
+              <span className="text-sm font-mono text-slate-500 uppercase tracking-wider font-semibold flex items-center gap-1.5 mb-2">
+                <Wrench className="w-4 h-4" /> {label}
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {list.map((s) => (
+                  <span key={s} className="text-sm font-mono bg-slate-900 text-emerald-300 px-3 py-1.5 rounded-lg">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Panel>
 
       <Panel>
         <PanelHead

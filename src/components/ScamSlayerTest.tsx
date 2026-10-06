@@ -91,7 +91,7 @@ export function ScamSlayerTest() {
             <AlertTriangle className="w-4 h-4" />
             <span className="font-bold">{s.type}</span>
           </div>
-          <div className="text-slate-400 text-[11px]">
+          <div className="text-slate-400 text-xs">
             FROM: <span className="text-slate-200">{s.sender}</span>
           </div>
         </div>
@@ -129,7 +129,7 @@ export function ScamSlayerTest() {
 
         {choice !== null && (
           <div className="mt-5 bg-[#0a0e14] border border-white/10 rounded-xl p-4 animate-fade-in">
-            <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-2 font-semibold">Red flags in this message</span>
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-2 font-semibold">Red flags in this message</span>
             <ul className="space-y-1.5 font-mono text-xs text-slate-300">
               {s.redFlags.map((f) => (
                 <li key={f} className="flex items-center gap-2">

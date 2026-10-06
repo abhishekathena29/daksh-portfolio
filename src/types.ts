@@ -1,20 +1,26 @@
 export type PageTab =
-  | 'overview'
-  | 'education'
+  | 'home'
   | 'research'
   | 'projects'
-  | 'experience'
+  | 'education'
   | 'awards'
-  | 'activities'
+  | 'experience'
+  | 'passions'
   | 'contact'
 
 export const PAGE_TABS: PageTab[] = [
-  'overview',
-  'education',
+  'home',
   'research',
   'projects',
-  'experience',
+  'education',
   'awards',
-  'activities',
+  'experience',
+  'passions',
   'contact',
 ]
+
+// Hashes from earlier versions of the site keep working.
+export const LEGACY_TABS: Record<string, PageTab> = {
+  overview: 'home',
+  activities: 'passions',
+}

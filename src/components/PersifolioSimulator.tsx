@@ -71,7 +71,7 @@ export function PersifolioSimulator() {
           <p className="text-xs text-slate-400 font-mono mt-0.5">4,000+ users onboarded • Flutter + Firebase • Market data APIs</p>
         </div>
         <div className="bg-[#121924] border border-white/10 rounded-xl px-4 py-2 font-mono text-right">
-          <span className="text-[10px] text-slate-400 block uppercase">Virtual balance</span>
+          <span className="text-[12px] text-slate-400 block uppercase">Virtual balance</span>
           <span className="text-base font-bold text-emerald-400">₹{cash.toLocaleString('en-IN')}</span>
         </div>
       </div>
@@ -96,7 +96,7 @@ export function PersifolioSimulator() {
                 className="w-full accent-emerald-400 cursor-pointer"
                 aria-label="Risk score"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-1.5">
+              <div className="flex justify-between text-[12px] font-mono text-slate-400 mt-1.5">
                 <span>1 · Low risk</span>
                 <span>5 · Moderate</span>
                 <span>10 · Aggressive</span>
@@ -113,7 +113,7 @@ export function PersifolioSimulator() {
                   <div key={b.key} style={{ width: `${b.value}%` }} className={`${b.color} transition-all duration-300`} />
                 ))}
               </div>
-              <div className="grid grid-cols-4 gap-2 pt-1 font-mono text-[11px]">
+              <div className="grid grid-cols-4 gap-2 pt-1 font-mono text-xs">
                 {bars.map((b) => (
                   <div key={b.key} className="flex items-center gap-1.5">
                     <span className={`w-2.5 h-2.5 rounded-xs ${b.color}`} />
@@ -131,7 +131,7 @@ export function PersifolioSimulator() {
               <CheckCircle2 className="w-4 h-4" />
               <span>RECOGNITION</span>
             </div>
-            <p className="text-[11px] leading-relaxed">
+            <p className="text-xs leading-relaxed">
               Patent filed and published in the Indian Patent Journal. Crest Gold (British Science Association). Adopted by schools in Odisha, supported by a Member of the Rajya Sabha.
             </p>
           </div>
@@ -144,7 +144,7 @@ export function PersifolioSimulator() {
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
                 VIRTUAL MARKET
               </span>
-              <span className="text-amber-300 bg-amber-950/50 px-2 py-0.5 rounded text-[10px] border border-amber-500/20">DEMO QUOTES</span>
+              <span className="text-amber-300 bg-amber-950/50 px-2 py-0.5 rounded text-[12px] border border-amber-500/20">DEMO QUOTES</span>
             </div>
             <div className="space-y-1.5">
               {QUOTES.map((q) => {
@@ -162,11 +162,11 @@ export function PersifolioSimulator() {
                         {q.symbol}
                         {holdings[q.symbol] ? <span className="ml-2 text-emerald-400 font-normal">×{holdings[q.symbol]}</span> : null}
                       </span>
-                      <span className="text-[10px] text-slate-400">{q.name}</span>
+                      <span className="text-[12px] text-slate-400">{q.name}</span>
                     </div>
                     <div className="text-right">
                       <span className="font-bold text-white block">₹{q.price.toFixed(2)}</span>
-                      <span className={`text-[10px] ${q.up ? 'text-emerald-400' : 'text-rose-400'}`}>{q.change}</span>
+                      <span className={`text-[12px] ${q.up ? 'text-emerald-400' : 'text-rose-400'}`}>{q.change}</span>
                     </div>
                   </button>
                 )
@@ -182,7 +182,7 @@ export function PersifolioSimulator() {
               </span>
             </div>
             {notice && (
-              <div className="p-2 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-[11px] animate-fade-in flex items-center gap-1.5">
+              <div className="p-2 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs animate-fade-in flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                 <span>{notice}</span>
               </div>

@@ -4,10 +4,8 @@ import type { PageTab as SectionKey } from '../types'
 export const profile = {
   name: 'Daksh Sawhney',
   initials: 'DS',
-  // Drop a portrait in later: import the file above and set photo to it, e.g.
-  //   import portrait from '../info/daksh-portrait.jpg'
-  //   photo: portrait,
-  photo: '' as string,
+  // Portrait for the landing page; falls back to the initials monogram if missing.
+  photo: '/media/profile/daksh.jpeg',
   tagline: 'Computational Mathematics & Quantitative Finance',
   school: 'Inventure Academy',
   location: 'Bangalore, India',
@@ -33,7 +31,7 @@ export const profile = {
       "Hey! I'm Daksh, a 17-year-old from Bangalore, obsessed with mathematics, AI, and finance. I like anything where you can turn the uncertainty of a real-world problem into a mathematical model you can use to make predictions. I know that sounds nerdy, but I promise it's fun.",
       'I built Persifolio, an app that helps people learn investing and budgeting through a virtual stock market — it is now used by over 4,000 people, which still feels wild to say, and it will be adopted in Odisha.',
       'Over the summer I did research at the Research Science Institute (RSI) at IISc, India, studying chaos theory and designing a mathematical tool to predict when a system will reach chaos. I also worked with a professor at the University of Cambridge on error analysis of code-mixed language by a POS tagger — published in the Oxford Journal of Student Scholarship.',
-      'More recently, I was part of a 4-student team at the Harvard Hackathon in India that built Polaris, a prototype that rethinks the résumé as a living roadmap. We won nationally and represented India at the HackHarvard International Hackathon at Harvard University — probably the project that taught me the most about designing systems, not just writing code.',
+      'More recently, I was part of a 4-student team at the Harvard Hackathon in India that built Polaris, an AI web app that studies people already in your dream job and builds you a step-by-step pathway to get there — it has now helped over 1,000 people. We won nationally and represented India at the HackHarvard International Hackathon at Harvard University — probably the project that taught me the most about designing systems, not just writing code.',
       "I also built Scam Slayer, a free app that helps protect senior citizens from online scams — it has helped over 1,000 elderly people so far, and it's the project I'm proudest of. I'm an environment lover and entrepreneur who raised over ₹5,00,000 from corporates to plant 100,000+ trees at urban forest sites in and around Bangalore.",
       "When I'm not doing any of that, I can be found trading on the stock exchange, on the basketball court, on the athletics field, or in the gym running and weightlifting.",
     ],
@@ -47,19 +45,42 @@ export type Stat = {
   section: SectionKey
 } & ({ value: string } | { target: number; prefix?: string; suffix?: string; indian?: boolean })
 
-export const tickerStats: Stat[] = [
-  { label: 'PERSIFOLIO', target: 4000, suffix: '+', unit: 'users', section: 'projects' },
-  { label: 'TREES PLANTED', target: 100000, suffix: '+', unit: 'across 6 sites', section: 'activities' },
-  { label: 'FUNDING RAISED', target: 500000, prefix: '₹', indian: true, unit: 'corporate', section: 'activities' },
-  { label: 'RESEARCH PAPERS', target: 3, unit: '1 published', section: 'research' },
-  { label: 'PATENT', value: 'Filed', unit: 'Indian Patent Journal', section: 'projects' },
-  { label: 'HACKATHON', value: 'National Winner', unit: 'Harvard, 2026', section: 'awards' },
+// Dashboard metrics on the landing page. Set `value` to null while a figure is
+// still awaited — the tile shows "Update pending" instead of a number.
+export type Metric = {
+  symbol: string
+  label: string
+  value: number | null
+  prefix?: string
+  suffix?: string
+  indian?: boolean
+  note: string
+  section: SectionKey
+}
+
+export const dashboardMetrics: Metric[] = [
+  { symbol: 'REACH', label: 'People reached', value: 6000, suffix: '+', note: 'Persifolio 4,000+ · Scam Slayer 1,000+ · Polaris 1,000+', section: 'projects' },
+  { symbol: 'RAISED', label: 'Money raised', value: 500000, prefix: '₹', indian: true, note: 'Corporate funding · 100,000+ trees planted', section: 'projects' },
+  // Persifolio funding — fill in once received.
+  { symbol: 'FUND', label: 'Funding raised', value: null, prefix: '₹', indian: true, note: 'Persifolio venture funding', section: 'projects' },
+  // Daksh's own capital put into his ventures — fill in once confirmed.
+  { symbol: 'SELF', label: 'Self-invested', value: null, prefix: '₹', indian: true, note: 'Own capital in ventures', section: 'projects' },
+  { symbol: 'PAPERS', label: 'Research papers', value: 3, note: '2 published · 1 under review', section: 'research' },
+  { symbol: 'IP', label: 'Patents', value: 1, note: 'Persifolio · Indian Patent Journal', section: 'projects' },
 ]
 
-export const heroStats: Stat[] = [
-  { label: 'People reached', target: 4000, suffix: '+', unit: 'via Persifolio', section: 'projects' },
-  { label: 'Trees planted', target: 100000, suffix: '+', unit: '7 plantation drives', section: 'activities' },
-  { label: 'Funding raised', target: 500000, prefix: '₹', indian: true, unit: 'corporate sponsors', section: 'activities' },
+// Scrolling tape under the navbar.
+export const tickerTape: { symbol: string; value: string; note: string }[] = [
+  { symbol: 'PRSF', value: '4,000+', note: 'Persifolio users' },
+  { symbol: 'TREES', value: '100,000+', note: 'planted, 6 sites' },
+  { symbol: 'RSI', value: '<2%', note: 'acceptance, 2026' },
+  { symbol: 'HACK', value: '#1', note: 'Harvard Hackathon India' },
+  { symbol: 'CREST', value: 'GOLD', note: 'British Science Assoc.' },
+  { symbol: 'SCAM', value: '1,000+', note: 'seniors trained' },
+  { symbol: 'PLRS', value: '1,000+', note: 'Polaris users' },
+  { symbol: 'IGCSE', value: '8 A*', note: 'Cambridge' },
+  { symbol: 'IP', value: '1', note: 'patent published' },
+  { symbol: 'δ', value: '4.669', note: 'Feigenbaum constant' },
 ]
 
 export const quickFacts = {
@@ -123,6 +144,12 @@ export type Research = {
   findings?: string[]
   metrics?: { label: string; value: string }[]
   statusTone: 'live' | 'review' | 'published'
+  // The one picture shown for this project in the Research section
+  cover?: Photo
+  coverFit?: 'cover' | 'contain'
+  // The research paper itself; omitted while the manuscript is under review
+  paper?: LinkRef
+  certificate?: LinkRef
   links?: LinkRef[]
 }
 
@@ -144,14 +171,8 @@ export const research: Research[] = [
       'Piecewise linear maps (1.0 < ξ < 1.5) — the tent map r(1−2|x−0.5|) and 1−r|x| — bypass period doubling entirely, jumping from a single stable fixed point into a solid chaotic wedge with unvisited lens-shaped regions.',
       'The coefficient serves as an accurate baseline for classifying nonlinear chaotic dynamics from the visual properties of bifurcation diagrams.',
     ],
-    links: [
-      { label: 'RSI-India certificate', href: '/docs/rsi-india-certificate.pdf' },
-      { label: 'RSI-India certificate (Drive)', href: 'https://drive.google.com/file/d/1HWutFBOAX-pC94_uNatPPuL68f6S8O0W/view?usp=sharing' },
-    ],
-    images: [
-      { src: '/media/research/rsi-award-ceremony.jpg', caption: 'Receiving the RSI-India 2026 award' },
-      { src: '/media/research/rsi-india-certificate.jpg', caption: 'Research Science Initiative India 2026 certificate' },
-    ],
+    cover: { src: '/media/research/rsi-award-ceremony.jpg', caption: 'Receiving the RSI-India 2026 award' },
+    certificate: { label: 'RSI-India certificate', href: '/docs/rsi-india-certificate.pdf' },
   },
   {
     title: 'POS Tagging of Hindi–English Code-Mixed Text Using an Averaged Perceptron',
@@ -173,12 +194,10 @@ export const research: Research[] = [
       { label: 'Hindi accuracy', value: '95.95%' },
       { label: 'Hinglish accuracy', value: '94.89%' },
     ],
-    links: [
-      { label: 'Read paper draft', href: 'https://drive.google.com/file/d/1y3q5K-0w3I0z-vRRER7IhwKthSH9aLeV/view?usp=sharing' },
-      { label: 'CCIR certificate', href: '/docs/ccir-cambridge-future-scholar.pdf' },
-      { label: 'CCIR certificate (Drive)', href: 'https://drive.google.com/file/d/1veAT00OPD--xoj47pVC24f9_rSDbqmai/view?usp=sharing' },
-    ],
-    images: [{ src: '/media/research/ccir-cambridge-future-scholar.jpg', caption: 'Cambridge Future Scholar — Machine Learning & NLP, under Dr Weiwei Sun' }],
+    coverFit: 'contain',
+    cover: { src: '/media/research/ccir-cambridge-future-scholar.jpg', caption: 'Cambridge Future Scholar — Machine Learning & NLP, under Dr Weiwei Sun' },
+    paper: { label: 'Read the paper', href: 'https://drive.google.com/file/d/1y3q5K-0w3I0z-vRRER7IhwKthSH9aLeV/view?usp=sharing' },
+    certificate: { label: 'CCIR certificate', href: '/docs/ccir-cambridge-future-scholar.pdf' },
   },
   {
     title:
@@ -194,7 +213,7 @@ export const research: Research[] = [
       'Data analysis of the demographic profile of UPI users and their transaction preferences shows a strong preference for UPI over cash across transaction types.',
       "Emphasises UPI's pivotal role in India's journey towards a cashless society and its broad economic benefits.",
     ],
-    links: [{ label: 'Read publication', href: 'https://doi.org/10.46609/IJSSER.2025.v10i07.021' }],
+    paper: { label: 'Read the publication', href: 'https://doi.org/10.46609/IJSSER.2025.v10i07.021' },
   },
 ]
 
@@ -209,6 +228,9 @@ export type ProjectT = {
   highlights: { label: string; value: string }[]
   features?: string[]
   links?: LinkRef[]
+  // Shown in the project header when set (path under /public)
+  logo?: string
+  funding?: { amount: string; source: string; date?: string }
 }
 
 export const projects: ProjectT[] = [
@@ -222,6 +244,9 @@ export const projects: ProjectT[] = [
       'Simplifies complex financial concepts with personalised investment suggestions, risk scores, and a virtual stock market simulator — reducing the fear and misinformation that keeps people from investing.',
       'Cleared the first stage of patenting and was published in the Indian Patent Journal. Recently adopted by schools in Odisha as part of their financial-awareness program, supported by a Member of the Rajya Sabha, Government of India.',
     ],
+    // Add once received from Daksh:
+    //   logo: '/media/logos/persifolio.png',
+    //   funding: { amount: '₹X,XX,XXX', source: 'Investor / grant name', date: 'Mon YYYY' },
     stack: ['Flutter', 'Firebase', 'Material 3', 'Crashlytics', 'Google Analytics', 'Market Data APIs'],
     features: [
       'Android app built with Flutter and Firebase, published on Google Play, with real-time market-data APIs, Crashlytics and Google Analytics.',
@@ -237,7 +262,6 @@ export const projects: ProjectT[] = [
     links: [
       { label: 'Patent journal', href: '/docs/persifolio-patent-journal.pdf' },
       { label: 'Patent certificate', href: 'https://drive.google.com/file/d/1kg8lx8TX5Fw6qo7_mMGpcxSRizaRH2xL/view?usp=sharing' },
-      { label: 'Crest Gold award', href: '/docs/crest-gold-certificate.pdf' },
       { label: 'Persifolio letter', href: 'https://drive.google.com/file/d/1vJnF1p_6BioUTA5Mk2dkfTVe4FrJyZCf/view?usp=sharing' },
       { label: 'LOR by MP', href: 'https://drive.google.com/file/d/1DpFGhfOzSgRK293YyhIaiFJR5BOXj3_n/view?usp=sharing' },
       { label: 'Product images', href: 'https://drive.google.com/file/d/161ClOIRgpiNfUGrpCLBF9x7Kry0g41Iw/view?usp=drive_link' },
@@ -250,8 +274,6 @@ export const projects: ProjectT[] = [
       { src: '/media/persifolio/workshop-7.jpg', caption: 'Onboarding a full classroom onto Persifolio' },
       { src: '/media/persifolio/workshop-1.jpg', caption: 'Students with Persifolio QR pamphlets' },
       { src: '/media/persifolio/workshop-2.jpg', caption: 'Downloading the app from the QR pamphlet' },
-      { src: '/media/persifolio/crest-gold-award.jpg', caption: 'Crest Gold Award — British Science Association' },
-      { src: '/media/persifolio/persifolio-patent-journal.jpg', caption: 'Official Journal of the Patent Office, issue 1/2026' },
     ],
   },
   {
@@ -284,23 +306,26 @@ export const projects: ProjectT[] = [
   },
   {
     name: 'Polaris',
-    role: 'Team member (4 students) — Harvard Hackathon',
-    period: 'Jan 2026',
-    tagline: 'Rethinks the résumé as a living roadmap that updates as you build skills and experience.',
+    role: 'Co-creator (4-student team) — Harvard Hackathon National Winner',
+    period: 'Jan 2026 – present',
+    tagline: 'An AI web app that maps the pathway from where you are to your dream job.',
     description: [
-      'Instead of a static document you make once, Polaris is a living roadmap that uses AI and real job-market data to show you exactly what to do next.',
-      'Won the Harvard Hackathon nationally; the team represented India at the HackHarvard International Hackathon at Harvard University, an undergraduate-only event.',
-      'The project that taught me the most about designing systems, not just writing code.',
+      'Polaris is an AI-based web app that scans trusted sources such as LinkedIn for professionals who already hold the user\'s dream job, and learns what actually got them there.',
+      'It starts with an onboarding flow that captures the user\'s background, demographics and desired "dream job", then builds an in-depth, step-by-step pathway to become more than qualified for it.',
+      'Has impacted 1,000+ people so far. Won the Harvard Hackathon nationally; the team represented India at the HackHarvard International Hackathon at Harvard University, an undergraduate-only event.',
     ],
     highlights: [
-      { label: 'Result', value: 'National Winner' },
-      { label: 'Built in', value: '48 hours' },
-      { label: 'Next stage', value: 'HackHarvard, USA' },
+      { label: 'People impacted', value: '1,000+' },
+      { label: 'Harvard Hackathon', value: 'National Winner' },
+      { label: 'Built with', value: 'AI + live job data' },
     ],
-    links: [{ label: 'Hackathon certificate', href: 'https://drive.google.com/file/d/1NV-4t_7RwapApyBkeH2ZJe8lTN6PJvie/view?usp=sharing' }],
     images: [
+      { src: '/media/polaris/session-1.jpg', caption: 'Presenting Polaris to a college classroom' },
+      { src: '/media/polaris/session-2.jpg', caption: '"Old searching vs Polaris" — explaining the approach' },
+      { src: '/media/polaris/session-3.jpg', caption: 'Helping students set up their dream-job pathway' },
+      { src: '/media/polaris/session-4.jpg', caption: 'Introducing Polaris to a class' },
+      { src: '/media/polaris/session-5.jpg', caption: 'Students trying Polaris on their phones' },
       { src: '/media/awards/harvard-hackathon-cohort.jpg', caption: 'HackHarvard Challenge 2026 cohort — "Where Ideas Became Reality"' },
-      { src: '/media/awards/harvard-hackathon-certificate.jpg', caption: 'Certificate of Achievement — First Position, HackHarvard Challenge 2026' },
     ],
   },
   {
@@ -459,7 +484,6 @@ export const courses: Course[] = [
     details:
       'Applied Moneyball methodology to baseball player valuation using ML clustering to identify undervalued players. Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the highest-predictive-power metrics.',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1w11YS5zgq-R6gJc9Uec7bhIX0To3n0wG/view?usp=sharing' }],
-    images: [{ src: '/media/moneyball/stadium-analytics.jpg', caption: 'Moneyball: AI, Sports & Business' }],
   },
   {
     name: 'Commerce Club',
@@ -490,20 +514,14 @@ export const honors: Award[] = [
       { label: 'Certificate', href: '/docs/crest-gold-certificate.pdf' },
       { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1yZziDh8KNX-sVQ6Y_UJy-U03HwLEIdsq/view?usp=sharing' },
     ],
-    images: [
-      { src: '/media/awards/crest-gold-certificate.jpg', caption: 'Crest Gold — British Science Association, 28/10/2025' },
-      { src: '/media/persifolio/crest-gold-award.jpg', caption: 'Crest Gold Award certificate' },
-    ],
+    images: [{ src: '/media/awards/crest-gold-certificate.jpg', caption: 'Crest Gold — British Science Association, 28/10/2025' }],
   },
   {
     title: 'Harvard Hackathon — National Winner',
     detail: 'First Position in the HackHarvard Challenge 2026 hosted at Ashoka University. Built Polaris in 48 hours with an interdisciplinary team, reframing the résumé as a continuously evolving, AI-and-job-market-informed record of progress. Represented India at the HackHarvard International Hackathon at Harvard University.',
     date: 'Jan 2026',
     tier: 'national',
-    images: [
-      { src: '/media/awards/harvard-hackathon-certificate.jpg', caption: 'Certificate of Achievement — First Position' },
-      { src: '/media/awards/harvard-hackathon-cohort.jpg', caption: 'HackHarvard Challenge 2026 cohort at Ashoka University' },
-    ],
+    images: [{ src: '/media/awards/harvard-hackathon-certificate.jpg', caption: 'Certificate of Achievement — First Position' }],
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1NV-4t_7RwapApyBkeH2ZJe8lTN6PJvie/view?usp=sharing' }],
   },
   {
@@ -670,6 +688,23 @@ export const otherPursuits = [
   },
   { title: 'Hiked to Gomukh, Himalayas (14,000 ft)', type: 'Hiking', date: '2023' },
 ]
+
+// Stock trading — Daksh's main hobby. Extend `points` / `stats` with the details
+// from his activity list (markets, holding period, strategy, results).
+export const trading = {
+  title: 'Stock Trading',
+  since: '2024 – present',
+  summary:
+    "When I'm not building or researching, I'm usually trading on the stock exchange. It's where the maths stops being abstract: every position is a small model of risk, reward and probability, tested against a market that doesn't care about my assumptions.",
+  points: [
+    'Trades Indian equities using technical analysis — candlestick patterns, support and resistance, moving averages, RSI and MACD.',
+    'Certified in Technical Analysis in Trading and Stock Market (Hexarum Co, 2024).',
+    'Won the HDFC Credelia Portfolio Strategy Challenge by designing a client stock portfolio and pitching it to judges.',
+    'Feeds directly into Persifolio, whose market simulator lets first-time investors practise the same skills risk-free.',
+  ],
+  tools: ['Candlesticks', 'Support / resistance', 'Moving averages', 'RSI', 'MACD'],
+  links: [{ label: 'Technical analysis certificate', href: 'https://drive.google.com/file/d/10L67CeQa1BaTyxkSeR-qeiUA3Kf8KyP-/view?usp=sharing' }] as LinkRef[],
+}
 
 export type Volunteer = {
   images?: Photo[]

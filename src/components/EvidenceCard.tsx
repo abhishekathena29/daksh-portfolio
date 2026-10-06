@@ -45,7 +45,7 @@ export function EvidencePreview({ item, index = 0, fit = 'cover' }: { item: Evid
           loading="lazy"
           className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover object-top'} transition-transform duration-500 group-hover:scale-[1.03]`}
         />
-        <span className={`absolute bottom-2.5 left-2.5 flex items-center gap-1 bg-white/95 border ${theme.ring} ${theme.ink} text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-xs`}>
+        <span className={`absolute bottom-2.5 left-2.5 flex items-center gap-1 bg-white/95 border ${theme.ring} ${theme.ink} text-[12px] font-mono font-bold px-2 py-0.5 rounded shadow-xs`}>
           <Icon className="w-3 h-3" />
           {theme.label}
         </span>
@@ -62,13 +62,13 @@ export function EvidencePreview({ item, index = 0, fit = 'cover' }: { item: Evid
         <div className={`w-8 h-8 rounded-lg bg-white border ${theme.ring} flex items-center justify-center ${theme.ink}`}>
           <Icon className="w-4 h-4" />
         </div>
-        <span className={`text-[10px] font-mono font-bold tracking-wider ${theme.ink}`}>{theme.label}</span>
+        <span className={`text-[12px] font-mono font-bold tracking-wider ${theme.ink}`}>{theme.label}</span>
       </div>
       <div className="relative space-y-1">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block truncate">{item.organization}</span>
+        <span className="text-[12px] font-mono uppercase tracking-widest text-slate-400 block truncate">{item.organization}</span>
         <h5 className="text-base font-bold font-display text-slate-900 leading-snug line-clamp-2">{item.title}</h5>
       </div>
-      <div className="relative flex items-center justify-between border-t border-slate-200/80 pt-2 text-[10px] font-mono text-slate-500">
+      <div className="relative flex items-center justify-between border-t border-slate-200/80 pt-2 text-[12px] font-mono text-slate-500">
         <span>{item.date}</span>
         <span>
           {item.links.length} document{item.links.length === 1 ? '' : 's'}
@@ -92,21 +92,21 @@ export function EvidenceCard({ item, onOpen }: { item: Evidence; onOpen: (item: 
         </div>
         <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 pointer-events-none">
           {item.badge && (
-            <span className="bg-white/95 text-slate-800 text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-xs border border-slate-200">{item.badge}</span>
+            <span className="bg-white/95 text-slate-800 text-[12px] font-mono font-bold px-2 py-0.5 rounded shadow-xs border border-slate-200">{item.badge}</span>
           )}
           {item.links.length > 0 && (
-            <span className="bg-emerald-500 text-white text-[10px] font-mono font-semibold px-2 py-0.5 rounded shadow-xs flex items-center gap-1">
+            <span className="bg-emerald-500 text-white text-[12px] font-mono font-semibold px-2 py-0.5 rounded shadow-xs flex items-center gap-1">
               <ShieldCheck className="w-3 h-3" />
               PROOF
             </span>
           )}
         </div>
         {item.images.length > 1 && (
-          <span className="absolute bottom-2.5 right-2.5 z-20 bg-slate-900/80 text-white text-[10px] font-mono px-2 py-0.5 rounded">+{item.images.length - 1} more</span>
+          <span className="absolute bottom-2.5 right-2.5 z-20 bg-slate-900/80 text-white text-[12px] font-mono px-2 py-0.5 rounded">+{item.images.length - 1} more</span>
         )}
       </div>
       <div className="p-3.5 bg-white border-t border-slate-100 space-y-1.5 flex-1">
-        <div className="flex items-center justify-between gap-2 text-[11px] font-mono">
+        <div className="flex items-center justify-between gap-2 text-xs font-mono">
           <span className="truncate font-medium text-emerald-700">{item.organization}</span>
           <span className="text-slate-400 shrink-0">{item.date}</span>
         </div>
@@ -129,7 +129,7 @@ export function PhotoGallery({ items, onOpen }: { items: Evidence[]; onOpen: (it
         >
           <img src={p.images[0].src} alt={p.caption} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3 pt-8">
-            <p className="text-[11px] sm:text-xs text-white font-medium leading-snug line-clamp-2">{p.caption}</p>
+            <p className="text-xs sm:text-xs text-white font-medium leading-snug line-clamp-2">{p.caption}</p>
           </div>
           <span className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 rounded-lg p-1.5">
             <ZoomIn className="w-3.5 h-3.5 text-slate-700" />

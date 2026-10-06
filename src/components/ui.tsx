@@ -99,5 +99,5 @@ export function LinkButtons({ links }: { links?: LinkRef[] }) {
 }
 
 export function Chip({ children }: { children: ReactNode }) {
-  return <span className="text-[11px] font-mono bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">{children}</span>
+  return <span className="text-xs font-mono bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg">{children}</span>
 }

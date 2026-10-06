@@ -122,7 +122,7 @@ export function BifurcationCanvas() {
         </div>
 
         <div className="flex items-center gap-2 font-mono text-xs">
-          <span className="text-slate-500 text-[10px]">MAP:</span>
+          <span className="text-slate-500 text-[12px]">MAP:</span>
           {(Object.keys(MAPS) as MapType[]).map((t) => (
             <button
               key={t}
@@ -149,10 +149,10 @@ export function BifurcationCanvas() {
             setR(+(cfg.rMin + frac * (cfg.rMax - cfg.rMin)).toFixed(3))
           }}
         />
-        <div className="absolute bottom-2 left-3 text-[10px] font-mono text-slate-500 pointer-events-none">r = {cfg.rMin.toFixed(2)}</div>
-        <div className="absolute bottom-2 right-3 text-[10px] font-mono text-slate-500 pointer-events-none">r = {cfg.rMax.toFixed(2)}</div>
-        <div className="absolute top-2 left-3 text-[10px] font-mono text-slate-500 pointer-events-none">{cfg.formula}</div>
-        <div className="absolute top-2 right-3 text-[10px] font-mono text-cyan-400/80 pointer-events-none">click to set r</div>
+        <div className="absolute bottom-2 left-3 text-[12px] font-mono text-slate-500 pointer-events-none">r = {cfg.rMin.toFixed(2)}</div>
+        <div className="absolute bottom-2 right-3 text-[12px] font-mono text-slate-500 pointer-events-none">r = {cfg.rMax.toFixed(2)}</div>
+        <div className="absolute top-2 left-3 text-[12px] font-mono text-slate-500 pointer-events-none">{cfg.formula}</div>
+        <div className="absolute top-2 right-3 text-[12px] font-mono text-cyan-400/80 pointer-events-none">click to set r</div>
       </div>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -171,7 +171,7 @@ export function BifurcationCanvas() {
             className="w-full accent-cyan-400 cursor-pointer"
             aria-label="Control parameter r"
           />
-          <div className="flex justify-between text-[9px] font-mono text-slate-500 mt-1">
+          <div className="flex justify-between text-[11px] font-mono text-slate-500 mt-1">
             <span>Stable</span>
             <span>Period doubling</span>
             <span>Chaos</span>
@@ -179,35 +179,35 @@ export function BifurcationCanvas() {
         </div>
 
         <div className="bg-[#121822] rounded-xl p-3 border border-white/5 flex flex-col justify-center">
-          <span className="text-[10px] font-mono text-slate-400 uppercase">Lyapunov exponent (λ)</span>
+          <span className="text-[12px] font-mono text-slate-400 uppercase">Lyapunov exponent (λ)</span>
           <div className="flex items-baseline gap-2 mt-1">
             <span className={`text-xl font-bold font-mono ${chaotic ? 'text-amber-400' : 'text-emerald-400'}`}>
               {lambda > 0 ? '+' : ''}
               {lambda.toFixed(4)}
             </span>
-            <span className="text-[10px] font-mono uppercase text-slate-400">{chaotic ? 'Chaotic attractor' : 'Periodic orbit'}</span>
+            <span className="text-[12px] font-mono uppercase text-slate-400">{chaotic ? 'Chaotic attractor' : 'Periodic orbit'}</span>
           </div>
-          <span className="text-[9px] font-mono text-slate-500 mt-0.5">λ &gt; 0 ⇒ nearby trajectories diverge exponentially</span>
+          <span className="text-[11px] font-mono text-slate-500 mt-0.5">λ &gt; 0 ⇒ nearby trajectories diverge exponentially</span>
         </div>
 
         <div className="bg-[#121822] rounded-xl p-3 border border-white/5 flex flex-col justify-center">
-          <span className="text-[10px] font-mono text-slate-400 uppercase">Structural class</span>
+          <span className="text-[12px] font-mono text-slate-400 uppercase">Structural class</span>
           <div className="flex items-baseline gap-2 mt-1">
             <span className="text-lg font-bold font-mono text-cyan-400">{cfg.xi}</span>
-            <span className="text-[10px] font-mono uppercase text-slate-400">{cfg.klass}</span>
+            <span className="text-[12px] font-mono uppercase text-slate-400">{cfg.klass}</span>
           </div>
           <div className="flex items-end gap-[2px] h-6 mt-1.5" aria-hidden="true">
             {trajectory.map((v, i) => (
               <span key={i} className="flex-1 bg-cyan-400/60 rounded-t-sm" style={{ height: `${Math.max(4, v * 100)}%` }} />
             ))}
           </div>
-          <span className="text-[9px] font-mono text-slate-500 mt-1">Last 40 iterates of x at the chosen r</span>
+          <span className="text-[11px] font-mono text-slate-500 mt-1">Last 40 iterates of x at the chosen r</span>
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2">
         {CLASSES.map((c) => (
-          <div key={c.name} className={`rounded-xl p-3 border text-[11px] font-mono ${c.name === cfg.klass ? 'border-cyan-400/60 bg-cyan-400/10' : 'border-white/5 bg-[#121822]'}`}>
+          <div key={c.name} className={`rounded-xl p-3 border text-xs font-mono ${c.name === cfg.klass ? 'border-cyan-400/60 bg-cyan-400/10' : 'border-white/5 bg-[#121822]'}`}>
             <div className="flex items-center justify-between gap-2">
               <span className="text-slate-200 font-bold">{c.name}</span>
               <span className="text-cyan-400">{c.xi}</span>
@@ -216,7 +216,7 @@ export function BifurcationCanvas() {
           </div>
         ))}
       </div>
-      <p className="mt-2 text-[10px] font-mono text-slate-500">Paper simulator: 1,000 settling iterations + 500 recorded steps per parameter value.</p>
+      <p className="mt-2 text-[12px] font-mono text-slate-500">Paper simulator: 1,000 settling iterations + 500 recorded steps per parameter value.</p>
     </div>
   )
 }

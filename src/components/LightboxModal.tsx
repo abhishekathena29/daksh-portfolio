@@ -50,10 +50,10 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
             <span className="font-mono text-xs font-bold text-slate-700 tracking-wider truncate">RECORD INSPECTION</span>
             {item.badge && (
-              <span className="text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 shrink-0">{item.badge}</span>
+              <span className="text-[12px] font-mono font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 shrink-0">{item.badge}</span>
             )}
             {count > 1 && (
-              <span className="text-[10px] font-mono text-slate-500 shrink-0">
+              <span className="text-[12px] font-mono text-slate-500 shrink-0">
                 {state!.index + 1} / {count}
               </span>
             )}
@@ -109,11 +109,11 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
 
           {item.metadata.length > 0 && (
             <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80 space-y-2">
-              <span className="text-[11px] font-mono text-slate-500 uppercase font-semibold tracking-wider block">RECORD ATTRIBUTES</span>
+              <span className="text-xs font-mono text-slate-500 uppercase font-semibold tracking-wider block">RECORD ATTRIBUTES</span>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {item.metadata.map((m) => (
                   <div key={m.label} className="bg-white p-2.5 rounded-lg border border-slate-200/60 text-xs">
-                    <span className="text-[10px] font-mono text-slate-400 block uppercase">{m.label}</span>
+                    <span className="text-[12px] font-mono text-slate-400 block uppercase">{m.label}</span>
                     <span className="font-semibold text-slate-800">{m.value}</span>
                   </div>
                 ))}
@@ -123,7 +123,7 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
 
           {item.links.length > 0 && (
             <div className="space-y-2">
-              <span className="text-[11px] font-mono text-slate-500 uppercase font-semibold tracking-wider block">PRIMARY SOURCE DOCUMENTS</span>
+              <span className="text-xs font-mono text-slate-500 uppercase font-semibold tracking-wider block">PRIMARY SOURCE DOCUMENTS</span>
               <div className="flex flex-col sm:flex-row flex-wrap gap-2">
                 {item.links.map((l) => (
                   <a
@@ -151,7 +151,7 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
         </div>
 
         <div className="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex justify-between items-center">
-          <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">{count > 1 ? '← → to browse · Esc to close' : 'Esc to close'}</span>
+          <span className="text-xs font-mono text-slate-400 hidden sm:inline">{count > 1 ? '← → to browse · Esc to close' : 'Esc to close'}</span>
           <button onClick={onClose} className="px-4 py-2 bg-slate-900 text-white font-medium text-xs rounded-lg hover:bg-slate-800 transition-colors font-mono cursor-pointer ml-auto">
             Close Viewer
           </button>

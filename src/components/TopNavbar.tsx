@@ -2,14 +2,14 @@ import { Menu, X, FileDown } from 'lucide-react'
 import type { PageTab } from '../types'
 
 const TAB_TITLES: Record<PageTab, { title: string; subtitle: string }> = {
-  overview: { title: 'Dashboard Overview', subtitle: 'Live metrics, primary holdings & milestone ledger' },
-  education: { title: 'Academic Profile', subtitle: 'Cambridge A Level, IGCSE & university coursework' },
-  research: { title: 'Research Science', subtitle: 'Nonlinear dynamics (RSI-India), NLP (CCIR) & UPI economics' },
-  projects: { title: 'Projects & Products', subtitle: 'Persifolio (patent published), Scam Slayer, Polaris & Moneyball' },
-  experience: { title: 'Experience Ledger', subtitle: 'Nine Leaps / Noviro.ai and Address Makers internships' },
-  awards: { title: 'Honours & Awards', subtitle: 'Crest Gold, Harvard Hackathon, Cambridge Distinction & more' },
-  activities: { title: 'Field Initiatives', subtitle: '100,000+ trees planted, tutoring, athletics & clubs' },
-  contact: { title: 'Inquiries & Contact', subtitle: 'Direct channel for research & admissions correspondence' },
+  home: { title: 'Daksh Sawhney', subtitle: 'Computational mathematics & quantitative finance' },
+  research: { title: 'Research', subtitle: 'Nonlinear dynamics, NLP & digital-payments economics' },
+  projects: { title: 'Projects', subtitle: 'Ventures, products & community impact' },
+  education: { title: 'Education & Grades', subtitle: 'Cambridge A Level, IGCSE & university coursework' },
+  awards: { title: 'Awards', subtitle: 'Honours, competitions & awards of excellence' },
+  experience: { title: 'Experience', subtitle: 'Nine Leaps / Noviro.ai and Address Makers internships' },
+  passions: { title: 'Hobbies & Passions', subtitle: 'Stock trading, athletics, writing & the outdoors' },
+  contact: { title: 'Contact', subtitle: 'Research, collaboration & admissions correspondence' },
 }
 
 export function TopNavbar({
@@ -39,7 +39,7 @@ export function TopNavbar({
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <h1 className="text-lg sm:text-xl font-bold font-display text-slate-900 leading-tight truncate">{info.title}</h1>
-            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">
+            <span className="hidden sm:inline-flex items-center gap-1 text-[12px] font-mono bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               LIVE
             </span>

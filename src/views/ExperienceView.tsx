@@ -1,12 +1,10 @@
 import { Briefcase, Building2, Calendar, UserRound } from 'lucide-react'
-import type { PageTab } from '../types'
 import { internships } from '../data/resume'
 import { evidenceBy, type OpenEvidence } from '../data/evidence'
 import { EvidenceCard } from '../components/EvidenceCard'
-import { LogoScrollWheel } from '../components/LogoScrollWheel'
 import { LinkButtons, PageBanner, Panel, PanelHead } from '../components/ui'
 
-export function ExperienceView({ onNavigate, onOpen }: { onNavigate: (tab: PageTab) => void; onOpen: OpenEvidence }) {
+export function ExperienceView({ onOpen }: { onOpen: OpenEvidence }) {
   return (
     <div className="space-y-8 pb-16">
       <PageBanner
@@ -16,8 +14,6 @@ export function ExperienceView({ onNavigate, onOpen }: { onNavigate: (tab: PageT
         title="Professional Experience & Engineering"
         description="Building software in production: web development and RAG/LLM tooling at the Nine Leaps AI Centre of Excellence, and a customer-facing Gen AI chatbot at Address Makers."
       />
-
-      <LogoScrollWheel onNavigate={onNavigate} />
 
       <div className="space-y-6">
         {internships.map((exp) => {
@@ -45,7 +41,7 @@ export function ExperienceView({ onNavigate, onOpen }: { onNavigate: (tab: PageT
                 <span className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold block">Core deliverables & technical implementation</span>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                   {exp.points.map((p) => (
-                    <div key={p} className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs text-slate-700 leading-relaxed">
+                    <div key={p} className="flex items-start gap-2 bg-slate-50 p-3 rounded-xl border border-slate-100 text-sm text-slate-700 leading-relaxed">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
                       <span>{p}</span>
                     </div>
@@ -58,7 +54,7 @@ export function ExperienceView({ onNavigate, onOpen }: { onNavigate: (tab: PageT
                   <div className="flex items-center gap-2">
                     <UserRound className="w-4 h-4 text-emerald-600 shrink-0" />
                     <div>
-                      <span className="text-[10px] font-mono text-emerald-800 font-bold uppercase block">Supervisor</span>
+                      <span className="text-[12px] font-mono text-emerald-800 font-bold uppercase block">Supervisor</span>
                       <span className="text-sm font-semibold text-emerald-950">{exp.contact}</span>
                     </div>
                   </div>

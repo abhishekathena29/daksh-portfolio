@@ -1,21 +1,24 @@
 import { useCallback, useEffect, useState } from 'react'
-import { PAGE_TABS, type PageTab } from './types'
+import { LEGACY_TABS, PAGE_TABS, type PageTab } from './types'
 import type { Evidence } from './data/evidence'
 import { Sidebar } from './components/Sidebar'
 import { TopNavbar } from './components/TopNavbar'
+import { StockTicker } from './components/StockTicker'
+import { Landing } from './components/Landing'
 import { LightboxModal, type Inspection } from './components/LightboxModal'
-import { OverviewView } from './views/OverviewView'
+import { HomeView } from './views/HomeView'
 import { EducationView } from './views/EducationView'
 import { ResearchView } from './views/ResearchView'
 import { ProjectsView } from './views/ProjectsView'
 import { ExperienceView } from './views/ExperienceView'
 import { AwardsView } from './views/AwardsView'
-import { ActivitiesView } from './views/ActivitiesView'
+import { PassionsView } from './views/PassionsView'
 import { ContactView } from './views/ContactView'
 
 function readHash(): PageTab {
-  const key = window.location.hash.replace('#', '') as PageTab
-  return PAGE_TABS.includes(key) ? key : 'overview'
+  const raw = window.location.hash.replace('#', '')
+  const key = (LEGACY_TABS[raw] ?? raw) as PageTab
+  return PAGE_TABS.includes(key) ? key : 'home'
 }
 
 function App() {
@@ -44,33 +47,37 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex terminal-grid">
-      <Sidebar currentTab={currentTab} onNavigate={navigate} mobileMenuOpen={mobileMenuOpen} />
+    <>
+      {currentTab === 'home' && <Landing onNavigate={navigate} />}
+      <div id="dashboard" className="min-h-screen bg-slate-50 text-slate-900 flex terminal-grid">
+        <Sidebar currentTab={currentTab} onNavigate={navigate} mobileMenuOpen={mobileMenuOpen} />
 
-      {mobileMenuOpen && <div onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-30 lg:hidden" />}
+        {mobileMenuOpen && <div onClick={() => setMobileMenuOpen(false)} className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-30 lg:hidden" />}
 
-      <div className="flex-1 flex flex-col min-w-0">
-        <TopNavbar
-          currentTab={currentTab}
-          onNavigate={navigate}
-          mobileMenuOpen={mobileMenuOpen}
-          onToggleMobileMenu={() => setMobileMenuOpen((o) => !o)}
-        />
+        <div className="flex-1 flex flex-col min-w-0">
+          <TopNavbar
+            currentTab={currentTab}
+            onNavigate={navigate}
+            mobileMenuOpen={mobileMenuOpen}
+            onToggleMobileMenu={() => setMobileMenuOpen((o) => !o)}
+          />
+          <StockTicker />
 
-        <main key={currentTab} className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto animate-fade-in">
-          {currentTab === 'overview' && <OverviewView onNavigate={navigate} onOpen={open} />}
-          {currentTab === 'education' && <EducationView onOpen={open} />}
-          {currentTab === 'research' && <ResearchView onOpen={open} />}
-          {currentTab === 'projects' && <ProjectsView onOpen={open} />}
-          {currentTab === 'experience' && <ExperienceView onNavigate={navigate} onOpen={open} />}
-          {currentTab === 'awards' && <AwardsView onOpen={open} />}
-          {currentTab === 'activities' && <ActivitiesView onOpen={open} />}
-          {currentTab === 'contact' && <ContactView />}
-        </main>
+          <main key={currentTab} className="flex-1 p-4 sm:p-8 max-w-7xl w-full mx-auto animate-fade-in">
+            {currentTab === 'home' && <HomeView onNavigate={navigate} />}
+            {currentTab === 'research' && <ResearchView />}
+            {currentTab === 'projects' && <ProjectsView onOpen={open} />}
+            {currentTab === 'education' && <EducationView onOpen={open} />}
+            {currentTab === 'awards' && <AwardsView onOpen={open} />}
+            {currentTab === 'experience' && <ExperienceView onOpen={open} />}
+            {currentTab === 'passions' && <PassionsView onOpen={open} />}
+            {currentTab === 'contact' && <ContactView />}
+          </main>
+        </div>
+
       </div>
-
       <LightboxModal state={inspecting} onChange={setInspecting} onClose={closeLightbox} />
-    </div>
+    </>
   )
 }
 
