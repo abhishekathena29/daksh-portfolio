@@ -61,10 +61,8 @@ export type Metric = {
 export const dashboardMetrics: Metric[] = [
   { symbol: 'REACH', label: 'People reached', value: 6000, suffix: '+', note: 'Persifolio 4,000+ · Scam Slayer 1,000+ · Polaris 1,000+', section: 'projects' },
   { symbol: 'RAISED', label: 'Money raised', value: 500000, prefix: '₹', indian: true, note: 'Corporate funding · 100,000+ trees planted', section: 'projects' },
-  // Persifolio funding — fill in once received.
-  { symbol: 'FUND', label: 'Funding raised', value: null, prefix: '₹', indian: true, note: 'Persifolio venture funding', section: 'projects' },
-  // Daksh's own capital put into his ventures — fill in once confirmed.
-  { symbol: 'SELF', label: 'Self-invested', value: null, prefix: '₹', indian: true, note: 'Own capital in ventures', section: 'projects' },
+  { symbol: 'FUND', label: 'Funding raised', value: 50000, prefix: '$', note: 'Venture funding', section: 'projects' },
+  { symbol: 'SELF', label: 'Self-invested', value: 25000, prefix: '$', note: 'Earned from stock trading', section: 'passions' },
   { symbol: 'PAPERS', label: 'Research papers', value: 3, note: '2 published · 1 under review', section: 'research' },
   { symbol: 'IP', label: 'Patents', value: 1, note: 'Persifolio · Indian Patent Journal', section: 'projects' },
 ]
@@ -228,6 +226,8 @@ export type ProjectT = {
   highlights: { label: string; value: string }[]
   features?: string[]
   links?: LinkRef[]
+  // Live product, shown as the primary button in the project header
+  url?: string
   // Shown in the project header when set (path under /public)
   logo?: string
   funding?: { amount: string; source: string; date?: string }
@@ -309,6 +309,7 @@ export const projects: ProjectT[] = [
     role: 'Co-creator (4-student team) — Harvard Hackathon National Winner',
     period: 'Jan 2026 – present',
     tagline: 'An AI web app that maps the pathway from where you are to your dream job.',
+    url: 'https://polarisai.in/',
     description: [
       'Polaris is an AI-based web app that scans trusted sources such as LinkedIn for professionals who already hold the user\'s dream job, and learns what actually got them there.',
       'It starts with an onboarding flow that captures the user\'s background, demographics and desired "dream job", then builds an in-depth, step-by-step pathway to become more than qualified for it.',
@@ -700,6 +701,7 @@ export const trading = {
     'Trades Indian equities using technical analysis — candlestick patterns, support and resistance, moving averages, RSI and MACD.',
     'Certified in Technical Analysis in Trading and Stock Market (Hexarum Co, 2024).',
     'Won the HDFC Credelia Portfolio Strategy Challenge by designing a client stock portfolio and pitching it to judges.',
+    'Reinvested $25,000 of trading earnings into his own ventures.',
     'Feeds directly into Persifolio, whose market simulator lets first-time investors practise the same skills risk-free.',
   ],
   tools: ['Candlesticks', 'Support / resistance', 'Moving averages', 'RSI', 'MACD'],

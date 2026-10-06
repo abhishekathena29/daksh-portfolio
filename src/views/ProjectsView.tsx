@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Banknote, Camera, CheckCircle2, FileText, HeartHandshake, MapPin, Rocket, Users } from 'lucide-react'
+import { Banknote, Camera, ExternalLink, CheckCircle2, FileText, HeartHandshake, MapPin, Rocket, Users } from 'lucide-react'
 import { projects, volunteering } from '../data/resume'
 import { EVIDENCE, photosFor, slug, type OpenEvidence } from '../data/evidence'
 import { EvidenceCard, PhotoGallery } from '../components/EvidenceCard'
@@ -67,6 +67,17 @@ export function ProjectsView({ onOpen }: { onOpen: OpenEvidence }) {
             )}
           </div>
           <div className="lg:max-w-sm">
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mb-3 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2.5 rounded-xl text-sm transition-colors"
+              >
+                Visit {project.url.replace(/^https?:\/\/|\/$/g, '')}
+                <ExternalLink className="w-4 h-4 text-emerald-300" />
+              </a>
+            )}
             <LinkButtons links={project.links} />
           </div>
         </div>

@@ -14,7 +14,10 @@ function parseSubjects(s: string) {
 
 export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
   const certs = evidenceBy('courses')
-  const topGrades = education.flatMap((e) => parseSubjects(e.subjects)).filter((s) => s.grade === 'A*').length
+  const topGrades = education
+    .filter((e) => e.level === 'IGCSE')
+    .flatMap((e) => parseSubjects(e.subjects))
+    .filter((s) => s.grade === 'A*').length
 
   return (
     <div className="space-y-8 pb-16">

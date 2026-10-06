@@ -150,6 +150,11 @@ function Trading() {
             </div>
           </div>
           <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-5 space-y-1">
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Trading earnings self-invested</span>
+            <p className="text-3xl font-bold font-display text-emerald-300 num">$25,000</p>
+            <p className="text-sm text-slate-400">Put back into his own ventures</p>
+          </div>
+          <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-5 space-y-1">
             <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Portfolio Strategy Challenge</span>
             <p className="text-3xl font-bold font-display text-emerald-300 num">1st place</p>
             <p className="text-sm text-slate-400">HDFC Credelia · Jan–Feb 2024</p>
