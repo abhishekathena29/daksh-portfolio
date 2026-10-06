@@ -173,7 +173,7 @@ export const research: Research[] = [
     certificate: { label: 'RSI-India certificate', href: '/docs/rsi-india-certificate.pdf' },
   },
   {
-    title: 'POS Tagging of Hindi–English Code-Mixed Text Using an Averaged Perceptron',
+    title: 'Sequence Labelling and Error Analysis for Code-Mixed Text by an Averaged Perceptron Approach',
     org: 'Cambridge Centre of International Research, Cambridge, UK',
     period: 'Nov 2025 – Mar 2026',
     mentor: 'Dr. Wei Wei Sun, Lecturer, Dept. of Computer Science, University of Cambridge',
@@ -194,7 +194,7 @@ export const research: Research[] = [
     ],
     coverFit: 'contain',
     cover: { src: '/media/research/ccir-cambridge-future-scholar.jpg', caption: 'Cambridge Future Scholar — Machine Learning & NLP, under Dr Weiwei Sun' },
-    paper: { label: 'Read the paper', href: 'https://drive.google.com/file/d/1y3q5K-0w3I0z-vRRER7IhwKthSH9aLeV/view?usp=sharing' },
+    paper: { label: 'Read the paper (PDF)', href: '/docs/ojss-code-mixed-pos-tagging.pdf' },
     certificate: { label: 'CCIR certificate', href: '/docs/ccir-cambridge-future-scholar.pdf' },
   },
   {
