@@ -60,7 +60,7 @@ export type Metric = {
 
 export const dashboardMetrics: Metric[] = [
   { symbol: 'REACH', label: 'People reached', value: 6000, suffix: '+', note: 'Persifolio 4,000+ · Scam Slayer 1,000+ · Polaris 1,000+', section: 'projects' },
-  { symbol: 'RAISED', label: 'Money raised', value: 500000, prefix: '₹', indian: true, note: 'Corporate funding · 100,000+ trees planted', section: 'projects' },
+  { symbol: 'TREES', label: 'Trees planted', value: 100000, suffix: '+', note: '₹5 lakh raised in corporate funding', section: 'projects' },
   { symbol: 'FUND', label: 'Funding raised', value: 50000, prefix: '$', note: 'Venture funding', section: 'projects' },
   { symbol: 'SELF', label: 'Self-invested', value: 25000, prefix: '$', note: 'Earned from stock trading', section: 'passions' },
   { symbol: 'PAPERS', label: 'Research papers', value: 3, note: '2 published · 1 under review', section: 'research' },
@@ -93,12 +93,18 @@ export type LinkRef = { label: string; href: string }
 // Paths under /public (served from site root)
 export type Photo = { src: string; caption: string }
 
+export type Qualification = 'A Level' | 'AS Level'
+
+export type Subject = { name: string; grade?: string; qualification?: Qualification }
+
 export type Education = {
   images?: Photo[]
   institution: string
   period: string
   level: string
-  subjects: string
+  subjects: Subject[]
+  // Teacher-predicted final grades, shown while a stage is in progress
+  predicted?: Subject[]
   grades?: string
   current?: boolean
   links?: LinkRef[]
@@ -109,14 +115,34 @@ export const education: Education[] = [
     institution: 'Inventure Academy, Bangalore, India',
     period: '2026 – 2027',
     level: 'Cambridge A Level, Grade 12',
-    subjects: 'Mathematics, Further Mathematics, Physics, Chemistry, Computer Science, English',
+    subjects: [
+      { name: 'Further Mathematics', qualification: 'A Level' },
+      { name: 'Mathematics', qualification: 'A Level' },
+      { name: 'Chemistry', qualification: 'A Level' },
+      { name: 'Physics', qualification: 'A Level' },
+      { name: 'Computer Science', qualification: 'A Level' },
+      { name: 'English', qualification: 'AS Level' },
+    ],
+    predicted: [
+      { name: 'Further Mathematics', grade: 'A*', qualification: 'A Level' },
+      { name: 'Mathematics', grade: 'A*', qualification: 'A Level' },
+      { name: 'Chemistry', grade: 'A*', qualification: 'A Level' },
+      { name: 'Physics', grade: 'A*', qualification: 'A Level' },
+      { name: 'Computer Science', grade: 'A*', qualification: 'A Level' },
+      { name: 'English', grade: 'A', qualification: 'AS Level' },
+    ],
     current: true,
   },
   {
     institution: 'Inventure Academy, Bangalore, India',
     period: '2025 – 2026',
-    level: 'Cambridge AS Level, Grade 11',
-    subjects: 'Mathematics (A*), Physics (A), Chemistry (A), Computer Science (A)',
+    level: 'Cambridge AS & A Level, Grade 11',
+    subjects: [
+      { name: 'Mathematics', grade: 'A*', qualification: 'A Level' },
+      { name: 'Physics', grade: 'A', qualification: 'AS Level' },
+      { name: 'Chemistry', grade: 'A', qualification: 'AS Level' },
+      { name: 'Computer Science', grade: 'A', qualification: 'AS Level' },
+    ],
     grades: 'A',
     links: [{ label: 'AS Maths result', href: 'https://drive.google.com/file/d/1Im3ibCb2XCFehqCHD4XcfQNGhADSxNXy/view?usp=drive_link' }],
   },
@@ -124,8 +150,18 @@ export const education: Education[] = [
     institution: 'Inventure Academy, Bangalore, India',
     period: '2024 – 2025',
     level: 'IGCSE',
-    subjects:
-      'English Language (A), English Literature (A*), Mathematics (A*), Additional Mathematics (A*), Biology (A*), Physics (A*), Chemistry (A*), Economics (A*), Computer Science (A*), Spanish (A)',
+    subjects: [
+      { name: 'English Language', grade: 'A' },
+      { name: 'English Literature', grade: 'A*' },
+      { name: 'Mathematics', grade: 'A*' },
+      { name: 'Additional Mathematics', grade: 'A*' },
+      { name: 'Biology', grade: 'A*' },
+      { name: 'Physics', grade: 'A*' },
+      { name: 'Chemistry', grade: 'A*' },
+      { name: 'Economics', grade: 'A*' },
+      { name: 'Computer Science', grade: 'A*' },
+      { name: 'Spanish', grade: 'A' },
+    ],
     links: [{ label: 'IGCSE transcript', href: 'https://drive.google.com/file/d/1W1F8rVmEUo-SmG-obtuvAHWX0qTTnhys/view?usp=drive_link' }],
   },
 ]
@@ -169,7 +205,18 @@ export const research: Research[] = [
       'Piecewise linear maps (1.0 < ξ < 1.5) — the tent map r(1−2|x−0.5|) and 1−r|x| — bypass period doubling entirely, jumping from a single stable fixed point into a solid chaotic wedge with unvisited lens-shaped regions.',
       'The coefficient serves as an accurate baseline for classifying nonlinear chaotic dynamics from the visual properties of bifurcation diagrams.',
     ],
-    cover: { src: '/media/research/rsi-award-ceremony.jpg', caption: 'Receiving the RSI-India 2026 award' },
+    cover: { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
+    images: [
+      { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
+      { src: '/media/research/rsi-logistic-map.jpg', caption: 'Presenting the logistic map: modelling a rabbit population' },
+      { src: '/media/research/rsi-motivation-slide.jpg', caption: 'Opening the final presentation with the motivation for the research' },
+      { src: '/media/research/rsi-iterations.jpg', caption: 'Walking through iterations of xₙ₊₁ = 2xₙ(1 − xₙ) converging to a fixed point' },
+      { src: '/media/research/rsi-function-slide.jpg', caption: 'Explaining how a function maps inputs to outputs' },
+      { src: '/media/research/rsi-presenting.jpg', caption: 'Taking questions during the RSI-India presentation' },
+      { src: '/media/research/rsi-audience.jpg', caption: 'Fellow RSI scholars during the research presentations' },
+      { src: '/media/research/rsi-cohort.jpg', caption: 'The RSI-India 2026 cohort with mentors and faculty' },
+    ],
+    paper: { label: 'Read the paper (PDF)', href: '/docs/rsi-india-paper.pdf' },
     certificate: { label: 'RSI-India certificate', href: '/docs/rsi-india-certificate.pdf' },
   },
   {
@@ -529,7 +576,11 @@ export const honors: Award[] = [
     title: 'Cambridge International Certificate of Education — Distinction',
     date: 'Jun 2025',
     tier: 'distinction',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1zJPyjDMrFrb5SgOPcdOgqhMoTK3W0I0Y/view?usp=drive_link' }],
+    links: [
+      { label: 'Certificate', href: '/docs/cambridge-ice-distinction.pdf' },
+      { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1zJPyjDMrFrb5SgOPcdOgqhMoTK3W0I0Y/view?usp=drive_link' },
+    ],
+    images: [{ src: '/media/awards/cambridge-ice-distinction.jpg', caption: 'International Certificate of Education with Distinction — June 2025 series' }],
   },
   {
     title: 'Inventure Big Leap Award — English Literature',
@@ -701,6 +752,7 @@ export const trading = {
     'Trades Indian equities using technical analysis — candlestick patterns, support and resistance, moving averages, RSI and MACD.',
     'Certified in Technical Analysis in Trading and Stock Market (Hexarum Co, 2024).',
     'Won the HDFC Credelia Portfolio Strategy Challenge by designing a client stock portfolio and pitching it to judges.',
+    'Self-funded the Persifolio app with his own stock-trading earnings.',
     'Reinvested $25,000 of trading earnings into his own ventures.',
     'Feeds directly into Persifolio, whose market simulator lets first-time investors practise the same skills risk-free.',
   ],

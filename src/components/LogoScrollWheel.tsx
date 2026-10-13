@@ -40,7 +40,7 @@ const ENTITIES: Entity[] = [
 function Mark({ e }: { e: Entity }) {
   if (e.logo) return <img src={e.logo} alt="" className="h-8 w-auto max-w-[96px] object-contain shrink-0" />
   return (
-    <span className={`h-8 min-w-8 px-1.5 rounded-lg ${e.color} text-white flex items-center justify-center font-mono font-bold text-xs shrink-0`}>
+    <span className={`theme-fixed h-8 min-w-8 px-1.5 rounded-lg ${e.color} text-white flex items-center justify-center font-mono font-bold text-xs shrink-0`}>
       {e.monogram}
     </span>
   )

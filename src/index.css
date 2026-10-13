@@ -24,6 +24,336 @@
   --color-ink: #0b1220;
 }
 
+/* ── Dark mode ────────────────────────────────────────────────────────────
+   Dark is the default (see the inline script in index.html). Rather than a
+   dark: variant on every utility, the palette itself is flipped: white and the
+   light shades take the values of the dark ones and vice versa, so every
+   surface/text pairing keeps its contrast. Panels that are dark in both themes
+   (terminal widgets, ticker, photo captions) opt out with .theme-fixed. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --grid-line: rgba(15, 23, 42, 0.035);
+}
+
+.dark {
+  color-scheme: dark;
+  --grid-line: rgba(148, 163, 184, 0.05);
+  --color-white: --theme(--color-slate-900 inline);
+  --color-slate-50: --theme(--color-slate-950 inline);
+  --color-slate-100: --theme(--color-slate-800 inline);
+  --color-slate-200: --theme(--color-slate-700 inline);
+  --color-slate-300: --theme(--color-slate-600 inline);
+  --color-slate-400: --theme(--color-slate-500 inline);
+  --color-slate-500: --theme(--color-slate-400 inline);
+  --color-slate-600: --theme(--color-slate-400 inline);
+  --color-slate-700: --theme(--color-slate-300 inline);
+  --color-slate-800: --theme(--color-slate-200 inline);
+  --color-slate-900: --theme(--color-slate-100 inline);
+  --color-slate-950: --theme(--color-slate-50 inline);
+  --color-emerald-50: --theme(--color-emerald-950 inline);
+  --color-emerald-100: --theme(--color-emerald-900 inline);
+  --color-emerald-200: --theme(--color-emerald-800 inline);
+  --color-emerald-300: --theme(--color-emerald-700 inline);
+  --color-emerald-400: --theme(--color-emerald-600 inline);
+  --color-emerald-500: --theme(--color-emerald-500 inline);
+  --color-emerald-600: --theme(--color-emerald-400 inline);
+  --color-emerald-700: --theme(--color-emerald-300 inline);
+  --color-emerald-800: --theme(--color-emerald-200 inline);
+  --color-emerald-900: --theme(--color-emerald-100 inline);
+  --color-emerald-950: --theme(--color-emerald-50 inline);
+  --color-amber-50: --theme(--color-amber-950 inline);
+  --color-amber-100: --theme(--color-amber-900 inline);
+  --color-amber-200: --theme(--color-amber-800 inline);
+  --color-amber-300: --theme(--color-amber-700 inline);
+  --color-amber-400: --theme(--color-amber-600 inline);
+  --color-amber-500: --theme(--color-amber-500 inline);
+  --color-amber-600: --theme(--color-amber-400 inline);
+  --color-amber-700: --theme(--color-amber-300 inline);
+  --color-amber-800: --theme(--color-amber-200 inline);
+  --color-amber-900: --theme(--color-amber-100 inline);
+  --color-amber-950: --theme(--color-amber-50 inline);
+  --color-blue-50: --theme(--color-blue-950 inline);
+  --color-blue-100: --theme(--color-blue-900 inline);
+  --color-blue-200: --theme(--color-blue-800 inline);
+  --color-blue-300: --theme(--color-blue-700 inline);
+  --color-blue-400: --theme(--color-blue-600 inline);
+  --color-blue-500: --theme(--color-blue-500 inline);
+  --color-blue-600: --theme(--color-blue-400 inline);
+  --color-blue-700: --theme(--color-blue-300 inline);
+  --color-blue-800: --theme(--color-blue-200 inline);
+  --color-blue-900: --theme(--color-blue-100 inline);
+  --color-blue-950: --theme(--color-blue-50 inline);
+  --color-rose-50: --theme(--color-rose-950 inline);
+  --color-rose-100: --theme(--color-rose-900 inline);
+  --color-rose-200: --theme(--color-rose-800 inline);
+  --color-rose-300: --theme(--color-rose-700 inline);
+  --color-rose-400: --theme(--color-rose-600 inline);
+  --color-rose-500: --theme(--color-rose-500 inline);
+  --color-rose-600: --theme(--color-rose-400 inline);
+  --color-rose-700: --theme(--color-rose-300 inline);
+  --color-rose-800: --theme(--color-rose-200 inline);
+  --color-rose-900: --theme(--color-rose-100 inline);
+  --color-rose-950: --theme(--color-rose-50 inline);
+  --color-indigo-50: --theme(--color-indigo-950 inline);
+  --color-indigo-100: --theme(--color-indigo-900 inline);
+  --color-indigo-200: --theme(--color-indigo-800 inline);
+  --color-indigo-300: --theme(--color-indigo-700 inline);
+  --color-indigo-400: --theme(--color-indigo-600 inline);
+  --color-indigo-500: --theme(--color-indigo-500 inline);
+  --color-indigo-600: --theme(--color-indigo-400 inline);
+  --color-indigo-700: --theme(--color-indigo-300 inline);
+  --color-indigo-800: --theme(--color-indigo-200 inline);
+  --color-indigo-900: --theme(--color-indigo-100 inline);
+  --color-indigo-950: --theme(--color-indigo-50 inline);
+  --color-cyan-50: --theme(--color-cyan-950 inline);
+  --color-cyan-100: --theme(--color-cyan-900 inline);
+  --color-cyan-200: --theme(--color-cyan-800 inline);
+  --color-cyan-300: --theme(--color-cyan-700 inline);
+  --color-cyan-400: --theme(--color-cyan-600 inline);
+  --color-cyan-500: --theme(--color-cyan-500 inline);
+  --color-cyan-600: --theme(--color-cyan-400 inline);
+  --color-cyan-700: --theme(--color-cyan-300 inline);
+  --color-cyan-800: --theme(--color-cyan-200 inline);
+  --color-cyan-900: --theme(--color-cyan-100 inline);
+  --color-cyan-950: --theme(--color-cyan-50 inline);
+  --color-orange-50: --theme(--color-orange-950 inline);
+  --color-orange-100: --theme(--color-orange-900 inline);
+  --color-orange-200: --theme(--color-orange-800 inline);
+  --color-orange-300: --theme(--color-orange-700 inline);
+  --color-orange-400: --theme(--color-orange-600 inline);
+  --color-orange-500: --theme(--color-orange-500 inline);
+  --color-orange-600: --theme(--color-orange-400 inline);
+  --color-orange-700: --theme(--color-orange-300 inline);
+  --color-orange-800: --theme(--color-orange-200 inline);
+  --color-orange-900: --theme(--color-orange-100 inline);
+  --color-orange-950: --theme(--color-orange-50 inline);
+  --color-violet-50: --theme(--color-violet-950 inline);
+  --color-violet-100: --theme(--color-violet-900 inline);
+  --color-violet-200: --theme(--color-violet-800 inline);
+  --color-violet-300: --theme(--color-violet-700 inline);
+  --color-violet-400: --theme(--color-violet-600 inline);
+  --color-violet-500: --theme(--color-violet-500 inline);
+  --color-violet-600: --theme(--color-violet-400 inline);
+  --color-violet-700: --theme(--color-violet-300 inline);
+  --color-violet-800: --theme(--color-violet-200 inline);
+  --color-violet-900: --theme(--color-violet-100 inline);
+  --color-violet-950: --theme(--color-violet-50 inline);
+  --color-teal-50: --theme(--color-teal-950 inline);
+  --color-teal-100: --theme(--color-teal-900 inline);
+  --color-teal-200: --theme(--color-teal-800 inline);
+  --color-teal-300: --theme(--color-teal-700 inline);
+  --color-teal-400: --theme(--color-teal-600 inline);
+  --color-teal-500: --theme(--color-teal-500 inline);
+  --color-teal-600: --theme(--color-teal-400 inline);
+  --color-teal-700: --theme(--color-teal-300 inline);
+  --color-teal-800: --theme(--color-teal-200 inline);
+  --color-teal-900: --theme(--color-teal-100 inline);
+  --color-teal-950: --theme(--color-teal-50 inline);
+  --color-lime-50: --theme(--color-lime-950 inline);
+  --color-lime-100: --theme(--color-lime-900 inline);
+  --color-lime-200: --theme(--color-lime-800 inline);
+  --color-lime-300: --theme(--color-lime-700 inline);
+  --color-lime-400: --theme(--color-lime-600 inline);
+  --color-lime-500: --theme(--color-lime-500 inline);
+  --color-lime-600: --theme(--color-lime-400 inline);
+  --color-lime-700: --theme(--color-lime-300 inline);
+  --color-lime-800: --theme(--color-lime-200 inline);
+  --color-lime-900: --theme(--color-lime-100 inline);
+  --color-lime-950: --theme(--color-lime-50 inline);
+  --color-sky-50: --theme(--color-sky-950 inline);
+  --color-sky-100: --theme(--color-sky-900 inline);
+  --color-sky-200: --theme(--color-sky-800 inline);
+  --color-sky-300: --theme(--color-sky-700 inline);
+  --color-sky-400: --theme(--color-sky-600 inline);
+  --color-sky-500: --theme(--color-sky-500 inline);
+  --color-sky-600: --theme(--color-sky-400 inline);
+  --color-sky-700: --theme(--color-sky-300 inline);
+  --color-sky-800: --theme(--color-sky-200 inline);
+  --color-sky-900: --theme(--color-sky-100 inline);
+  --color-sky-950: --theme(--color-sky-50 inline);
+  --color-purple-50: --theme(--color-purple-950 inline);
+  --color-purple-100: --theme(--color-purple-900 inline);
+  --color-purple-200: --theme(--color-purple-800 inline);
+  --color-purple-300: --theme(--color-purple-700 inline);
+  --color-purple-400: --theme(--color-purple-600 inline);
+  --color-purple-500: --theme(--color-purple-500 inline);
+  --color-purple-600: --theme(--color-purple-400 inline);
+  --color-purple-700: --theme(--color-purple-300 inline);
+  --color-purple-800: --theme(--color-purple-200 inline);
+  --color-purple-900: --theme(--color-purple-100 inline);
+  --color-purple-950: --theme(--color-purple-50 inline);
+  --color-red-50: --theme(--color-red-950 inline);
+  --color-red-100: --theme(--color-red-900 inline);
+  --color-red-200: --theme(--color-red-800 inline);
+  --color-red-300: --theme(--color-red-700 inline);
+  --color-red-400: --theme(--color-red-600 inline);
+  --color-red-500: --theme(--color-red-500 inline);
+  --color-red-600: --theme(--color-red-400 inline);
+  --color-red-700: --theme(--color-red-300 inline);
+  --color-red-800: --theme(--color-red-200 inline);
+  --color-red-900: --theme(--color-red-100 inline);
+  --color-red-950: --theme(--color-red-50 inline);
+}
+
+.dark .theme-fixed {
+  --color-white: --theme(--color-white inline);
+  --color-slate-50: --theme(--color-slate-50 inline);
+  --color-slate-100: --theme(--color-slate-100 inline);
+  --color-slate-200: --theme(--color-slate-200 inline);
+  --color-slate-300: --theme(--color-slate-300 inline);
+  --color-slate-400: --theme(--color-slate-400 inline);
+  --color-slate-500: --theme(--color-slate-500 inline);
+  --color-slate-600: --theme(--color-slate-600 inline);
+  --color-slate-700: --theme(--color-slate-700 inline);
+  --color-slate-800: --theme(--color-slate-800 inline);
+  --color-slate-900: --theme(--color-slate-900 inline);
+  --color-slate-950: --theme(--color-slate-950 inline);
+  --color-emerald-50: --theme(--color-emerald-50 inline);
+  --color-emerald-100: --theme(--color-emerald-100 inline);
+  --color-emerald-200: --theme(--color-emerald-200 inline);
+  --color-emerald-300: --theme(--color-emerald-300 inline);
+  --color-emerald-400: --theme(--color-emerald-400 inline);
+  --color-emerald-500: --theme(--color-emerald-500 inline);
+  --color-emerald-600: --theme(--color-emerald-600 inline);
+  --color-emerald-700: --theme(--color-emerald-700 inline);
+  --color-emerald-800: --theme(--color-emerald-800 inline);
+  --color-emerald-900: --theme(--color-emerald-900 inline);
+  --color-emerald-950: --theme(--color-emerald-950 inline);
+  --color-amber-50: --theme(--color-amber-50 inline);
+  --color-amber-100: --theme(--color-amber-100 inline);
+  --color-amber-200: --theme(--color-amber-200 inline);
+  --color-amber-300: --theme(--color-amber-300 inline);
+  --color-amber-400: --theme(--color-amber-400 inline);
+  --color-amber-500: --theme(--color-amber-500 inline);
+  --color-amber-600: --theme(--color-amber-600 inline);
+  --color-amber-700: --theme(--color-amber-700 inline);
+  --color-amber-800: --theme(--color-amber-800 inline);
+  --color-amber-900: --theme(--color-amber-900 inline);
+  --color-amber-950: --theme(--color-amber-950 inline);
+  --color-blue-50: --theme(--color-blue-50 inline);
+  --color-blue-100: --theme(--color-blue-100 inline);
+  --color-blue-200: --theme(--color-blue-200 inline);
+  --color-blue-300: --theme(--color-blue-300 inline);
+  --color-blue-400: --theme(--color-blue-400 inline);
+  --color-blue-500: --theme(--color-blue-500 inline);
+  --color-blue-600: --theme(--color-blue-600 inline);
+  --color-blue-700: --theme(--color-blue-700 inline);
+  --color-blue-800: --theme(--color-blue-800 inline);
+  --color-blue-900: --theme(--color-blue-900 inline);
+  --color-blue-950: --theme(--color-blue-950 inline);
+  --color-rose-50: --theme(--color-rose-50 inline);
+  --color-rose-100: --theme(--color-rose-100 inline);
+  --color-rose-200: --theme(--color-rose-200 inline);
+  --color-rose-300: --theme(--color-rose-300 inline);
+  --color-rose-400: --theme(--color-rose-400 inline);
+  --color-rose-500: --theme(--color-rose-500 inline);
+  --color-rose-600: --theme(--color-rose-600 inline);
+  --color-rose-700: --theme(--color-rose-700 inline);
+  --color-rose-800: --theme(--color-rose-800 inline);
+  --color-rose-900: --theme(--color-rose-900 inline);
+  --color-rose-950: --theme(--color-rose-950 inline);
+  --color-indigo-50: --theme(--color-indigo-50 inline);
+  --color-indigo-100: --theme(--color-indigo-100 inline);
+  --color-indigo-200: --theme(--color-indigo-200 inline);
+  --color-indigo-300: --theme(--color-indigo-300 inline);
+  --color-indigo-400: --theme(--color-indigo-400 inline);
+  --color-indigo-500: --theme(--color-indigo-500 inline);
+  --color-indigo-600: --theme(--color-indigo-600 inline);
+  --color-indigo-700: --theme(--color-indigo-700 inline);
+  --color-indigo-800: --theme(--color-indigo-800 inline);
+  --color-indigo-900: --theme(--color-indigo-900 inline);
+  --color-indigo-950: --theme(--color-indigo-950 inline);
+  --color-cyan-50: --theme(--color-cyan-50 inline);
+  --color-cyan-100: --theme(--color-cyan-100 inline);
+  --color-cyan-200: --theme(--color-cyan-200 inline);
+  --color-cyan-300: --theme(--color-cyan-300 inline);
+  --color-cyan-400: --theme(--color-cyan-400 inline);
+  --color-cyan-500: --theme(--color-cyan-500 inline);
+  --color-cyan-600: --theme(--color-cyan-600 inline);
+  --color-cyan-700: --theme(--color-cyan-700 inline);
+  --color-cyan-800: --theme(--color-cyan-800 inline);
+  --color-cyan-900: --theme(--color-cyan-900 inline);
+  --color-cyan-950: --theme(--color-cyan-950 inline);
+  --color-orange-50: --theme(--color-orange-50 inline);
+  --color-orange-100: --theme(--color-orange-100 inline);
+  --color-orange-200: --theme(--color-orange-200 inline);
+  --color-orange-300: --theme(--color-orange-300 inline);
+  --color-orange-400: --theme(--color-orange-400 inline);
+  --color-orange-500: --theme(--color-orange-500 inline);
+  --color-orange-600: --theme(--color-orange-600 inline);
+  --color-orange-700: --theme(--color-orange-700 inline);
+  --color-orange-800: --theme(--color-orange-800 inline);
+  --color-orange-900: --theme(--color-orange-900 inline);
+  --color-orange-950: --theme(--color-orange-950 inline);
+  --color-violet-50: --theme(--color-violet-50 inline);
+  --color-violet-100: --theme(--color-violet-100 inline);
+  --color-violet-200: --theme(--color-violet-200 inline);
+  --color-violet-300: --theme(--color-violet-300 inline);
+  --color-violet-400: --theme(--color-violet-400 inline);
+  --color-violet-500: --theme(--color-violet-500 inline);
+  --color-violet-600: --theme(--color-violet-600 inline);
+  --color-violet-700: --theme(--color-violet-700 inline);
+  --color-violet-800: --theme(--color-violet-800 inline);
+  --color-violet-900: --theme(--color-violet-900 inline);
+  --color-violet-950: --theme(--color-violet-950 inline);
+  --color-teal-50: --theme(--color-teal-50 inline);
+  --color-teal-100: --theme(--color-teal-100 inline);
+  --color-teal-200: --theme(--color-teal-200 inline);
+  --color-teal-300: --theme(--color-teal-300 inline);
+  --color-teal-400: --theme(--color-teal-400 inline);
+  --color-teal-500: --theme(--color-teal-500 inline);
+  --color-teal-600: --theme(--color-teal-600 inline);
+  --color-teal-700: --theme(--color-teal-700 inline);
+  --color-teal-800: --theme(--color-teal-800 inline);
+  --color-teal-900: --theme(--color-teal-900 inline);
+  --color-teal-950: --theme(--color-teal-950 inline);
+  --color-lime-50: --theme(--color-lime-50 inline);
+  --color-lime-100: --theme(--color-lime-100 inline);
+  --color-lime-200: --theme(--color-lime-200 inline);
+  --color-lime-300: --theme(--color-lime-300 inline);
+  --color-lime-400: --theme(--color-lime-400 inline);
+  --color-lime-500: --theme(--color-lime-500 inline);
+  --color-lime-600: --theme(--color-lime-600 inline);
+  --color-lime-700: --theme(--color-lime-700 inline);
+  --color-lime-800: --theme(--color-lime-800 inline);
+  --color-lime-900: --theme(--color-lime-900 inline);
+  --color-lime-950: --theme(--color-lime-950 inline);
+  --color-sky-50: --theme(--color-sky-50 inline);
+  --color-sky-100: --theme(--color-sky-100 inline);
+  --color-sky-200: --theme(--color-sky-200 inline);
+  --color-sky-300: --theme(--color-sky-300 inline);
+  --color-sky-400: --theme(--color-sky-400 inline);
+  --color-sky-500: --theme(--color-sky-500 inline);
+  --color-sky-600: --theme(--color-sky-600 inline);
+  --color-sky-700: --theme(--color-sky-700 inline);
+  --color-sky-800: --theme(--color-sky-800 inline);
+  --color-sky-900: --theme(--color-sky-900 inline);
+  --color-sky-950: --theme(--color-sky-950 inline);
+  --color-purple-50: --theme(--color-purple-50 inline);
+  --color-purple-100: --theme(--color-purple-100 inline);
+  --color-purple-200: --theme(--color-purple-200 inline);
+  --color-purple-300: --theme(--color-purple-300 inline);
+  --color-purple-400: --theme(--color-purple-400 inline);
+  --color-purple-500: --theme(--color-purple-500 inline);
+  --color-purple-600: --theme(--color-purple-600 inline);
+  --color-purple-700: --theme(--color-purple-700 inline);
+  --color-purple-800: --theme(--color-purple-800 inline);
+  --color-purple-900: --theme(--color-purple-900 inline);
+  --color-purple-950: --theme(--color-purple-950 inline);
+  --color-red-50: --theme(--color-red-50 inline);
+  --color-red-100: --theme(--color-red-100 inline);
+  --color-red-200: --theme(--color-red-200 inline);
+  --color-red-300: --theme(--color-red-300 inline);
+  --color-red-400: --theme(--color-red-400 inline);
+  --color-red-500: --theme(--color-red-500 inline);
+  --color-red-600: --theme(--color-red-600 inline);
+  --color-red-700: --theme(--color-red-700 inline);
+  --color-red-800: --theme(--color-red-800 inline);
+  --color-red-900: --theme(--color-red-900 inline);
+  --color-red-950: --theme(--color-red-950 inline);
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -33,8 +363,8 @@
   body {
     font-family: var(--font-sans);
     font-feature-settings: 'cv11', 'ss01';
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: var(--color-slate-50);
+    color: var(--color-slate-900);
     line-height: 1.6;
   }
 
@@ -61,14 +391,14 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-slate-100);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-slate-300);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--color-slate-400);
 }
 
 .scrollbar-none {
@@ -82,8 +412,8 @@
 .terminal-grid {
   background-size: 32px 32px;
   background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
 /* Dark chart-paper grid for terminal panels */

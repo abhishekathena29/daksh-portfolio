@@ -60,7 +60,7 @@ export function PersifolioSimulator() {
   ]
 
   return (
-    <div className="w-full bg-[#0c1017] border border-emerald-500/30 rounded-2xl p-5 sm:p-7">
+    <div className="theme-fixed w-full bg-[#0c1017] border border-emerald-500/30 rounded-2xl p-5 sm:p-7">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4 mb-6">
         <div>
           <div className="flex items-center gap-2">

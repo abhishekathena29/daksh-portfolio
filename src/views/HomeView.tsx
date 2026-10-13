@@ -97,7 +97,7 @@ function ChaosLab({ onNavigate }: { onNavigate: (tab: PageTab) => void }) {
           </button>
         }
       />
-      <div className="rounded-2xl bg-slate-900 p-2 sm:p-4 text-white">
+      <div className="theme-fixed rounded-2xl bg-slate-900 p-2 sm:p-4 text-white">
         <BifurcationCanvas />
       </div>
     </Panel>

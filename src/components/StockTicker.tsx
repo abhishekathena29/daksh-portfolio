@@ -6,7 +6,7 @@ import { tickerTape } from '../data/resume'
 export function StockTicker() {
   const row = [...tickerTape, ...tickerTape]
   return (
-    <div className="bg-[#0b1220] text-slate-200 border-b border-slate-800 overflow-hidden" aria-label="Achievement ticker">
+    <div className="theme-fixed bg-[#0b1220] text-slate-200 border-b border-slate-800 overflow-hidden" aria-label="Achievement ticker">
       <div className="flex w-max animate-ticker">
         {row.map((t, i) => (
           <span key={i} aria-hidden={i >= tickerTape.length} className="flex items-center gap-2 px-5 py-2 text-xs font-mono whitespace-nowrap border-r border-slate-800">

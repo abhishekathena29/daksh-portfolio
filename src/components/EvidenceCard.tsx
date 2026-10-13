@@ -86,7 +86,7 @@ export function EvidenceCard({ item, onOpen }: { item: Evidence; onOpen: (item: 
     >
       <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-100 select-none">
         <EvidencePreview item={item} />
-        <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white text-xs font-semibold backdrop-blur-[2px] z-30">
+        <div className="theme-fixed absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white text-xs font-semibold backdrop-blur-[2px] z-30">
           <ZoomIn className="w-4 h-4 text-emerald-300" />
           <span>Inspect record</span>
         </div>
@@ -102,7 +102,7 @@ export function EvidenceCard({ item, onOpen }: { item: Evidence; onOpen: (item: 
           )}
         </div>
         {item.images.length > 1 && (
-          <span className="absolute bottom-2.5 right-2.5 z-20 bg-slate-900/80 text-white text-[12px] font-mono px-2 py-0.5 rounded">+{item.images.length - 1} more</span>
+          <span className="theme-fixed absolute bottom-2.5 right-2.5 z-20 bg-slate-900/80 text-white text-[12px] font-mono px-2 py-0.5 rounded">+{item.images.length - 1} more</span>
         )}
       </div>
       <div className="p-3.5 bg-white border-t border-slate-100 space-y-1.5 flex-1">
@@ -128,7 +128,7 @@ export function PhotoGallery({ items, onOpen }: { items: Evidence[]; onOpen: (it
           className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200/90 bg-slate-100 cursor-pointer text-left"
         >
           <img src={p.images[0].src} alt={p.caption} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3 pt-8">
+          <div className="theme-fixed absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3 pt-8">
             <p className="text-xs sm:text-xs text-white font-medium leading-snug line-clamp-2">{p.caption}</p>
           </div>
           <span className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 rounded-lg p-1.5">

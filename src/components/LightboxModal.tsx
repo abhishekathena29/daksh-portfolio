@@ -38,7 +38,7 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -76,7 +76,7 @@ export function LightboxModal({ state, onChange, onClose }: { state: Inspection 
         </div>
 
         <div className="p-6 space-y-6 max-h-[78vh] overflow-y-auto">
-          <div key={item.id + idx} className={`rounded-xl overflow-hidden shadow-sm border border-slate-200 animate-fade-in ${hasImage ? 'h-[46vh] bg-slate-900' : 'aspect-[16/7]'}`}>
+          <div key={item.id + idx} className={`rounded-xl overflow-hidden shadow-sm border border-slate-200 animate-fade-in ${hasImage ? 'theme-fixed h-[46vh] bg-slate-900' : 'aspect-[16/7]'}`}>
             <EvidencePreview item={item} index={idx} fit="contain" />
           </div>
 

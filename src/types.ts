@@ -24,3 +24,7 @@ export const LEGACY_TABS: Record<string, PageTab> = {
   overview: 'home',
   activities: 'passions',
 }
+
+// A request to scroll to (and open) an item on the current page. A fresh object
+// per request, so asking for the same anchor twice still scrolls.
+export type Focus = { anchor: string } | null

@@ -2,6 +2,14 @@ import { useState } from 'react'
 import { ArrowDown, FileDown, Mail, MapPin } from 'lucide-react'
 import type { PageTab } from '../types'
 import { profile, quickFacts } from '../data/resume'
+import { ThemeToggle } from './ThemeToggle'
+
+const SECTION_LINKS: { tab: PageTab; label: string }[] = [
+  { tab: 'research', label: 'Research' },
+  { tab: 'projects', label: 'Projects' },
+  { tab: 'education', label: 'Education' },
+  { tab: 'awards', label: 'Awards' },
+]
 
 // Full-width landing that sits above the dashboard shell on the home page.
 export function Landing({ onNavigate }: { onNavigate: (tab: PageTab) => void }) {
@@ -12,15 +20,33 @@ export function Landing({ onNavigate }: { onNavigate: (tab: PageTab) => void }) 
       <section className="relative overflow-hidden min-h-[100svh] flex flex-col">
         <CandlestickBackdrop />
 
-        <header className="relative max-w-6xl w-full mx-auto px-6 sm:px-10 py-6 flex items-center justify-between">
-          <span className="font-display font-bold text-lg text-slate-900">{profile.name}</span>
-          <nav className="flex items-center gap-1 sm:gap-2 text-sm font-medium">
-            <a href="/Daksh-Sawhney-Resume.pdf" target="_blank" rel="noreferrer" className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50">
-              <FileDown className="w-4 h-4" /> Résumé
+        <header className="relative max-w-6xl w-full mx-auto px-6 sm:px-10 py-6 flex items-center justify-between gap-4">
+          <span className="font-display font-bold text-xl text-slate-900 shrink-0">{profile.name}</span>
+          <nav className="flex items-center gap-2 text-base font-semibold">
+            {SECTION_LINKS.map((l) => (
+              <button
+                key={l.tab}
+                onClick={() => onNavigate(l.tab)}
+                className="hidden lg:flex items-center h-11 px-4 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                {l.label}
+              </button>
+            ))}
+            <a
+              href="/Daksh-Sawhney-Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:flex items-center gap-2 h-11 px-4 rounded-xl border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 transition-colors"
+            >
+              <FileDown className="w-4 h-4 text-emerald-600" /> Résumé
             </a>
-            <button onClick={() => onNavigate('contact')} className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 cursor-pointer">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="flex items-center gap-2 h-11 px-5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            >
               <Mail className="w-4 h-4" /> Contact
             </button>
+            <ThemeToggle />
           </nav>
         </header>
 

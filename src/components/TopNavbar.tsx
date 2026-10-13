@@ -1,11 +1,12 @@
-import { Menu, X, FileDown } from 'lucide-react'
+import { Menu, X, FileDown, Mail } from 'lucide-react'
 import type { PageTab } from '../types'
+import { ThemeToggle } from './ThemeToggle'
 
 const TAB_TITLES: Record<PageTab, { title: string; subtitle: string }> = {
   home: { title: 'Daksh Sawhney', subtitle: 'Computational mathematics & quantitative finance' },
   research: { title: 'Research', subtitle: 'Nonlinear dynamics, NLP & digital-payments economics' },
   projects: { title: 'Projects', subtitle: 'Ventures, products & community impact' },
-  education: { title: 'Education & Grades', subtitle: 'Cambridge A Level, IGCSE & university coursework' },
+  education: { title: 'Education & Grades', subtitle: 'Cambridge A Level, AS Level, IGCSE & university coursework' },
   awards: { title: 'Awards', subtitle: 'Honours, competitions & awards of excellence' },
   experience: { title: 'Experience', subtitle: 'Nine Leaps / Noviro.ai and Address Makers internships' },
   passions: { title: 'Hobbies & Passions', subtitle: 'Stock trading, athletics, writing & the outdoors' },
@@ -30,7 +31,7 @@ export function TopNavbar({
       <div className="flex items-center gap-4 min-w-0">
         <button
           onClick={onToggleMobileMenu}
-          className="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+          className="lg:hidden p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -56,21 +57,24 @@ export function TopNavbar({
           <span className="text-slate-500">BANGALORE</span>
         </div>
 
+        <ThemeToggle />
+
         <a
           href="/Daksh-Sawhney-Resume.pdf"
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:flex items-center gap-1.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium text-xs px-3 py-2 rounded-xl transition-colors"
+          className="hidden sm:flex items-center gap-2 h-11 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-semibold text-sm px-4 rounded-xl transition-colors"
         >
-          <FileDown className="w-3.5 h-3.5 text-emerald-600" />
+          <FileDown className="w-4 h-4 text-emerald-600" />
           <span>Résumé</span>
         </a>
 
         <button
           onClick={() => onNavigate('contact')}
-          className="bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs px-4 py-2 rounded-xl shadow-xs transition-colors cursor-pointer"
+          className="flex items-center gap-2 h-11 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-5 rounded-xl shadow-xs transition-colors cursor-pointer"
         >
-          Connect
+          <Mail className="w-4 h-4" />
+          <span>Connect</span>
         </button>
       </div>
     </header>

@@ -1,23 +1,35 @@
-import { GraduationCap, MapPin, Sparkles, Wrench } from 'lucide-react'
-import { courses, education, quickFacts, skills } from '../data/resume'
+import { GraduationCap, MapPin, Sparkles, Target, Wrench } from 'lucide-react'
+import { courses, education, quickFacts, skills, type Subject } from '../data/resume'
 import { evidenceBy, type OpenEvidence } from '../data/evidence'
 import { EvidenceCard } from '../components/EvidenceCard'
 import { LinkButtons, PageBanner, Panel, PanelHead } from '../components/ui'
 
-// "Mathematics (Grade A)" / "Biology (A*)" → { name, grade }
-function parseSubjects(s: string) {
-  return s.split(', ').map((part) => {
-    const m = part.match(/^(.*?)\s*\((?:Grade\s+)?([A-E]\*?)\)$/)
-    return m ? { name: m[1], grade: m[2] } : { name: part, grade: undefined }
-  })
+const QUALIFICATION_STYLE = {
+  'A Level': 'bg-indigo-50 text-indigo-800 border-indigo-200',
+  'AS Level': 'bg-amber-50 text-amber-800 border-amber-200',
+} as const
+
+function SubjectChip({ s }: { s: Subject }) {
+  return (
+    <span className="inline-flex items-center gap-2.5 bg-slate-50 border border-slate-200/70 rounded-xl pl-3.5 pr-2 py-2 text-base text-slate-800">
+      {s.name}
+      {s.qualification && (
+        <span className={`text-xs font-mono font-semibold px-1.5 py-0.5 rounded border ${QUALIFICATION_STYLE[s.qualification]}`}>{s.qualification}</span>
+      )}
+      {s.grade && (
+        <span className={`font-mono font-bold text-sm px-2 py-0.5 rounded-md ${s.grade === 'A*' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}`}>{s.grade}</span>
+      )}
+    </span>
+  )
 }
 
 export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
   const certs = evidenceBy('courses')
   const topGrades = education
     .filter((e) => e.level === 'IGCSE')
-    .flatMap((e) => parseSubjects(e.subjects))
+    .flatMap((e) => e.subjects)
     .filter((s) => s.grade === 'A*').length
+  const predictedTop = education.flatMap((e) => e.predicted ?? []).filter((s) => s.grade === 'A*').length
 
   return (
     <div className="space-y-8 pb-16">
@@ -30,9 +42,9 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { v: `${topGrades}`, l: 'IGCSE A* grades' },
+            { v: `${predictedTop} A*`, l: 'Predicted A Level grades' },
             { v: 'Distinction', l: 'Cambridge ICE' },
             { v: `${courses.length}`, l: 'Courses & certifications' },
-            { v: 'Single year', l: 'AS + A Level Further Maths' },
           ].map((s) => (
             <div key={s.l} className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
               <div className="text-xl sm:text-2xl font-bold font-display text-slate-900">{s.v}</div>
@@ -44,7 +56,7 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
 
       <div className="space-y-6">
         {education.map((e) => {
-          const subjects = parseSubjects(e.subjects)
+          const subjects = e.subjects
           return (
             <div
               key={e.level}
@@ -73,19 +85,27 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
                 )}
               </div>
 
-              <div>
-                <span className="text-sm font-mono text-slate-500 font-semibold block uppercase mb-3">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
-                <div className="flex flex-wrap gap-2">
-                  {subjects.map((s) => (
-                    <span key={s.name} className="inline-flex items-center gap-2.5 bg-slate-50 border border-slate-200/70 rounded-xl pl-3.5 pr-2 py-2 text-base text-slate-800">
-                      {s.name}
-                      {s.grade && (
-                        <span className={`font-mono font-bold text-sm px-2 py-0.5 rounded-md ${s.grade === 'A*' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}`}>{s.grade}</span>
-                      )}
-                    </span>
-                  ))}
+              {e.predicted ? (
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/40 p-4 sm:p-5">
+                  <span className="text-sm font-mono text-emerald-800 font-semibold uppercase mb-3 flex items-center gap-1.5">
+                    <Target className="w-4 h-4" /> Predicted grades
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {e.predicted.map((s) => (
+                      <SubjectChip key={s.name} s={s} />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <span className="text-sm font-mono text-slate-500 font-semibold block uppercase mb-3">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
+                  <div className="flex flex-wrap gap-2">
+                    {subjects.map((s) => (
+                      <SubjectChip key={s.name} s={s} />
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <LinkButtons links={e.links} />
             </div>

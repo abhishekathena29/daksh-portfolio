@@ -108,12 +108,17 @@ export function PassionsView({ onOpen }: { onOpen: OpenEvidence }) {
   )
 }
 
+// One translucent surface for every panel over the chart, so the background
+// shows through all of them equally.
+const GLASS = 'rounded-2xl border border-white/15 bg-[#0b1220]/55 backdrop-blur-sm'
+
 function Trading() {
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-[#0b1220] text-white border border-slate-800 shadow-md">
-      <div className="absolute inset-0 chart-grid" aria-hidden />
+    <section className="theme-fixed relative overflow-hidden rounded-3xl bg-[#0b1220] text-white border border-slate-800 shadow-md">
+      {/* YESBANK 3-minute chart screenshot, untinted; the panels on top carry the contrast */}
+      <img src="/media/trading/yesbank-chart.jpg" alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover" />
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 p-7 sm:p-10">
-        <div className="lg:col-span-7 space-y-5">
+        <div className={`lg:col-span-7 space-y-5 p-6 ${GLASS}`}>
           <div className="flex items-center gap-3">
             <span className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 flex items-center justify-center">
               <TrendingUp className="w-5 h-5" />
@@ -136,10 +141,10 @@ function Trading() {
         </div>
 
         <div className="lg:col-span-5 space-y-4">
-          <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-5 space-y-4">
+          <div className={`p-5 space-y-4 ${GLASS}`}>
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-slate-400 uppercase tracking-wider">Toolkit</span>
-              <span className="text-slate-500">{trading.since}</span>
+              <span className="text-slate-300 uppercase tracking-wider">Toolkit</span>
+              <span className="text-slate-300">{trading.since}</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {trading.tools.map((t) => (
@@ -149,15 +154,15 @@ function Trading() {
               ))}
             </div>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-5 space-y-1">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Trading earnings self-invested</span>
+          <div className={`p-5 space-y-1 ${GLASS}`}>
+            <span className="text-xs font-mono text-slate-300 uppercase tracking-wider block">Trading earnings self-invested</span>
             <p className="text-3xl font-bold font-display text-emerald-300 num">$25,000</p>
-            <p className="text-sm text-slate-400">Put back into his own ventures</p>
+            <p className="text-sm text-slate-300">Put back into his own ventures</p>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-5 space-y-1">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider block">Portfolio Strategy Challenge</span>
+          <div className={`p-5 space-y-1 ${GLASS}`}>
+            <span className="text-xs font-mono text-slate-300 uppercase tracking-wider block">Portfolio Strategy Challenge</span>
             <p className="text-3xl font-bold font-display text-emerald-300 num">1st place</p>
-            <p className="text-sm text-slate-400">HDFC Credelia · Jan–Feb 2024</p>
+            <p className="text-sm text-slate-300">HDFC Credelia · Jan–Feb 2024</p>
           </div>
         </div>
       </div>

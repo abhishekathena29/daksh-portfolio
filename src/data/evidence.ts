@@ -7,6 +7,7 @@ import {
   internships,
   otherAwards,
   projects,
+  research,
   sports,
   volunteering,
   type LinkRef,
@@ -120,7 +121,7 @@ export const EVIDENCE: Evidence[] = ([
       category: 'academics',
       organization: e.institution,
       date: e.period,
-      caption: e.subjects,
+      caption: e.subjects.map((s) => (s.grade ? `${s.name} (${s.grade})` : s.name)).join(', '),
       badge: e.grades ? `Grade ${e.grades}` : 'Transcript',
       links: e.links ?? [],
       images: e.images ?? [],
@@ -215,9 +216,10 @@ export const EVIDENCE: Evidence[] = ([
   ...photoRecords(),
 ] as Evidence[]).map(withDocThumbs)
 
-// Field photographs from projects and community work become their own records.
+// Field photographs from projects, research and community work become their own records.
 function photoRecords(): Evidence[] {
   const sets: { group: string; org: string; date: string; images: Photo[] }[] = [
+    ...research.map((r) => ({ group: slug(r.title), org: r.org, date: r.period, images: r.images ?? [] })),
     ...projects.map((p) => ({ group: slug(p.name), org: p.name, date: p.period, images: p.images ?? [] })),
     ...volunteering.map((v) => ({ group: slug(v.name), org: v.name.split(' — ')[0], date: v.period, images: v.images ?? [] })),
   ]

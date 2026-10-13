@@ -9,6 +9,14 @@
       content="Daksh Sawhney — computational mathematics & quantitative finance. Founder of Persifolio, RSI-India researcher, and environmental entrepreneur."
     />
     <title>Daksh Sawhney — Quant, Researcher, Builder</title>
+    <script>
+      // Dark by default; applied before first paint so there is no light flash.
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.documentElement.classList.add('dark')
+      } catch {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

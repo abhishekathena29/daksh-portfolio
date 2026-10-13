@@ -110,7 +110,7 @@ export function BifurcationCanvas() {
   const chaotic = lambda > 0.001
 
   return (
-    <div className="w-full bg-[#0a0e14] border border-white/10 rounded-2xl p-5 sm:p-6">
+    <div className="theme-fixed w-full bg-[#0a0e14] border border-white/10 rounded-2xl p-5 sm:p-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4 mb-4">
         <div>
           <div className="flex items-center gap-2">
