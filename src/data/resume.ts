@@ -5,7 +5,7 @@ export const profile = {
   name: 'Daksh Sawhney',
   initials: 'DS',
   // Portrait for the landing page; falls back to the initials monogram if missing.
-  photo: '/media/profile/daksh.jpeg',
+  photo: '/media/profile/daksh-rsi.jpg',
   tagline: 'Computational Mathematics & Quantitative Finance',
   school: 'Inventure Academy',
   location: 'Bangalore, India',

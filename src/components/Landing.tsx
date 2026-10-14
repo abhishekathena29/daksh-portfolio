@@ -107,7 +107,7 @@ function Portrait() {
           src={profile.photo}
           alt={`Portrait of ${profile.name}`}
           onError={() => setFailed(true)}
-          className="w-full h-full object-cover object-[35%_center]"
+          className="w-full h-full object-cover object-[50%_70%]"
         />
       )}
     </div>
