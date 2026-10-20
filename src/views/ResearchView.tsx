@@ -1,7 +1,8 @@
-import { Camera, Clock, ExternalLink, FileText, FlaskConical } from 'lucide-react'
+import { Clock, ExternalLink, FileText, FlaskConical } from 'lucide-react'
 import { research, type Research } from '../data/resume'
 import { photosFor, slug, type OpenEvidence } from '../data/evidence'
 import { PageBanner } from '../components/ui'
+import { AutoCarousel } from '../components/AutoCarousel'
 
 const STATUS_STYLE = {
   published: 'bg-emerald-50 text-emerald-800 border-emerald-200',
@@ -31,30 +32,21 @@ export function ResearchView({ onOpen }: { onOpen: OpenEvidence }) {
 
 function ResearchCard({ r, reverse, onOpen }: { r: Research; reverse: boolean; onOpen: OpenEvidence }) {
   const photos = photosFor(slug(r.title))
-  const coverPhoto = photos.find((p) => p.images[0].src === r.cover?.src)
-  const img = r.cover && (
-    <img
-      src={r.cover.src}
-      alt={r.cover.caption}
-      loading="lazy"
-      className={`w-full h-full ${r.coverFit === 'contain' ? 'object-contain bg-slate-100 p-4' : 'object-cover group-hover:scale-[1.02] transition-transform duration-700'}`}
-    />
-  )
+  // The cover leads the carousel; the rest of the photos follow in order
+  const ordered = [...photos].sort((a, b) => Number(b.images[0].src === r.cover?.src) - Number(a.images[0].src === r.cover?.src))
 
   return (
     <article className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden grid grid-cols-1 lg:grid-cols-5">
-      <div className={`theme-fixed lg:col-span-2 bg-slate-900 min-h-60 relative ${reverse ? 'lg:order-2' : ''}`}>
-        {img && coverPhoto ? (
-          <button onClick={() => onOpen(coverPhoto, photos)} className="group absolute inset-0 overflow-hidden cursor-pointer" aria-label={`View ${photos.length} photos`}>
-            {img}
-            {photos.length > 1 && (
-              <span className="absolute bottom-3 right-3 bg-slate-900/80 text-white text-xs font-mono px-2.5 py-1 rounded-lg flex items-center gap-1.5">
-                <Camera className="w-3.5 h-3.5" /> {photos.length} photos
-              </span>
-            )}
-          </button>
-        ) : img ? (
-          img
+      <div className={`theme-fixed lg:col-span-2 bg-slate-900 min-h-72 relative ${reverse ? 'lg:order-2' : ''}`}>
+        {ordered.length > 0 ? (
+          <AutoCarousel photos={ordered} onOpen={onOpen} />
+        ) : r.cover ? (
+          <img
+            src={r.cover.src}
+            alt={r.cover.caption}
+            loading="lazy"
+            className={`absolute inset-0 w-full h-full ${r.coverFit === 'contain' ? 'object-contain bg-slate-100 p-4' : 'object-cover'}`}
+          />
         ) : (
           <UpiFigure />
         )}
@@ -72,24 +64,6 @@ function ResearchCard({ r, reverse, onOpen }: { r: Research; reverse: boolean; o
         </div>
         <p className="text-base sm:text-lg text-slate-700 leading-relaxed">{r.summary}</p>
         {r.mentor && <p className="text-sm text-slate-500">Mentor: {r.mentor}</p>}
-
-        {photos.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {photos
-              .filter((p) => p !== coverPhoto)
-              .map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => onOpen(p, photos)}
-                  className="group shrink-0 w-28 h-20 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 cursor-pointer"
-                  aria-label={p.caption}
-                  title={p.caption}
-                >
-                  <img src={p.images[0].src} alt="" loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </button>
-              ))}
-          </div>
-        )}
 
         <div className="flex flex-wrap items-center gap-3 pt-2">
           {r.paper ? (

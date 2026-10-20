@@ -9,6 +9,7 @@ import {
   projects,
   research,
   sports,
+  sportsPhotos,
   volunteering,
   type LinkRef,
   type Photo,
@@ -67,13 +68,15 @@ const DOC_THUMBS: Record<string, string> = {
   'shot-put-sports-fest-2025': '/media/athletics/shot-put-sports-fest-2025.jpg',
   'shot-put-athletics-meet-2025': '/media/athletics/shot-put-athletics-meet-2025.jpg',
   'empower-fin-certificate': '/media/service/empower-fin-certificate.jpg',
+  'scam-slayer-patent-journal': '/media/scam-slayer/scam-slayer-patent-journal.jpg',
+  'badminton-u17-semifinalist': '/media/athletics/badminton-u17-semifinalist.jpg',
 }
 
 function withDocThumbs(e: Evidence): Evidence {
   if (e.images.length) return e
   const images = e.links.flatMap((l) => {
     const m = l.href.match(/^\/docs\/(.+)\.pdf$/)
-    const src = m && DOC_THUMBS[m[1]]
+    const src = l.thumb ?? (m && DOC_THUMBS[m[1]])
     return src ? [{ src, caption: l.label }] : []
   })
   return { ...e, images }
@@ -90,10 +93,12 @@ export const EVIDENCE: Evidence[] = ([
         ? 'Harvard Hackathon'
         : h.title.startsWith('Cambridge')
           ? 'Cambridge International'
-          : 'Inventure Academy',
+          : h.title.includes('HDFC')
+            ? 'HDFC Credelia'
+            : 'Inventure Academy',
     date: h.date,
     caption: h.detail ?? h.title,
-    badge: h.tier ? TIER_BADGE[h.tier] : undefined,
+    badge: h.tier ? TIER_BADGE[h.tier] : h.title.includes('Winner') ? 'Winner' : undefined,
     links: h.links ?? [],
     images: h.images ?? [],
     metadata: [
@@ -104,11 +109,11 @@ export const EVIDENCE: Evidence[] = ([
   ...otherAwards.map<Evidence>((a) => ({
     id: `award-${slug(a.title)}-${slug(a.date)}`,
     title: a.title,
-    category: a.title.startsWith('Award of Excellence') ? 'school-awards' : 'honours',
-    organization: a.title.includes('HDFC') ? 'HDFC Credelia' : 'Inventure Academy',
+    category: 'school-awards',
+    organization: 'Inventure Academy',
     date: a.date,
-    caption: a.detail ?? `${a.title}, conferred ${a.date}.`,
-    badge: a.title.includes('Winner') ? 'Winner' : 'Excellence',
+    caption: a.detail ?? a.title,
+    badge: 'Excellence',
     links: a.links ?? [],
     images: a.images ?? [],
     metadata: [{ label: 'Awarded', value: a.date }],
@@ -222,6 +227,7 @@ function photoRecords(): Evidence[] {
     ...research.map((r) => ({ group: slug(r.title), org: r.org, date: r.period, images: r.images ?? [] })),
     ...projects.map((p) => ({ group: slug(p.name), org: p.name, date: p.period, images: p.images ?? [] })),
     ...volunteering.map((v) => ({ group: slug(v.name), org: v.name.split(' — ')[0], date: v.period, images: v.images ?? [] })),
+    { group: 'sports', org: 'Sports', date: '', images: sportsPhotos },
   ]
   const seen = new Set<string>()
   return sets.flatMap((set) =>

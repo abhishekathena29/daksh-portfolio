@@ -120,7 +120,6 @@ function About() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 space-y-5">
           <span className="text-sm font-mono text-emerald-700 font-bold uppercase tracking-wide block">About me</span>
-          <p className="text-2xl font-display text-slate-900 leading-snug">{profile.about.lede}</p>
           <div className="space-y-4 text-base sm:text-lg text-slate-700 leading-relaxed">
             {profile.about.paragraphs.map((p) => (
               <p key={p.slice(0, 24)}>{p}</p>

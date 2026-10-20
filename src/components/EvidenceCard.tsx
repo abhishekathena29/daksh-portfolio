@@ -9,7 +9,6 @@ import {
   HeartHandshake,
   Medal,
   Rocket,
-  ShieldCheck,
   Trophy,
   ZoomIn,
 } from 'lucide-react'
@@ -45,10 +44,6 @@ export function EvidencePreview({ item, index = 0, fit = 'cover' }: { item: Evid
           loading="lazy"
           className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover object-top'} transition-transform duration-500 group-hover:scale-[1.03]`}
         />
-        <span className={`absolute bottom-2.5 left-2.5 flex items-center gap-1 bg-white/95 border ${theme.ring} ${theme.ink} text-[12px] font-mono font-bold px-2 py-0.5 rounded shadow-xs`}>
-          <Icon className="w-3 h-3" />
-          {theme.label}
-        </span>
       </div>
     )
   }
@@ -82,28 +77,15 @@ export function EvidenceCard({ item, onOpen }: { item: Evidence; onOpen: (item: 
   return (
     <button
       onClick={() => onOpen(item)}
-      className="group text-left relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col"
+      className="group text-left relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs hover:border-emerald-300 transition-colors duration-300 cursor-pointer flex flex-col"
     >
       <div className="w-full aspect-[16/10] relative overflow-hidden bg-slate-100 select-none">
         <EvidencePreview item={item} />
-        <div className="theme-fixed absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-white text-xs font-semibold backdrop-blur-[2px] z-30">
-          <ZoomIn className="w-4 h-4 text-emerald-300" />
-          <span>Inspect record</span>
-        </div>
         <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 pointer-events-none">
           {item.badge && (
             <span className="bg-white/95 text-slate-800 text-[12px] font-mono font-bold px-2 py-0.5 rounded shadow-xs border border-slate-200">{item.badge}</span>
           )}
-          {item.links.length > 0 && (
-            <span className="bg-emerald-500 text-white text-[12px] font-mono font-semibold px-2 py-0.5 rounded shadow-xs flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3" />
-              PROOF
-            </span>
-          )}
         </div>
-        {item.images.length > 1 && (
-          <span className="theme-fixed absolute bottom-2.5 right-2.5 z-20 bg-slate-900/80 text-white text-[12px] font-mono px-2 py-0.5 rounded">+{item.images.length - 1} more</span>
-        )}
       </div>
       <div className="p-3.5 bg-white border-t border-slate-100 space-y-1.5 flex-1">
         <div className="flex items-center justify-between gap-2 text-xs font-mono">

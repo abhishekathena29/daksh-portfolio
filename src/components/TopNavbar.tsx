@@ -40,10 +40,6 @@ export function TopNavbar({
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <h1 className="text-lg sm:text-xl font-bold font-display text-slate-900 leading-tight truncate">{info.title}</h1>
-            <span className="hidden sm:inline-flex items-center gap-1 text-[12px] font-mono bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              LIVE
-            </span>
           </div>
           <p className="text-xs text-slate-500 hidden sm:block truncate">{info.subtitle}</p>
         </div>

@@ -26,14 +26,10 @@ export const profile = {
   qualities: ['Curious', 'Risk-taking', 'Enterprising', 'Collaborative', 'Persistent', 'Logical'],
   about: {
     headline: 'From chaos theory to a career in financial technology, I make predictions in highly variable conditions.',
-    lede: 'I aspire to understand how things work at their core and make them better for the people around me.',
+    // Daksh's own write-up, verbatim
     paragraphs: [
-      "Hey! I'm Daksh, a 17-year-old from Bangalore, obsessed with mathematics, AI, and finance. I like anything where you can turn the uncertainty of a real-world problem into a mathematical model you can use to make predictions. I know that sounds nerdy, but I promise it's fun.",
-      'I built Persifolio, an app that helps people learn investing and budgeting through a virtual stock market — it is now used by over 4,000 people, which still feels wild to say, and it will be adopted in Odisha.',
-      'Over the summer I did research at the Research Science Institute (RSI) at IISc, India, studying chaos theory and designing a mathematical tool to predict when a system will reach chaos. I also worked with a professor at the University of Cambridge on error analysis of code-mixed language by a POS tagger — published in the Oxford Journal of Student Scholarship.',
-      'More recently, I was part of a 4-student team at the Harvard Hackathon in India that built Polaris, an AI web app that studies people already in your dream job and builds you a step-by-step pathway to get there — it has now helped over 1,000 people. We won nationally and represented India at the HackHarvard International Hackathon at Harvard University — probably the project that taught me the most about designing systems, not just writing code.',
-      "I also built Scam Slayer, a free app that helps protect senior citizens from online scams — it has helped over 1,000 elderly people so far, and it's the project I'm proudest of. I'm an environment lover and entrepreneur who raised over ₹5,00,000 from corporates to plant 100,000+ trees at urban forest sites in and around Bangalore.",
-      "When I'm not doing any of that, I can be found trading on the stock exchange, on the basketball court, on the athletics field, or in the gym running and weightlifting.",
+      "I'm Daksh, a 17-year-old from Bangalore, India, passionate about computational algorithms. My favourite question in the world is “How do I model something amid the chaos of a dynamical system?” At RSI at IISc, I'm chasing it properly by designing a mathematical tool to predict the moment a system tips into chaos. What hooked me is that chaos isn't just noise: it has structure, and you can spot warning signs before systems fall apart.",
+      "That same motivation drove me to create Persifolio to diagnose risk-taking ability in today's dynamic stock market and geopolitical landscape. Every position I take, whether it's built on candlestick patterns, support and resistance, or the zig-zag method, is a small bet on a model of risk, reward and probability, and the market tests. Algorithms, for me, are a way to navigate uncertainty, whether I'm hunting for order in a chaotic system in a lab or reading structure in the swings of a chart on my screen.",
     ],
   },
   currentlyBuilding: 'Persifolio v2 & RSI-India dynamical systems research',
@@ -64,7 +60,7 @@ export const dashboardMetrics: Metric[] = [
   { symbol: 'FUND', label: 'Funding raised', value: 50000, prefix: '$', note: 'Venture funding', section: 'projects' },
   { symbol: 'SELF', label: 'Self-invested', value: 25000, prefix: '$', note: 'Earned from stock trading', section: 'passions' },
   { symbol: 'PAPERS', label: 'Research papers', value: 3, note: '2 published · 1 under review', section: 'research' },
-  { symbol: 'IP', label: 'Patents', value: 1, note: 'Persifolio · Indian Patent Journal', section: 'projects' },
+  { symbol: 'IP', label: 'Patents published', value: 2, note: 'Persifolio · Scam Slayer', section: 'projects' },
 ]
 
 // Scrolling tape under the navbar.
@@ -77,7 +73,7 @@ export const tickerTape: { symbol: string; value: string; note: string }[] = [
   { symbol: 'SCAM', value: '1,000+', note: 'seniors trained' },
   { symbol: 'PLRS', value: '1,000+', note: 'Polaris users' },
   { symbol: 'IGCSE', value: '8 A*', note: 'Cambridge' },
-  { symbol: 'IP', value: '1', note: 'patent published' },
+  { symbol: 'IP', value: '2', note: 'patents published' },
   { symbol: 'δ', value: '4.669', note: 'Feigenbaum constant' },
 ]
 
@@ -88,10 +84,12 @@ export const quickFacts = {
   languagesTools: ['Python', 'SQL', 'Flutter', 'Firebase', 'AWS', 'Azure'],
 }
 
-export type LinkRef = { label: string; href: string }
+// `thumb`: preview image for a document hosted elsewhere (e.g. Google Drive)
+export type LinkRef = { label: string; href: string; thumb?: string }
 
 // Paths under /public (served from site root)
-export type Photo = { src: string; caption: string }
+// `position`: CSS object-position when the photo is cropped (keeps faces in frame)
+export type Photo = { src: string; caption: string; position?: string }
 
 export type Qualification = 'A Level' | 'AS Level'
 
@@ -205,10 +203,11 @@ export const research: Research[] = [
       'Piecewise linear maps (1.0 < ξ < 1.5) — the tent map r(1−2|x−0.5|) and 1−r|x| — bypass period doubling entirely, jumping from a single stable fixed point into a solid chaotic wedge with unvisited lens-shaped regions.',
       'The coefficient serves as an accurate baseline for classifying nonlinear chaotic dynamics from the visual properties of bifurcation diagrams.',
     ],
-    cover: { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
+    cover: { src: '/media/research/rsi-logistic-map.jpg', caption: 'Presenting the logistic map: modelling a rabbit population' },
     images: [
-      { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
       { src: '/media/research/rsi-logistic-map.jpg', caption: 'Presenting the logistic map: modelling a rabbit population' },
+      { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
+      { src: '/media/research/rsi-coding.jpg', caption: 'Coding the bifurcation-diagram simulator' },
       { src: '/media/research/rsi-motivation-slide.jpg', caption: 'Opening the final presentation with the motivation for the research' },
       { src: '/media/research/rsi-iterations.jpg', caption: 'Walking through iterations of xₙ₊₁ = 2xₙ(1 − xₙ) converging to a fixed point' },
       { src: '/media/research/rsi-function-slide.jpg', caption: 'Explaining how a function maps inputs to outputs' },
@@ -275,6 +274,7 @@ export type ProjectT = {
   links?: LinkRef[]
   // Live product, shown as the primary button in the project header
   url?: string
+  urlLabel?: string
   // Shown in the project header when set (path under /public)
   logo?: string
   funding?: { amount: string; source: string; date?: string }
@@ -302,20 +302,18 @@ export const projects: ProjectT[] = [
       'Portfolios render as a pie chart of diversification and stock break-up; enter an amount and the app shows exactly how much to invest where.',
     ],
     highlights: [
-      { label: 'Users onboarded', value: '4,000+' },
-      { label: 'Patent status', value: 'Filed · Published' },
-      { label: 'Platform', value: 'Google Play' },
+      { label: 'People reached', value: '4,000+' },
+      { label: 'Patent', value: 'Published' },
+      { label: 'Raised + self-funded from trading profit', value: '$50,000 + $25,000' },
     ],
     links: [
       { label: 'Patent journal', href: '/docs/persifolio-patent-journal.pdf' },
       { label: 'Patent certificate', href: 'https://drive.google.com/file/d/1kg8lx8TX5Fw6qo7_mMGpcxSRizaRH2xL/view?usp=sharing' },
-      { label: 'Persifolio letter', href: 'https://drive.google.com/file/d/1vJnF1p_6BioUTA5Mk2dkfTVe4FrJyZCf/view?usp=sharing' },
-      { label: 'LOR by MP', href: 'https://drive.google.com/file/d/1DpFGhfOzSgRK293YyhIaiFJR5BOXj3_n/view?usp=sharing' },
-      { label: 'Product images', href: 'https://drive.google.com/file/d/161ClOIRgpiNfUGrpCLBF9x7Kry0g41Iw/view?usp=drive_link' },
+      { label: 'Product images', href: 'https://drive.google.com/drive/folders/1rj9KWKJbemy3yHc6fxm78pLY_Bx7al5W?usp=sharing', thumb: '/media/persifolio/workshop-5.jpg' },
     ],
     images: [
+      { src: '/media/persifolio/workshop-4.jpg', caption: '"What is investment?" — presenting to college students' },
       { src: '/media/persifolio/workshop-3.jpg', caption: 'Persifolio financial-literacy session at a college auditorium' },
-      { src: '/media/persifolio/workshop-4.jpg', caption: '"What is investment?" — workshop for college students' },
       { src: '/media/persifolio/workshop-5.jpg', caption: 'Walking students through portfolio construction' },
       { src: '/media/persifolio/workshop-6.jpg', caption: 'Budgeting & risk-management workshop' },
       { src: '/media/persifolio/workshop-7.jpg', caption: 'Onboarding a full classroom onto Persifolio' },
@@ -328,18 +326,25 @@ export const projects: ProjectT[] = [
     role: 'Creator',
     period: 'Sept 2025 – present',
     tagline: 'Cybersecurity awareness web app for senior citizens of India — "Don\'t be a victim, be a slayer."',
+    // From the published patent: "Web-Based System for Experiential Fraud-Recognition
+    // Training Using Simulated Threat Scenarios for Vulnerable User Populations"
     description: [
-      'A free, quiz-based cybersecurity awareness platform protecting senior citizens from scams and fraud. Simulates real-world threats — fake arrest scams, phishing emails, impersonation attacks — through interactive scenarios.',
-      'Addresses the human vulnerability gap in cybersecurity: seniors, small business owners, and non-tech-savvy populations are frequently targeted through deception and fear. Turns passive advice into active practice, reducing financial and psychological damage from fraud.',
-      'Conducted in-person workshops for 1,000+ senior citizens, teaching them to recognise, respond to, and report digital exploitation. Featured in Outlook.',
+      'A web-based system for experiential fraud-recognition training for vulnerable populations, particularly senior citizens. A scenario engine presents simulated threats — phishing messages, impersonation attempts and fraudulent arrest notices — through an interactive browser interface. Simulated payment and credential requests remain inoperative.',
+      'A response-evaluation module analyses user choices, identifies overlooked warning signs and gives corrective feedback on safer verification and reporting actions. A progress-tracking module measures improvement across sessions, and the system then selects scenarios featuring previously missed cues in different contexts, reinforcing practical recognition skills.',
+      'In-person workshops for 1,000+ senior citizens. Patent published in the Indian Patent Journal (Application No. 202641116272 A, Oct 2026), a letter of recommendation from the Government of Karnataka (MLA, Mahadevapura), and featured in Outlook.',
     ],
     highlights: [
       { label: 'Seniors trained', value: '1,000+' },
-      { label: 'Format', value: 'Quiz-based web app' },
-      { label: 'Audience', value: 'Senior citizens, India' },
+      { label: 'Patent', value: 'Published' },
       { label: 'Press', value: 'Outlook' },
     ],
+    links: [
+      { label: 'Outlook article', href: 'https://www.outlookindia.com/xhub/featured-insights/teen-developer-daksh-sawhney-builds-scamslayer-fraud-detection-app-protecting-1000-senior-citizens-from-digital-scams', thumb: '/media/scam-slayer/outlook-feature.jpg' },
+      { label: 'Patent publication', href: '/docs/scam-slayer-patent-journal.pdf' },
+      { label: 'Government of Karnataka LOR', href: 'https://drive.google.com/file/d/1_1ORyucFaWquhrn9qrLyZ0sfBMXHCKfm/view?usp=sharing', thumb: '/media/scam-slayer/karnataka-mla-lor.jpg' },
+    ],
     images: [
+      { src: '/media/scam-slayer/workshop-8.jpg', caption: 'Scam-awareness workshop with residents of a senior-citizen home' },
       { src: '/media/scam-slayer/workshop-1.jpg', caption: 'Scam-awareness workshop at a senior-citizen home' },
       { src: '/media/scam-slayer/outlook-feature.jpg', caption: 'Scam Slayer featured in Outlook' },
       { src: '/media/scam-slayer/workshop-2.jpg', caption: 'Explaining fake-arrest and phishing scams' },
@@ -348,7 +353,6 @@ export const projects: ProjectT[] = [
       { src: '/media/scam-slayer/workshop-5.jpg', caption: 'Answering questions on OTP and impersonation fraud' },
       { src: '/media/scam-slayer/workshop-6.jpg', caption: 'Seniors learning to report cyber fraud' },
       { src: '/media/scam-slayer/workshop-7.jpg', caption: 'Hands-on walkthrough of the Scam Slayer app' },
-      { src: '/media/scam-slayer/workshop-8.jpg', caption: 'One-on-one support after the session' },
     ],
   },
   {
@@ -367,6 +371,9 @@ export const projects: ProjectT[] = [
       { label: 'Harvard Hackathon', value: 'National Winner' },
       { label: 'Built with', value: 'AI + live job data' },
     ],
+    links: [
+      { label: "Letter of recommendation — St. Jerome's PU College", href: 'https://drive.google.com/file/d/15OQqsNnKIWvXW0ROZoHGO5cKhPPAc7gA/view?usp=sharing', thumb: '/media/polaris/st-jeromes-lor.jpg' },
+    ],
     images: [
       { src: '/media/polaris/session-1.jpg', caption: 'Presenting Polaris to a college classroom' },
       { src: '/media/polaris/session-2.jpg', caption: '"Old searching vs Polaris" — explaining the approach' },
@@ -374,6 +381,38 @@ export const projects: ProjectT[] = [
       { src: '/media/polaris/session-4.jpg', caption: 'Introducing Polaris to a class' },
       { src: '/media/polaris/session-5.jpg', caption: 'Students trying Polaris on their phones' },
       { src: '/media/awards/harvard-hackathon-cohort.jpg', caption: 'HackHarvard Challenge 2026 cohort — "Where Ideas Became Reality"' },
+    ],
+  },
+  {
+    name: 'Shades of Tomorrow',
+    role: 'Founder — Miyawaki Forest Project',
+    period: '9th grade – present',
+    tagline: 'Dense native Miyawaki forests on urban land across Bangalore — 100,000+ trees planted.',
+    description: [
+      'What began as a middle-school project with a team of 25 students grew into a larger mission to create greener urban spaces across Bengaluru, using the Miyawaki method to grow dense native forests on small urban plots.',
+      'Raised ₹5,00,000 in corporate funding by presenting impact case studies, used for soil preparation, native plants and a team of gardeners to establish and maintain the forests. Built EcoWeave, a web app that tracks plant survival and growth rates across sites so the work is reproducible.',
+      'Led 7 plantation drives across Bangalore, planting 100,000+ trees in partnership with Indus International School and corporate sponsors; now on the sixth urban forest site.',
+    ],
+    highlights: [
+      { label: 'Trees planted', value: '100,000+' },
+      { label: 'Corporate funding', value: '₹5,00,000' },
+      { label: 'Plantation drives', value: '7' },
+    ],
+    url: 'https://miyawaki-monitor.ai.studio/',
+    urlLabel: 'Open EcoWeave',
+    links: [
+      { label: 'Project LOR', href: 'https://drive.google.com/file/d/1apGyS7hLz_t5ZO0RSSssirwHZ5tTmKkZ/view?usp=sharing', thumb: '/media/afforestation/project-lor.jpg' },
+      { label: 'Plantation drive photos', href: 'https://drive.google.com/drive/folders/17syK8LG4uxN-r_PJsEGGshw_SeEPkwOr?usp=drive_link', thumb: '/media/afforestation/drive-1.jpg' },
+    ],
+    images: [
+      { src: '/media/afforestation/forest-electronic-city.jpg', caption: 'Mature Miyawaki forest on Electronic City road' },
+      { src: '/media/afforestation/forest-chandapura.jpg', caption: 'Dense native forest at Chandapura' },
+      { src: '/media/afforestation/drive-1.jpg', caption: 'Plantation drive — planting native saplings' },
+      { src: '/media/afforestation/drive-2.jpg', caption: 'Plantation drive — preparing the pits' },
+      { src: '/media/afforestation/drive-3.jpg', caption: 'Freshly planted mini-forest site' },
+      { src: '/media/afforestation/drive-sarjapur.jpg', caption: 'Watering saplings at the Sarjapur drive' },
+      { src: '/media/afforestation/drive-5.jpg', caption: 'Volunteers at a plantation drive' },
+      { src: '/media/afforestation/drive-6.jpg', caption: 'Team planting at a new site' },
     ],
   },
   {
@@ -583,15 +622,27 @@ export const honors: Award[] = [
     images: [{ src: '/media/awards/cambridge-ice-distinction.jpg', caption: 'International Certificate of Education with Distinction — June 2025 series' }],
   },
   {
+    title: 'Portfolio Strategy Challenge — Winner, HDFC Credelia',
+    detail: 'Stock portfolio designed for a client; won first place in the investment pitch competition.',
+    date: 'Jan–Feb 2024',
+    links: [
+      { label: 'Certificate', href: '/docs/hdfc-portfolio-strategy-challenge.pdf' },
+      { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1RsQmKGFUj4h30cvhG_U2lCPi6YVSQUUL/view?usp=sharing' },
+    ],
+    images: [{ src: '/media/awards/hdfc-portfolio-strategy-challenge.jpg', caption: 'First Prize, Portfolio Strategy Challenge — 10 Feb 2024' }],
+  },
+  {
     title: 'Inventure Big Leap Award — English Literature',
     date: '2023–24',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/119UtFg9bJ9dPA69xYE3Vbkz6MnJOMiXB/view?usp=sharing' }],
+    images: [{ src: '/media/awards/big-leap-english-literature.jpg', caption: 'Big Leap Award — English Literature, Grade 9, 2023–24' }],
   },
 ]
 
 export const otherAwards: Award[] = [
   {
     title: 'Award of Excellence — Community Outreach',
+    detail: 'Recognised as one of the top two students for community outreach and care for the communities around them.',
     date: '2024–25',
     links: [{ label: 'Certificate', href: '/docs/community-outreach-award.pdf' }],
     images: [{ src: '/media/awards/community-outreach-award.jpg', caption: 'Inventure Academy Community Outreach Award, Grade 10' }],
@@ -599,20 +650,25 @@ export const otherAwards: Award[] = [
   {
     title: 'Award of Excellence — Inventure Sports Award',
     date: '2024–25',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/119UtFg9bJ9dPA69xYE3Vbkz6MnJOMiXB/view?usp=sharing' }],
+    images: [{ src: '/media/awards/inventure-sports-award.jpg', caption: 'The Inventure Sports Award, Grade 10, 2024–25' }],
   },
   {
-    title: 'Award of Excellence — Whiz Kid',
+    title: 'Award of Excellence — TechWhiz',
+    detail: 'Recognised by the school as one of the top two coders in the grade.',
     date: '2025–26',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1DUYTEkZhl9r8CX4keWYoeFqw6tYPlPqW/view?usp=sharing' }],
+    images: [{ src: '/media/awards/techwhiz-award.jpg', caption: 'The Computer Whiz Award, Grade 11, 2025–26' }],
   },
   {
     title: 'Award of Excellence — Inventure Scholar Award',
     date: '2025–26',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1vlNIVk-0ANNTyWvwhKZ_ZGkUAlnuLiin/view?usp=sharing' }],
+    images: [{ src: '/media/awards/inventure-scholar-award.jpg', caption: 'The Inventure Academy Scholars Award, Grade 11, 2025–26' }],
   },
   {
-    title: 'Award of Excellence — Computer Science Topper',
+    title: 'Award of Excellence — Computer Science',
+    detail: 'Recognised by the school as the grade topper in Computer Science.',
     date: '2025–26',
     links: [
       { label: 'Certificate', href: '/docs/cs-subject-topper.pdf' },
@@ -622,18 +678,10 @@ export const otherAwards: Award[] = [
   },
   {
     title: 'Award of Excellence — Multiachiever Award',
+    detail: 'Recognised by the school as the most well-rounded student in the grade.',
     date: '2025–26',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/15yE7CeGr1JnULMhlt0wO6X0NeNg0N2IS/view?usp=sharing' }],
-  },
-  {
-    title: 'Portfolio Strategy Challenge — Winner, HDFC Credelia',
-    detail: 'Designed a stock portfolio for a client; 1st place in the investment pitch competition.',
-    date: 'Jan–Feb 2024',
-    links: [
-      { label: 'Certificate', href: '/docs/hdfc-portfolio-strategy-challenge.pdf' },
-      { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1RsQmKGFUj4h30cvhG_U2lCPi6YVSQUUL/view?usp=sharing' },
-    ],
-    images: [{ src: '/media/awards/hdfc-portfolio-strategy-challenge.jpg', caption: 'First Prize, Portfolio Strategy Challenge — 10 Feb 2024' }],
+    images: [{ src: '/media/awards/multiachiever-award.jpg', caption: 'The Inventure Academy Multi Achievers Award, Grade 11, 2025–26' }],
   },
 ]
 
@@ -661,12 +709,16 @@ export const sports: Activity[] = [
     images: [{ src: '/media/athletics/tisb-aquatic-meet.jpg', caption: 'TISB Inter-School Aquatic Championship — Certificate of Merit' }],
   },
   {
-    name: 'ISSO Badminton',
-    level: 'National',
-    achievement: 'Participation',
-    date: '2024',
-    tier: 'national',
-    links: [{ label: 'Photos', href: 'https://drive.google.com/drive/folders/1NR0REkqEwHmpy5Yr2QX1QBCR6RtX6DCp?usp=drive_link' }],
+    name: 'Badminton — Under-17 Boys Singles',
+    level: 'State',
+    achievement: 'Semi-finalist',
+    date: 'Dec 2024',
+    tier: 'bronze',
+    links: [
+      { label: 'Certificate', href: '/docs/badminton-u17-semifinalist.pdf' },
+      { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1_cjRSCbgzq0cjSTzB4JbLyQOyJDCQSM2/view?usp=sharing' },
+    ],
+    images: [{ src: '/media/athletics/badminton-u17-semifinalist.jpg', caption: 'Semi-finalist, U17 Boys Singles — Play Extreme Junior Badminton Tournament, 1 Dec 2024' }],
   },
   {
     name: 'Head Start Interschool Basketball',
@@ -675,6 +727,7 @@ export const sports: Activity[] = [
     date: '2024',
     tier: 'silver',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
+    images: [{ src: '/media/athletics/headstart-basketball-runners-up.jpg', caption: 'Runners-up, Basketball (Grade 9 & below) — Head Start Friendship Games 2023/24' }],
   },
   {
     name: 'Interschool Athletic Relay',
@@ -708,15 +761,13 @@ export const sports: Activity[] = [
       { src: '/media/athletics/shot-put-athletics-meet-2025.jpg', caption: 'Second place, shot put — Inventure Annual Athletics Meet' },
     ],
   },
-  {
-    name: 'ISSO Shot Put Throw',
-    level: 'National',
-    achievement: 'Participation',
-    date: '2025',
-    tier: 'national',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZH194Y4ZaPIE4frQVb1D-c07XKK8hVYl/view?usp=sharing' }],
-  },
   { name: 'Badminton — Mixed Adult Doubles', level: 'Bangalore', achievement: 'Gold', date: '2023', tier: 'gold' },
+]
+
+export const sportsPhotos: Photo[] = [
+  { src: '/media/sports/badminton.jpg', caption: 'On the badminton court' },
+  { src: '/media/sports/swimming.jpg', caption: 'On the podium at a swim meet', position: '50% 22%' },
+  { src: '/media/sports/basketball.jpg', caption: 'With the basketball team at the Head Start Friendship Games' },
 ]
 
 export const clubsAndMun = [
@@ -771,27 +822,6 @@ export type Volunteer = {
 }
 
 export const volunteering: Volunteer[] = [
-  {
-    name: 'Shades of Tomorrow — Miyawaki Forest Project',
-    location: 'Bangalore',
-    period: '9th grade onwards',
-    detail:
-      'What began as a middle-school project with a team of 25 students grew into a larger mission to create greener urban spaces across Bengaluru. Raised ₹5,00,000 in corporate funding by presenting impact case studies and demonstrating technical expertise in urban reforestation — used for soil preparation, native plants, and a team of gardeners to establish and maintain the forests. Led 7 plantation drives across Bangalore, planting 100,000+ trees in partnership with Indus International School and corporate sponsors.',
-    images: [
-      { src: '/media/afforestation/forest-electronic-city.jpg', caption: 'Mature Miyawaki forest on Electronic City road' },
-      { src: '/media/afforestation/forest-chandapura.jpg', caption: 'Dense native forest at Chandapura' },
-      { src: '/media/afforestation/drive-1.jpg', caption: 'Plantation drive — planting native saplings' },
-      { src: '/media/afforestation/drive-2.jpg', caption: 'Plantation drive — preparing the pits' },
-      { src: '/media/afforestation/drive-3.jpg', caption: 'Freshly planted mini-forest site' },
-      { src: '/media/afforestation/drive-sarjapur.jpg', caption: 'Watering saplings at the Sarjapur drive' },
-      { src: '/media/afforestation/drive-5.jpg', caption: 'Volunteers at a plantation drive' },
-      { src: '/media/afforestation/drive-6.jpg', caption: 'Team planting at a new site' },
-    ],
-    links: [
-      { label: 'Plantation drive photos', href: 'https://drive.google.com/drive/folders/17syK8LG4uxN-r_PJsEGGshw_SeEPkwOr?usp=drive_link' },
-      { label: 'Coverage write-up', href: 'https://drive.google.com/file/d/1apGyS7hLz_t5ZO0RSSssirwHZ5tTmKkZ/view?usp=sharing' },
-    ],
-  },
   {
     name: 'RGH Government School — Tutoring',
     location: 'Bangalore',
@@ -850,4 +880,5 @@ export const milestones: Milestone[] = [
   { date: '2026-03', year: '2026', label: 'Cambridge Future Scholar — CCIR research course in ML & NLP', category: 'research' },
   { date: '2026-06', year: '2026', label: 'Selected for Research Science Institute – India (MIT-affiliated, <2% acceptance)', category: 'research' },
   { date: '2026-07', year: '2026', label: 'Hinglish POS-tagging paper published in the Oxford Journal of Student Scholarship', category: 'research' },
+  { date: '2026-10', year: '2026', label: 'Scam Slayer patent published in the Indian Patent Journal', category: 'build' },
 ]

@@ -10,7 +10,6 @@ import {
   ChartCandlestick,
   Mail,
   MapPin,
-  FileDown,
 } from 'lucide-react'
 import type { PageTab } from '../types'
 import { profile, projects } from '../data/resume'
@@ -65,10 +64,6 @@ export function Sidebar({
               <span className="text-[12px] font-mono text-slate-400 block -mt-0.5">PORTFOLIO TERMINAL</span>
             </div>
           </button>
-        </div>
-
-        <div className="mb-2">
-          <span className="text-[12px] font-mono uppercase tracking-widest text-slate-400 font-semibold px-3">MAIN MENU</span>
         </div>
 
         <nav className="space-y-1">
@@ -133,19 +128,6 @@ export function Sidebar({
             )
           })}
         </nav>
-
-        <div className="mt-6 mb-2">
-          <span className="text-[12px] font-mono uppercase tracking-widest text-slate-400 font-semibold px-3">RESOURCES</span>
-        </div>
-        <a
-          href="/Daksh-Sawhney-Resume.pdf"
-          target="_blank"
-          rel="noreferrer"
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all"
-        >
-          <FileDown className="w-4 h-4 text-slate-400" />
-          <span>Download Résumé</span>
-        </a>
       </div>
 
       <div className="border-t border-slate-100 pt-4 space-y-3">

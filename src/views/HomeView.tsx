@@ -61,9 +61,7 @@ function MetricTile({ m, onClick }: { m: Metric; onClick: () => void }) {
             <Clock className="w-3.5 h-3.5" aria-hidden /> Update pending
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-            <TrendingUp className="w-3.5 h-3.5" aria-hidden /> On record
-          </span>
+          <TrendingUp className="w-4 h-4 text-emerald-600" aria-hidden />
         )}
       </div>
       <div className="mt-4 text-4xl font-bold font-display text-slate-900 num leading-none">

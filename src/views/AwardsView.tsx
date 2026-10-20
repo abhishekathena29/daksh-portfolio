@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUpRight, CheckCircle2, Filter, Trophy } from 'lucide-react'
+import { Trophy } from 'lucide-react'
 import { honors, otherAwards } from '../data/resume'
 import { EVIDENCE, type OpenEvidence } from '../data/evidence'
 import { EvidencePreview } from '../components/EvidenceCard'
@@ -25,15 +25,11 @@ export function AwardsView({ onOpen }: { onOpen: OpenEvidence }) {
     <div className="space-y-8 pb-16">
       <PageBanner
         icon={Trophy}
-        eyebrow="HONOURS, RECOGNITIONS & RECORD ARCHIVE"
+        eyebrow="HONOURS & RECOGNITION"
         title="Awards"
         description={`${honors.length + otherAwards.length} honours and awards, from Crest Gold and the Harvard Hackathon national win to Inventure's Awards of Excellence. Select any card to view the certificate.`}
       >
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 mr-2">
-            <Filter className="w-3.5 h-3.5" />
-            <span>FILTER BY:</span>
-          </div>
           {FILTERS.map((f) => (
             <button
               key={f.id}
@@ -50,7 +46,7 @@ export function AwardsView({ onOpen }: { onOpen: OpenEvidence }) {
 
       <div key={filter} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
         {items.map((e) => (
-          <div key={e.id} className="flex flex-col justify-between bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-md transition-all duration-300">
+          <div key={e.id} className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:border-emerald-300 transition-colors duration-300">
             <div>
               <button onClick={() => onOpen(e, items)} className="block w-full aspect-[16/10] cursor-pointer relative group overflow-hidden" aria-label={`Inspect ${e.title}`}>
                 <EvidencePreview item={e} />
@@ -68,18 +64,8 @@ export function AwardsView({ onOpen }: { onOpen: OpenEvidence }) {
                 <h3 onClick={() => onOpen(e, items)} className="text-lg font-bold font-display text-slate-900 leading-snug hover:text-emerald-700 cursor-pointer transition-colors">
                   {e.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{e.caption}</p>
+                {e.caption !== e.title && <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">{e.caption}</p>}
               </div>
-            </div>
-            <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-[12px] font-mono text-slate-500 flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                {e.links.length ? `${e.links.length} document${e.links.length > 1 ? 's' : ''} on file` : e.images.length ? 'Photograph' : 'Record'}
-              </span>
-              <button onClick={() => onOpen(e, items)} className="text-xs font-semibold text-slate-700 hover:text-emerald-700 flex items-center gap-1 cursor-pointer">
-                <span>Inspect</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
-              </button>
             </div>
           </div>
         ))}
