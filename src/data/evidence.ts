@@ -53,6 +53,7 @@ const TIER_BADGE: Record<string, string> = {
   silver: 'Silver',
   bronze: 'Bronze',
   national: 'National',
+  international: 'International',
   distinction: 'Distinction',
 }
 
@@ -70,6 +71,11 @@ const DOC_THUMBS: Record<string, string> = {
   'empower-fin-certificate': '/media/service/empower-fin-certificate.jpg',
   'scam-slayer-patent-journal': '/media/scam-slayer/scam-slayer-patent-journal.jpg',
   'badminton-u17-semifinalist': '/media/athletics/badminton-u17-semifinalist.jpg',
+  'hackharvard-macrospective-certificate': '/media/macrospective/certificate.jpg',
+  'hackharvard-invitation-letter': '/media/macrospective/invitation-letter.jpg',
+  'inspirit-ai-moneyball-certificate': '/media/education/inspirit-ai-moneyball-certificate.jpg',
+  'hexaurum-technical-analysis-certificate': '/media/education/hexaurum-technical-analysis-certificate.jpg',
+  'rsi-india-certificate': '/media/research/rsi-india-certificate.jpg',
 }
 
 function withDocThumbs(e: Evidence): Evidence {
@@ -87,15 +93,15 @@ export const EVIDENCE: Evidence[] = ([
     id: `honour-${slug(h.title)}`,
     title: h.title,
     category: 'honours',
-    organization: h.title.startsWith('Crest')
-      ? 'British Science Association'
-      : h.title.startsWith('Harvard')
-        ? 'Harvard Hackathon'
+    organization:
+      h.org ??
+      (h.title.startsWith('Crest')
+        ? 'British Science Association'
         : h.title.startsWith('Cambridge')
           ? 'Cambridge International'
           : h.title.includes('HDFC')
             ? 'HDFC Credelia'
-            : 'Inventure Academy',
+            : 'Inventure Academy'),
     date: h.date,
     caption: h.detail ?? h.title,
     badge: h.tier ? TIER_BADGE[h.tier] : h.title.includes('Winner') ? 'Winner' : undefined,

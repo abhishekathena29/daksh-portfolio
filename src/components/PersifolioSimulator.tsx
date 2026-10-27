@@ -68,7 +68,7 @@ export function PersifolioSimulator() {
             <span className="font-mono text-xs text-emerald-400 uppercase tracking-wider font-semibold">Persifolio // Interactive simulation engine</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-bold font-display text-white mt-1">Risk Profiling & Virtual Paper Trading</h3>
-          <p className="text-xs text-slate-400 font-mono mt-0.5">4,000+ users onboarded • Flutter + Firebase • Market data APIs</p>
+          <p className="text-xs text-slate-400 font-mono mt-0.5">10,000+ users reached • Flutter + Firebase • Market data APIs</p>
         </div>
         <div className="bg-[#121924] border border-white/10 rounded-xl px-4 py-2 font-mono text-right">
           <span className="text-[12px] text-slate-400 block uppercase">Virtual balance</span>

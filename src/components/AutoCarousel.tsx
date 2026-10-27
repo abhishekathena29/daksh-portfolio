@@ -42,6 +42,10 @@ export function AutoCarousel({
       onBlur={() => setPaused(false)}
     >
       <button onClick={() => onOpen(current, photos)} className="absolute inset-0 cursor-pointer" aria-label={`View photo: ${current.caption}`}>
+        {/* Whole photos leave margins; fill them with a blurred copy instead of flat bars */}
+        {fit === 'contain' && (
+          <img key={`fill-${current.id}`} src={current.images[0].src} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-50 animate-fade-in" />
+        )}
         {photos.map((p, i) => (
           <img
             key={p.id}

@@ -37,9 +37,9 @@ function ResearchCard({ r, reverse, onOpen }: { r: Research; reverse: boolean; o
 
   return (
     <article className="bg-white rounded-3xl border border-slate-200/80 shadow-xs overflow-hidden grid grid-cols-1 lg:grid-cols-5">
-      <div className={`theme-fixed lg:col-span-2 bg-slate-900 min-h-72 relative ${reverse ? 'lg:order-2' : ''}`}>
+      <div className={`theme-fixed lg:col-span-2 bg-slate-900 relative ${ordered.length ? 'aspect-[3/2] lg:aspect-auto lg:min-h-96' : 'min-h-72'} ${reverse ? 'lg:order-2' : ''}`}>
         {ordered.length > 0 ? (
-          <AutoCarousel photos={ordered} onOpen={onOpen} />
+          <AutoCarousel photos={ordered} onOpen={onOpen} fit={r.coverFit} />
         ) : r.cover ? (
           <img
             src={r.cover.src}

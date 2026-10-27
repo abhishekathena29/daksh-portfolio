@@ -27,7 +27,7 @@ export function AwardsView({ onOpen }: { onOpen: OpenEvidence }) {
         icon={Trophy}
         eyebrow="HONOURS & RECOGNITION"
         title="Awards"
-        description={`${honors.length + otherAwards.length} honours and awards, from Crest Gold and the Harvard Hackathon national win to Inventure's Awards of Excellence. Select any card to view the certificate.`}
+        description={`${honors.length + otherAwards.length} honours and awards, from RSI-India, HackHarvard India 1st place and Crest Gold to Inventure's Awards of Excellence. Select any card to view the certificate.`}
       >
         <div className="flex flex-wrap items-center gap-2">
           {FILTERS.map((f) => (

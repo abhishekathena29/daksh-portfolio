@@ -8,6 +8,7 @@ import { Landing } from './components/Landing'
 import { LightboxModal, type Inspection } from './components/LightboxModal'
 import { HomeView } from './views/HomeView'
 import { EducationView } from './views/EducationView'
+import { CoursesView } from './views/CoursesView'
 import { ResearchView } from './views/ResearchView'
 import { ProjectsView } from './views/ProjectsView'
 import { ExperienceView } from './views/ExperienceView'
@@ -77,7 +78,8 @@ function App() {
             {currentTab === 'home' && <HomeView onNavigate={navigate} />}
             {currentTab === 'research' && <ResearchView onOpen={open} />}
             {currentTab === 'projects' && <ProjectsView onOpen={open} focus={focus} />}
-            {currentTab === 'education' && <EducationView onOpen={open} />}
+            {currentTab === 'education' && <EducationView onNavigate={navigate} />}
+            {currentTab === 'courses' && <CoursesView onOpen={open} />}
             {currentTab === 'awards' && <AwardsView onOpen={open} />}
             {currentTab === 'experience' && <ExperienceView onOpen={open} />}
             {currentTab === 'passions' && <PassionsView onOpen={open} />}

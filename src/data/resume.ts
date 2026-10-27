@@ -11,10 +11,12 @@ export const profile = {
   location: 'Bangalore, India',
   grade: 'Grade 12 · Cambridge A Level',
   email: 'dakshsawhney2008@gmail.com',
+  phone: '+91 96637 45114',
+  linkedin: 'https://www.linkedin.com/in/daksh-sawhney-bb9872302',
   objective:
     'High school student specialising in computational mathematics and quantitative finance. I translate abstract problems into structured models and test them in real environments.',
   bio: [
-    'Built Persifolio, an AI-based investment app and market simulator used by 4,000+ young professionals to learn budgeting, portfolio construction, and risk management.',
+    'Built Persifolio, a free AI-based investment app and market simulator that has reached 10,000+ users learning budgeting, portfolio construction, and risk management.',
     'Published research on digital payment adoption in the International Journal of Social Science and Economic Research (IJSSER). Completing AS and A Level Further Mathematics in a single year.',
     'Outside academics: competitive athlete (basketball, shot put) and environmental entrepreneur — raised corporate funding to plant 100,000+ trees across six sites in Bangalore.',
   ],
@@ -55,9 +57,9 @@ export type Metric = {
 }
 
 export const dashboardMetrics: Metric[] = [
-  { symbol: 'REACH', label: 'People reached', value: 6000, suffix: '+', note: 'Persifolio 4,000+ · Scam Slayer 1,000+ · Polaris 1,000+', section: 'projects' },
-  { symbol: 'TREES', label: 'Trees planted', value: 100000, suffix: '+', note: '₹5 lakh raised in corporate funding', section: 'projects' },
-  { symbol: 'FUND', label: 'Funding raised', value: 50000, prefix: '$', note: 'Venture funding', section: 'projects' },
+  { symbol: 'REACH', label: 'People reached', value: 11300, suffix: '+', note: 'Persifolio 10,000+ · Scam Slayer 1,000+ · Polaris 300+', section: 'projects' },
+  { symbol: 'TREES', label: 'Trees planted', value: 100000, suffix: '+', note: '6 Bangalore sites · ₹5 lakh (~$6K) raised from corporate sponsors', section: 'projects' },
+  { symbol: 'FUND', label: 'Funding raised', value: 50000, prefix: '$', note: 'Persifolio pre-seed · Peacock Ventures', section: 'projects' },
   { symbol: 'SELF', label: 'Self-invested', value: 25000, prefix: '$', note: 'Earned from stock trading', section: 'passions' },
   { symbol: 'PAPERS', label: 'Research papers', value: 3, note: '2 published · 1 under review', section: 'research' },
   { symbol: 'IP', label: 'Patents published', value: 2, note: 'Persifolio · Scam Slayer', section: 'projects' },
@@ -65,13 +67,14 @@ export const dashboardMetrics: Metric[] = [
 
 // Scrolling tape under the navbar.
 export const tickerTape: { symbol: string; value: string; note: string }[] = [
-  { symbol: 'PRSF', value: '4,000+', note: 'Persifolio users' },
+  { symbol: 'PRSF', value: '10,000+', note: 'Persifolio users' },
   { symbol: 'TREES', value: '100,000+', note: 'planted, 6 sites' },
-  { symbol: 'RSI', value: '<2%', note: 'acceptance, 2026' },
-  { symbol: 'HACK', value: '#1', note: 'Harvard Hackathon India' },
+  { symbol: 'RSI', value: '~2%', note: 'acceptance, 100% scholarship' },
+  { symbol: 'HACK', value: '#1', note: 'HackHarvard India' },
+  { symbol: 'HHUS', value: '1 of 2', note: 'high-school teams, HackHarvard USA' },
   { symbol: 'CREST', value: 'GOLD', note: 'British Science Assoc.' },
-  { symbol: 'SCAM', value: '1,000+', note: 'seniors trained' },
-  { symbol: 'PLRS', value: '1,000+', note: 'Polaris users' },
+  { symbol: 'SCAM', value: '1,000+', note: 'seniors trained, 20+ homes' },
+  { symbol: 'PLRS', value: '300+', note: 'students enrolled on Polaris' },
   { symbol: 'IGCSE', value: '8 A*', note: 'Cambridge' },
   { symbol: 'IP', value: '2', note: 'patents published' },
   { symbol: 'δ', value: '4.669', note: 'Feigenbaum constant' },
@@ -192,8 +195,8 @@ export const research: Research[] = [
     period: 'Jun 2026 – Jul 2026',
     mentor: 'Dr. Kaushal Verma, Dean of Mathematics, Indian Institute of Science',
     summary:
-      'Selected for RSI-India with a <2% acceptance rate (30 students nationally). Designed and coded a custom bifurcation diagram simulator analysing how discrete-time nonlinear equations transition into chaos. Developed a structural classification coefficient (ξ) that categorises equations into smooth unimodal, smooth multimodal, and piecewise linear classes — predicting dynamical behaviour directly from equation structure.',
-    status: 'Manuscript submitted, under review',
+      'Selected as 1 of 30 students nationally (~2% acceptance) for the MIT RSI-model programme, with a 100% scholarship. Engineered a bifurcation-diagram simulator analysing how discrete-time nonlinear equations transition into chaos, and devised a structural coefficient (ξ) that predicts bifurcation-diagram patterns from an equation\'s form — classifying equations as smooth unimodal, smooth multimodal or piecewise linear.',
+    status: 'Paper under review at JEI',
     statusTone: 'review',
     abstract:
       'Introduces a structural classification coefficient ξ. Using a custom digital bifurcation-diagram simulator (1,000 settling iterations followed by 500 recorded steps per parameter value), the study tracks the chaotic behaviour of multiple nonlinear equations over continuous parameter ranges.',
@@ -204,6 +207,8 @@ export const research: Research[] = [
       'The coefficient serves as an accurate baseline for classifying nonlinear chaotic dynamics from the visual properties of bifurcation diagrams.',
     ],
     cover: { src: '/media/research/rsi-logistic-map.jpg', caption: 'Presenting the logistic map: modelling a rabbit population' },
+    // Mixed landscape and portrait photos: show each one whole
+    coverFit: 'contain',
     images: [
       { src: '/media/research/rsi-logistic-map.jpg', caption: 'Presenting the logistic map: modelling a rabbit population' },
       { src: '/media/research/rsi-award.jpg', caption: 'Receiving the RSI-India 2026 certificate' },
@@ -222,10 +227,10 @@ export const research: Research[] = [
     title: 'Sequence Labelling and Error Analysis for Code-Mixed Text by an Averaged Perceptron Approach',
     org: 'Cambridge Centre of International Research, Cambridge, UK',
     period: 'Nov 2025 – Mar 2026',
-    mentor: 'Dr. Wei Wei Sun, Lecturer, Dept. of Computer Science, University of Cambridge',
+    mentor: 'Dr. Weiwei Sun, Lecturer, Dept. of Computer Science, University of Cambridge',
     summary:
-      'Investigated sentence patterns causing tagging errors in LLMs due to informal Hindi-English (Hinglish) text. Error analysis revealed the most frequent misclassifications occurred between nouns, verbs, proper nouns, and adjectives.',
-    status: 'Published — Oxford Journal of Student Scholarship',
+      'Tested a part-of-speech tagger on informal Hindi-English (Hinglish) versus monolingual data, achieving 94.89% accuracy on code-mixed text. Identified error cascades in mixed grammars, with most misclassifications occurring between nouns, verbs, proper nouns, and adjectives.',
+    status: 'Published — Oxford Journal of Student Scholarship (peer-reviewed)',
     statusTone: 'published',
     findings: [
       'Analysed a POS tagger on Hindi-English code-mixed (Hinglish) data against monolingual English and Hindi data.',
@@ -246,11 +251,12 @@ export const research: Research[] = [
   {
     title:
       'From Cash to Clicks: The Transformative Impact of UPI on Consumer Behaviour and Financial Inclusion in India',
-    org: 'International Journal of Social Science and Economic Research (IJSSER)',
+    org: 'International Journal of Social Science and Economic Research (IJSSER, ISSN 2455-8834)',
     period: 'Nov 2024 – Jan 2025',
+    mentor: 'Dr. Nandini Sud',
     summary:
-      'Investigates the transformative impact of the Unified Payments Interface (UPI) on consumer behaviour, financial inclusion, and economic growth in India.',
-    status: 'Published',
+      "Surveyed 140 users and statistically analysed the shift from cash to UPI (India's instant-payment network) in spending behaviour and financial inclusion — 64% found UPI more convenient than cash.",
+    status: 'Published — peer-reviewed',
     statusTone: 'published',
     findings: [
       "Explores UPI's macroeconomic contributions: financial inclusion, transparency in government welfare programmes, and stronger small-business operations.",
@@ -283,17 +289,17 @@ export type ProjectT = {
 export const projects: ProjectT[] = [
   {
     name: 'Persifolio',
-    role: 'Founder, Creator & Social Entrepreneur',
+    role: 'Founder & Crest Gold Award Winner',
     period: '2024 – present',
-    tagline: 'AI-based investment portfolio recommendation system with a market simulator',
+    tagline: 'A free app teaching beginners to invest — AI portfolio recommendations with a market simulator',
     description: [
-      'A mobile investment-education platform bridging the wealth gap for underserved communities. Conducted workshops and onboarded 4,000+ young adults and low-to-mid income users, teaching budgeting, portfolio construction, and risk management through hands-on simulation.',
+      'A free mobile investment-education platform bridging the wealth gap for underserved communities. Through workshops and partnerships it has reached 10,000+ users, teaching beginners and young adults budgeting, portfolio construction, and risk management through hands-on simulation.',
       'Simplifies complex financial concepts with personalised investment suggestions, risk scores, and a virtual stock market simulator — reducing the fear and misinformation that keeps people from investing.',
-      'Cleared the first stage of patenting and was published in the Indian Patent Journal. Recently adopted by schools in Odisha as part of their financial-awareness program, supported by a Member of the Rajya Sabha, Government of India.',
+      "Secured a $50,000 pre-seed from Peacock Ventures and endorsed by the state government. Officially adopted by partner St. Jerome's PU & Degree College as an elective for finance beginners, and by schools in Odisha. Patent published in the Government of India IP Journal.",
     ],
     // Add once received from Daksh:
     //   logo: '/media/logos/persifolio.png',
-    //   funding: { amount: '₹X,XX,XXX', source: 'Investor / grant name', date: 'Mon YYYY' },
+    funding: { amount: '$50,000', source: 'Peacock Ventures (pre-seed)' },
     stack: ['Flutter', 'Firebase', 'Material 3', 'Crashlytics', 'Google Analytics', 'Market Data APIs'],
     features: [
       'Android app built with Flutter and Firebase, published on Google Play, with real-time market-data APIs, Crashlytics and Google Analytics.',
@@ -302,9 +308,9 @@ export const projects: ProjectT[] = [
       'Portfolios render as a pie chart of diversification and stock break-up; enter an amount and the app shows exactly how much to invest where.',
     ],
     highlights: [
-      { label: 'People reached', value: '4,000+' },
+      { label: 'Users reached', value: '10,000+' },
       { label: 'Patent', value: 'Published' },
-      { label: 'Raised + self-funded from trading profit', value: '$50,000 + $25,000' },
+      { label: 'Pre-seed + self-funded from trading profit', value: '$50,000 + $25,000' },
     ],
     links: [
       { label: 'Patent journal', href: '/docs/persifolio-patent-journal.pdf' },
@@ -323,20 +329,20 @@ export const projects: ProjectT[] = [
   },
   {
     name: 'Scam Slayer',
-    role: 'Creator',
+    role: 'Creator, Developer & Workshop Leader',
     period: 'Sept 2025 – present',
-    tagline: 'Cybersecurity awareness web app for senior citizens of India — "Don\'t be a victim, be a slayer."',
+    tagline: 'Gamified cybersecurity platform simulating phishing and impersonation scams for seniors — "Don\'t be a victim, be a slayer."',
     // From the published patent: "Web-Based System for Experiential Fraud-Recognition
     // Training Using Simulated Threat Scenarios for Vulnerable User Populations"
     description: [
       'A web-based system for experiential fraud-recognition training for vulnerable populations, particularly senior citizens. A scenario engine presents simulated threats — phishing messages, impersonation attempts and fraudulent arrest notices — through an interactive browser interface. Simulated payment and credential requests remain inoperative.',
       'A response-evaluation module analyses user choices, identifies overlooked warning signs and gives corrective feedback on safer verification and reporting actions. A progress-tracking module measures improvement across sessions, and the system then selects scenarios featuring previously missed cues in different contexts, reinforcing practical recognition skills.',
-      'In-person workshops for 1,000+ senior citizens. Patent published in the Indian Patent Journal (Application No. 202641116272 A, Oct 2026), a letter of recommendation from the Government of Karnataka (MLA, Mahadevapura), and featured in Outlook.',
+      'Trained 1,000+ residents across 20+ Bangalore elderly homes through in-person workshops, averting an estimated ~$6K in fraud. Patent published in the Government of India IP Journal (Application No. 202641116272 A, Oct 2026), lauded by a state lawmaker with a letter of recommendation (MLA, Mahadevapura, Government of Karnataka), and featured in Outlook India (1.5M readership).',
     ],
     highlights: [
-      { label: 'Seniors trained', value: '1,000+' },
-      { label: 'Patent', value: 'Published' },
-      { label: 'Press', value: 'Outlook' },
+      { label: 'Seniors trained, 20+ elderly homes', value: '1,000+' },
+      { label: 'Fraud averted (est.)', value: '~$6K' },
+      { label: 'Press — 1.5M readership', value: 'Outlook India' },
     ],
     links: [
       { label: 'Outlook article', href: 'https://www.outlookindia.com/xhub/featured-insights/teen-developer-daksh-sawhney-builds-scamslayer-fraud-detection-app-protecting-1000-senior-citizens-from-digital-scams', thumb: '/media/scam-slayer/outlook-feature.jpg' },
@@ -357,19 +363,19 @@ export const projects: ProjectT[] = [
   },
   {
     name: 'Polaris',
-    role: 'Co-creator (4-student team) — Harvard Hackathon National Winner',
+    role: 'Founder & Lead Developer — 1st Place, HackHarvard India',
     period: 'Jan 2026 – present',
-    tagline: 'An AI web app that maps the pathway from where you are to your dream job.',
+    tagline: "A free AI career coach that tailors daily prep to the user's goal and benchmarks their CV against real hires.",
     url: 'https://polarisai.in/',
     description: [
-      'Polaris is an AI-based web app that scans trusted sources such as LinkedIn for professionals who already hold the user\'s dream job, and learns what actually got them there.',
-      'It starts with an onboarding flow that captures the user\'s background, demographics and desired "dream job", then builds an in-depth, step-by-step pathway to become more than qualified for it.',
-      'Has impacted 1,000+ people so far. Won the Harvard Hackathon nationally; the team represented India at the HackHarvard International Hackathon at Harvard University, an undergraduate-only event.',
+      'Co-built with a team of 4, Polaris is a free AI career coach that learns from professionals who already hold the user\'s dream job — scanning trusted sources such as LinkedIn — and benchmarks the user\'s CV against real hires.',
+      'Built an engine that turns CVs and hiring data into 16-week roadmaps, tailoring daily prep to each user\'s goal. Users have completed 1,800+ gap tasks so far.',
+      'Enrolled 300+ students via 15+ workshops at 3+ partner organisations. Won 1st Place at HackHarvard India, then represented India at HackHarvard, an undergraduate hackathon at Harvard University, USA.',
     ],
     highlights: [
-      { label: 'People impacted', value: '1,000+' },
-      { label: 'Harvard Hackathon', value: 'National Winner' },
-      { label: 'Built with', value: 'AI + live job data' },
+      { label: 'Students enrolled, 15+ workshops', value: '300+' },
+      { label: 'Gap tasks completed', value: '1,800+' },
+      { label: 'HackHarvard India', value: '1st Place' },
     ],
     links: [
       { label: "Letter of recommendation — St. Jerome's PU College", href: 'https://drive.google.com/file/d/15OQqsNnKIWvXW0ROZoHGO5cKhPPAc7gA/view?usp=sharing', thumb: '/media/polaris/st-jeromes-lor.jpg' },
@@ -385,18 +391,18 @@ export const projects: ProjectT[] = [
   },
   {
     name: 'Shades of Tomorrow',
-    role: 'Founder — Miyawaki Forest Project',
+    role: 'Lead Engineer & Youth Activist — Miyawaki Forest Project',
     period: '9th grade – present',
-    tagline: 'Dense native Miyawaki forests on urban land across Bangalore — 100,000+ trees planted.',
+    tagline: 'Miyawaki urban ecological restoration across Bangalore, part of the One Person One Tree campaign — 100,000 saplings planted.',
     description: [
       'What began as a middle-school project with a team of 25 students grew into a larger mission to create greener urban spaces across Bengaluru, using the Miyawaki method to grow dense native forests on small urban plots.',
-      'Raised ₹5,00,000 in corporate funding by presenting impact case studies, used for soil preparation, native plants and a team of gardeners to establish and maintain the forests. Built EcoWeave, a web app that tracks plant survival and growth rates across sites so the work is reproducible.',
-      'Led 7 plantation drives across Bangalore, planting 100,000+ trees in partnership with Indus International School and corporate sponsors; now on the sixth urban forest site.',
+      'Raised INR 5,00,000 (~$6K) from corporate sponsors by presenting impact case studies, used for soil preparation, native plants and a team of gardeners to establish and maintain the forests. Engineered EcoWeave, an AI app that maps species synergies and growth across sites.',
+      'Led 7 plantation drives across 6 Bangalore sites, planting 100,000 saplings through the One Person One Tree campaign, in partnership with Indus International School and corporate sponsors.',
     ],
     highlights: [
-      { label: 'Trees planted', value: '100,000+' },
-      { label: 'Corporate funding', value: '₹5,00,000' },
-      { label: 'Plantation drives', value: '7' },
+      { label: 'Saplings planted', value: '100,000' },
+      { label: 'Corporate sponsorship', value: '₹5,00,000 (~$6K)' },
+      { label: 'Plantation drives · sites', value: '7 · 6' },
     ],
     url: 'https://miyawaki-monitor.ai.studio/',
     urlLabel: 'Open EcoWeave',
@@ -429,10 +435,40 @@ export const projects: ProjectT[] = [
       { label: 'Programme', value: 'Inspirit AI' },
       { label: 'Domain', value: 'Sports analytics' },
     ],
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1w11YS5zgq-R6gJc9Uec7bhIX0To3n0wG/view?usp=sharing' }],
+    links: [{ label: 'AI Scholars Program certificate', href: '/docs/inspirit-ai-moneyball-certificate.pdf' }],
     images: [
       { src: '/media/moneyball/stadium-analytics.jpg', caption: 'AI meets professional sport' },
       { src: '/media/moneyball/sports-data.jpg', caption: 'Turning performance data into player valuations' },
+    ],
+  },
+  {
+    name: 'Macrospective',
+    role: 'Co-developer — HackHarvard, Harvard University',
+    period: 'Oct 2026',
+    tagline: 'An AI simulator that stress-tests companies against rumour-driven financial panics.',
+    url: 'https://macrospective.vercel.app/',
+    description: [
+      'Participated in HackHarvard at Harvard University (16–18 Oct 2026) as one of two invited high-school teams among 500+ participants from colleges worldwide, and co-developed Macrospective — an AI simulator that stress-tests companies against rumour-driven financial panics.',
+      'Connected LLM-generated crisis scenarios to Python social-media agents with distinct personas, behaviours and coordination patterns, then ran parallel simulations to assess misinformation spread, financial damage, and the response strategies that reduced simulated losses.',
+      'Extended the engine to compare marketing campaigns and announcements by their simulated reach and effect on sales.',
+    ],
+    stack: ['Python', 'LLM APIs', 'Multi-agent simulation'],
+    highlights: [
+      { label: 'High-school teams invited', value: '1 of 2' },
+      { label: 'HackHarvard participants', value: '500+' },
+      { label: 'Venue', value: 'Harvard University' },
+    ],
+    links: [
+      { label: 'Devpost', href: 'https://devpost.com/software/macrospective', thumb: '/media/macrospective/team-expo.jpg' },
+      { label: 'Certificate of completion', href: '/docs/hackharvard-macrospective-certificate.pdf' },
+      { label: 'Invitation letter', href: '/docs/hackharvard-invitation-letter.pdf' },
+      { label: 'Event photos', href: 'https://drive.google.com/drive/folders/1w4gufDARSea1XcbGW5KzUghpkbzgTpqd?usp=drive_link', thumb: '/media/macrospective/judging.jpg' },
+    ],
+    images: [
+      { src: '/media/macrospective/team-expo.jpg', caption: 'The team with Macrospective at the HackHarvard 2026 project expo' },
+      { src: '/media/macrospective/judging.jpg', caption: 'Demoing Macrospective to judges and participants' },
+      { src: '/media/macrospective/building.jpg', caption: 'Building Macrospective during the hackathon' },
+      { src: '/media/macrospective/harvard-campus.jpg', caption: 'Planning between sessions on the Harvard campus' },
     ],
   },
 ]
@@ -450,15 +486,15 @@ export type Internship = {
 
 export const internships: Internship[] = [
   {
-    role: 'Summer Intern',
-    company: 'Nine Leaps Technology Solutions Ltd — AI Centre of Excellence at Noviro.ai',
+    role: 'AI Engineering Intern',
+    company: 'Nineleaps Technology Solutions Pvt. Ltd. — AI Centre of Excellence at Noviro.ai',
     period: '1 Apr 2025 – 15 May 2025',
     location: 'In person',
     contact: 'Mr. Anand Ganesan',
     points: [
-      'Gained hands-on experience in web development — frontend (HTML/CSS) and backend (Python-Flask) integration.',
-      'Developed proficiency in SQL and SQLite, performing CRUD operations within web applications.',
-      'Integrated chatbots and LLM APIs to build conversational AI tools; explored Retrieval-Augmented Generation (RAG), vector embeddings, and their applications in enhancing AI responses.',
+      'Built full-stack AI applications: Flask/SQL services using language-model APIs, with HTML/CSS frontends and SQLite CRUD operations.',
+      'Developed a retrieval-augmented generation (RAG) chatbot — an assistant answering from retrieved knowledge using vector embeddings.',
+      'Ran backend deployment alongside the developers; performance rated "Higher than Expected" by the company.',
     ],
     links: [
       { label: 'Completion certificate', href: 'https://drive.google.com/file/d/1rpM_m6VB4_ojvaVJMNqehVIJIuCMCLzv/view?usp=sharing' },
@@ -493,13 +529,14 @@ export type Course = {
 
 export const courses: Course[] = [
   {
-    name: 'Technical Analysis in Trading and Stock Market',
-    org: 'Hexarum Co',
-    date: 'Apr 2024 – Jun 2024',
+    name: 'Technical Analysis Trading Course',
+    org: 'Hexaurum Learning',
+    date: 'Apr 2024 – May 2024',
     grade: 'Grade 9',
     details:
       'Candlestick charting, support/resistance identification, pattern recognition, and momentum indicators (Moving Averages, RSI, MACD) for equity market analysis.',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/10L67CeQa1BaTyxkSeR-qeiUA3Kf8KyP-/view?usp=sharing' }],
+    links: [{ label: 'Certificate', href: '/docs/hexaurum-technical-analysis-certificate.pdf' }],
+    images: [{ src: '/media/education/hexaurum-technical-analysis-certificate.jpg', caption: 'Hexaurum Learning — Technical Analysis Trading Course, 22 May 2024' }],
   },
   {
     name: 'Introduction to Psychology',
@@ -569,8 +606,9 @@ export const courses: Course[] = [
     date: 'May 2024 – Jun 2024',
     grade: 'Grade 10',
     details:
-      'Applied Moneyball methodology to baseball player valuation using ML clustering to identify undervalued players. Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the highest-predictive-power metrics.',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1w11YS5zgq-R6gJc9Uec7bhIX0To3n0wG/view?usp=sharing' }],
+      'AI Scholars Program. Applied Moneyball methodology to baseball player valuation using ML clustering to identify undervalued players. Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the highest-predictive-power metrics.',
+    links: [{ label: 'Certificate', href: '/docs/inspirit-ai-moneyball-certificate.pdf' }],
+    images: [{ src: '/media/education/inspirit-ai-moneyball-certificate.jpg', caption: 'Inspirit AI — AI Scholars Program, Moneyball: AI, Sports, and Business' }],
   },
   {
     name: 'Commerce Club',
@@ -587,11 +625,61 @@ export type Award = {
   title: string
   detail?: string
   date: string
-  tier?: 'gold' | 'silver' | 'bronze' | 'national' | 'distinction'
+  tier?: 'gold' | 'silver' | 'bronze' | 'national' | 'international' | 'distinction'
+  // Awarding body, when it isn't obvious from the title
+  org?: string
   links?: LinkRef[]
 }
 
 export const honors: Award[] = [
+  {
+    title: 'Research Science Institute – India — Selected Scholar',
+    detail: 'Selected for the MIT-inspired RSI-India programme: 30 students nationally, ~2% acceptance. Awarded a 100% scholarship.',
+    date: 'Jun 2026',
+    tier: 'national',
+    org: 'RSI-India · IISc',
+    links: [{ label: 'Certificate', href: '/docs/rsi-india-certificate.pdf' }],
+    images: [{ src: '/media/research/rsi-india-certificate.jpg', caption: 'Research Science Institute – India 2026 certificate' }],
+  },
+  {
+    title: 'HackHarvard India — 1st Place',
+    detail: 'First Position in the HackHarvard Challenge 2026 hosted at Ashoka University, building Polaris in 48 hours with an interdisciplinary team. Went on to HackHarvard at Harvard University, USA as one of two high-school teams in a 500+ participant undergraduate hackathon.',
+    date: 'Jan 2026',
+    tier: 'international',
+    org: 'HackHarvard',
+    images: [{ src: '/media/awards/harvard-hackathon-certificate.jpg', caption: 'Certificate of Achievement — First Position' }],
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1NV-4t_7RwapApyBkeH2ZJe8lTN6PJvie/view?usp=sharing' }],
+  },
+  {
+    title: 'Patents Published — Government of India IP Journal',
+    detail: 'Two patents published in the Indian Patent Journal: Scam Slayer (senior fraud) and Persifolio (investing).',
+    date: '2026',
+    tier: 'national',
+    org: 'Government of India',
+    links: [
+      { label: 'Scam Slayer patent', href: '/docs/scam-slayer-patent-journal.pdf' },
+      { label: 'Persifolio patent', href: '/docs/persifolio-patent-journal.pdf' },
+    ],
+    images: [{ src: '/media/scam-slayer/scam-slayer-patent-journal.jpg', caption: 'Scam Slayer patent publication, Indian Patent Journal' }],
+  },
+  {
+    title: 'Featured in Outlook India',
+    detail: "Featured in Outlook India (1.5M nationwide readership) for Scam Slayer's impact across senior-citizen homes.",
+    date: '2026',
+    tier: 'national',
+    org: 'Outlook India',
+    links: [
+      { label: 'Outlook article', href: 'https://www.outlookindia.com/xhub/featured-insights/teen-developer-daksh-sawhney-builds-scamslayer-fraud-detection-app-protecting-1000-senior-citizens-from-digital-scams' },
+    ],
+    images: [{ src: '/media/scam-slayer/outlook-feature.jpg', caption: 'Scam Slayer featured in Outlook India' }],
+  },
+  {
+    title: 'Rabindra Ratna Puraskar 2026',
+    detail: 'Veyil Foundation national recognition — top 15 nationally — for work in financial literacy.',
+    date: '2026',
+    tier: 'national',
+    org: 'Veyil Foundation',
+  },
   {
     title: 'Crest Gold',
     detail: 'Persifolio: Personalised Portfolio & Virtual Stock Investment Simulator',
@@ -602,14 +690,6 @@ export const honors: Award[] = [
       { label: 'Certificate (Drive)', href: 'https://drive.google.com/file/d/1yZziDh8KNX-sVQ6Y_UJy-U03HwLEIdsq/view?usp=sharing' },
     ],
     images: [{ src: '/media/awards/crest-gold-certificate.jpg', caption: 'Crest Gold — British Science Association, 28/10/2025' }],
-  },
-  {
-    title: 'Harvard Hackathon — National Winner',
-    detail: 'First Position in the HackHarvard Challenge 2026 hosted at Ashoka University. Built Polaris in 48 hours with an interdisciplinary team, reframing the résumé as a continuously evolving, AI-and-job-market-informed record of progress. Represented India at the HackHarvard International Hackathon at Harvard University.',
-    date: 'Jan 2026',
-    tier: 'national',
-    images: [{ src: '/media/awards/harvard-hackathon-certificate.jpg', caption: 'Certificate of Achievement — First Position' }],
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1NV-4t_7RwapApyBkeH2ZJe8lTN6PJvie/view?usp=sharing' }],
   },
   {
     title: 'Cambridge International Certificate of Education — Distinction',
@@ -642,7 +722,7 @@ export const honors: Award[] = [
 export const otherAwards: Award[] = [
   {
     title: 'Award of Excellence — Community Outreach',
-    detail: 'Recognised as one of the top two students for community outreach and care for the communities around them.',
+    detail: 'Recognised as one of the top two students in the grade for community outreach and care for the communities around them.',
     date: '2024–25',
     links: [{ label: 'Certificate', href: '/docs/community-outreach-award.pdf' }],
     images: [{ src: '/media/awards/community-outreach-award.jpg', caption: 'Inventure Academy Community Outreach Award, Grade 10' }],
@@ -655,7 +735,7 @@ export const otherAwards: Award[] = [
   },
   {
     title: 'Award of Excellence — TechWhiz',
-    detail: 'Recognised by the school as one of the top two coders in the grade.',
+    detail: 'Recognised by the school as one of the top two in the grade for technology (TechWhiz).',
     date: '2025–26',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1DUYTEkZhl9r8CX4keWYoeFqw6tYPlPqW/view?usp=sharing' }],
     images: [{ src: '/media/awards/techwhiz-award.jpg', caption: 'The Computer Whiz Award, Grade 11, 2025–26' }],
@@ -668,7 +748,7 @@ export const otherAwards: Award[] = [
   },
   {
     title: 'Award of Excellence — Computer Science',
-    detail: 'Recognised by the school as the grade topper in Computer Science.',
+    detail: 'Recognised by the school as #1 in the grade for Computer Science.',
     date: '2025–26',
     links: [
       { label: 'Certificate', href: '/docs/cs-subject-topper.pdf' },
@@ -678,7 +758,7 @@ export const otherAwards: Award[] = [
   },
   {
     title: 'Award of Excellence — Multiachiever Award',
-    detail: 'Recognised by the school as the most well-rounded student in the grade.',
+    detail: 'Recognised by the school as one of the top two most well-rounded students in the grade.',
     date: '2025–26',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/15yE7CeGr1JnULMhlt0wO6X0NeNg0N2IS/view?usp=sharing' }],
     images: [{ src: '/media/awards/multiachiever-award.jpg', caption: 'The Inventure Academy Multi Achievers Award, Grade 11, 2025–26' }],
@@ -762,6 +842,8 @@ export const sports: Activity[] = [
     ],
   },
   { name: 'Badminton — Mixed Adult Doubles', level: 'Bangalore', achievement: 'Gold', date: '2023', tier: 'gold' },
+  { name: 'Badminton — State Open', level: 'State', achievement: 'Semi-finalist', date: 'Grades 9–11', tier: 'bronze' },
+  { name: 'Badminton — ISSO Nationals', level: 'National', achievement: 'Quarter-finalist', date: 'Grades 9–11', tier: 'national' },
 ]
 
 export const sportsPhotos: Photo[] = [
@@ -771,6 +853,11 @@ export const sportsPhotos: Photo[] = [
 ]
 
 export const clubsAndMun = [
+  {
+    name: 'Varsity Badminton Team — Captain & Team Strategist',
+    detail: 'Inventure Academy varsity team on the inter-school and national school circuits. Coached the squad on smash technique and doubles tactics with no coach; won golds and silvers.',
+    date: 'Grades 9–11',
+  },
   { name: 'INMUN — BBMP Committee', detail: 'Agenda: "Impact of unplanned urbanisation in the Whitefield area"', date: '2023' },
   { name: 'School Club: Tech for Change', detail: 'Created Pathforge; building an e-ballot platform for school elections', date: '2024 – 2026' },
 ]
@@ -801,14 +888,14 @@ export const trading = {
     "When I'm not building or researching, I'm usually trading on the stock exchange. It's where the maths stops being abstract: every position is a small model of risk, reward and probability, tested against a market that doesn't care about my assumptions.",
   points: [
     'Trades Indian equities using technical analysis — candlestick patterns, support and resistance, moving averages, RSI and MACD.',
-    'Certified in Technical Analysis in Trading and Stock Market (Hexarum Co, 2024).',
+    'Certified in the Technical Analysis Trading Course (Hexaurum Learning, 2024).',
     'Won the HDFC Credelia Portfolio Strategy Challenge by designing a client stock portfolio and pitching it to judges.',
     'Self-funded the Persifolio app with his own stock-trading earnings.',
     'Reinvested $25,000 of trading earnings into his own ventures.',
     'Feeds directly into Persifolio, whose market simulator lets first-time investors practise the same skills risk-free.',
   ],
   tools: ['Candlesticks', 'Support / resistance', 'Moving averages', 'RSI', 'MACD'],
-  links: [{ label: 'Technical analysis certificate', href: 'https://drive.google.com/file/d/10L67CeQa1BaTyxkSeR-qeiUA3Kf8KyP-/view?usp=sharing' }] as LinkRef[],
+  links: [{ label: 'Technical analysis certificate', href: '/docs/hexaurum-technical-analysis-certificate.pdf' }] as LinkRef[],
 }
 
 export type Volunteer = {
@@ -831,12 +918,12 @@ export const volunteering: Volunteer[] = [
       'Tutored 5 students in English for 2 years, helping them achieve 25% higher exam marks through one-on-one tutoring and monthly practice sheets. Developed adapted learning materials and visual aids for students with academic gaps in Grades 6 and 8 using design-thinking processes.',
   },
   {
-    name: 'Empower-Fin — Young Indian Changemaker Project',
+    name: 'Empower-Fin — Project EcoFin, Tribes for Good',
     location: 'Tribes for Good',
     period: '1 May 2024 – 1 Jun 2024',
     contact: 'Jinal Rajpopat',
     detail:
-      'Promoted financial literacy among marginalised communities — artisans, micro-entrepreneurs, youth, and families from low-income backgrounds. Over 25 hours of community service, ran awareness workshops on personal and digital finance: inflation, shrinkflation, budgeting, saving, and financial decision-making, and introduced emerging concepts such as the Social Stock Exchange. Also ran finance workshops for students at school and in the neighbourhood.',
+      'As Project Leader and Educator for Tribes for Good\'s financial-literacy drive (Young Indian Changemaker Project), trained 200+ artisans, micro-entrepreneurs and low-income youth in Karnataka. Over 25 hours of community service, ran awareness workshops on personal and digital finance: inflation, shrinkflation, budgeting, saving, and financial decision-making, and introduced emerging concepts such as the Social Stock Exchange. Also ran finance workshops for students at school and in the neighbourhood.',
     images: [{ src: '/media/service/empower-fin-certificate.jpg', caption: 'TribesforGOOD Certificate of Completion — Global Challenges & Social Justice' }],
     links: [
       { label: 'Certificate', href: '/docs/empower-fin-certificate.pdf' },
@@ -865,7 +952,7 @@ export const milestones: Milestone[] = [
   { date: '2024-05', year: '2024', label: 'Empower-Fin financial-literacy workshops, Tribes for Good', category: 'service' },
   { date: '2024-06', year: '2024', label: 'Began 2-year tutoring program at RGH Government School', category: 'service' },
   { date: '2024-09', year: '2024', label: 'Inventure Shot Put — Gold; Basketball — Silver; Relay — Bronze', category: 'recognition' },
-  { date: '2025-01', year: '2025', label: 'UPI research published in IJSSER', category: 'research' },
+  { date: '2025-07', year: '2025', label: 'UPI research published in IJSSER (peer-reviewed)', category: 'research' },
   { date: '2025-04', year: '2025', label: 'Summer internship — Nine Leaps / Noviro.ai AI Centre of Excellence', category: 'build' },
   { date: '2025-05', year: '2025', label: 'Software development internship — Address Makers Pvt Ltd', category: 'build' },
   { date: '2025-09', year: '2025', label: 'Created Scam Slayer — cybersecurity awareness platform', category: 'build' },
@@ -873,12 +960,13 @@ export const milestones: Milestone[] = [
   { date: '2025-06', year: '2025', label: 'Cambridge International Certificate of Education — Distinction', category: 'recognition' },
   { date: '2025-09', year: '2025', label: 'Cambridge Centre of International Research begins (NLP / POS-tagging)', category: 'research' },
   { date: '2025-11', year: '2025', label: 'Persifolio awarded Crest Gold', category: 'recognition' },
-  { date: '2026-01', year: '2026', label: 'Harvard Hackathon — National Winner', category: 'recognition' },
+  { date: '2026-01', year: '2026', label: 'HackHarvard India — 1st Place (Polaris)', category: 'recognition' },
   { date: '2026-01', year: '2026', label: 'Persifolio patent filed, published in Indian Patent Journal', category: 'build' },
   { date: '2026-02', year: '2026', label: 'Persifolio adopted by schools in Odisha, backed by a Rajya Sabha MP', category: 'build' },
   { date: '2026-02', year: '2026', label: 'Medium article: "Does the Profit Motive Bring Out the Best or the Worst in Us?"', category: 'build' },
   { date: '2026-03', year: '2026', label: 'Cambridge Future Scholar — CCIR research course in ML & NLP', category: 'research' },
-  { date: '2026-06', year: '2026', label: 'Selected for Research Science Institute – India (MIT-affiliated, <2% acceptance)', category: 'research' },
+  { date: '2026-06', year: '2026', label: 'Selected for Research Science Institute – India (MIT RSI model, ~2% acceptance, 100% scholarship)', category: 'research' },
   { date: '2026-07', year: '2026', label: 'Hinglish POS-tagging paper published in the Oxford Journal of Student Scholarship', category: 'research' },
   { date: '2026-10', year: '2026', label: 'Scam Slayer patent published in the Indian Patent Journal', category: 'build' },
+  { date: '2026-10', year: '2026', label: 'HackHarvard Undergraduate Hackathon: Macrospective', category: 'build' },
 ]

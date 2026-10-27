@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Award, CheckCircle2, Copy, ExternalLink, FileDown, Mail, MapPin, Send } from 'lucide-react'
+import { Award, CheckCircle2, Copy, ExternalLink, FileDown, Mail, MapPin, Phone, Send } from 'lucide-react'
 import { otherPursuits, profile } from '../data/resume'
 import { PageBanner } from '../components/ui'
 
@@ -64,6 +64,17 @@ export function ContactView() {
             <div className="space-y-4 text-sm text-slate-600">
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-semibold text-slate-900">Phone</div>
+                  <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="text-xs font-mono text-slate-600 hover:text-emerald-700 transition-colors">
+                    {profile.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
@@ -87,6 +98,15 @@ export function ContactView() {
             <div className="pt-4 border-t border-slate-100 space-y-2">
               <span className="text-[12px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">Links</span>
               <div className="flex flex-col gap-2">
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-mono text-slate-700 hover:text-slate-900 border border-slate-200/60 transition-colors"
+                >
+                  <span>LinkedIn: {profile.linkedin.replace(/^https:\/\/www\./, '')}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                </a>
                 {blog && 'link' in blog && (
                   <a
                     href={blog.link}

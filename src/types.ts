@@ -3,6 +3,7 @@ export type PageTab =
   | 'research'
   | 'projects'
   | 'education'
+  | 'courses'
   | 'awards'
   | 'experience'
   | 'passions'
@@ -13,6 +14,7 @@ export const PAGE_TABS: PageTab[] = [
   'research',
   'projects',
   'education',
+  'courses',
   'awards',
   'experience',
   'passions',

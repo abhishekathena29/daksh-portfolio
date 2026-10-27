@@ -10,6 +10,7 @@ import {
   ChartCandlestick,
   Mail,
   MapPin,
+  BadgeCheck,
 } from 'lucide-react'
 import type { PageTab } from '../types'
 import { profile, projects } from '../data/resume'
@@ -23,6 +24,7 @@ const MENU_ITEMS: { tab: PageTab; label: string; icon: ComponentType<{ className
   { tab: 'research', label: 'Research', icon: FlaskConical },
   { tab: 'projects', label: 'Projects', icon: Rocket },
   { tab: 'education', label: 'Education & Grades', icon: GraduationCap },
+  { tab: 'courses', label: 'Coursework', icon: BadgeCheck },
   { tab: 'awards', label: 'Awards', icon: Trophy },
   { tab: 'experience', label: 'Experience', icon: Briefcase },
   { tab: 'passions', label: 'Hobbies & Passions', icon: ChartCandlestick },

@@ -1,7 +1,6 @@
 import { GraduationCap, MapPin, Sparkles, Target, Wrench } from 'lucide-react'
+import type { PageTab } from '../types'
 import { courses, education, quickFacts, skills, type Subject } from '../data/resume'
-import { evidenceBy, type OpenEvidence } from '../data/evidence'
-import { EvidenceCard } from '../components/EvidenceCard'
 import { LinkButtons, PageBanner, Panel, PanelHead } from '../components/ui'
 
 const QUALIFICATION_STYLE = {
@@ -23,8 +22,7 @@ function SubjectChip({ s }: { s: Subject }) {
   )
 }
 
-export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
-  const certs = evidenceBy('courses')
+export function EducationView({ onNavigate }: { onNavigate: (tab: PageTab) => void }) {
   const topGrades = education
     .filter((e) => e.level === 'IGCSE')
     .flatMap((e) => e.subjects)
@@ -37,7 +35,7 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
         icon={GraduationCap}
         eyebrow="ACADEMIC TRAJECTORY & ACCREDITATIONS"
         title="Education & Grades"
-        description={`Cambridge curriculum at ${education[0].institution.split(',')[0]} with university-level coursework from the University of Pennsylvania, IIT Madras, Yale and Inspirit AI.`}
+        description={`Cambridge curriculum at ${education[0].institution.split(',')[0]}: A Level, AS Level and IGCSE results, with predicted grades for the year in progress.`}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
@@ -45,12 +43,28 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
             { v: `${predictedTop} A*`, l: 'Predicted A Level grades' },
             { v: 'Distinction', l: 'Cambridge ICE' },
             { v: `${courses.length}`, l: 'Courses & certifications' },
-          ].map((s) => (
-            <div key={s.l} className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
-              <div className="text-xl sm:text-2xl font-bold font-display text-slate-900">{s.v}</div>
-              <div className="text-xs font-medium text-slate-500 mt-1">{s.l}</div>
-            </div>
-          ))}
+          ].map((s) => {
+            const tile = (
+              <>
+                <div className="text-xl sm:text-2xl font-bold font-display text-slate-900">{s.v}</div>
+                <div className="text-xs font-medium text-slate-500 mt-1">{s.l}</div>
+              </>
+            )
+            // The coursework count links to its own section
+            return s.l.startsWith('Courses') ? (
+              <button
+                key={s.l}
+                onClick={() => onNavigate('courses')}
+                className="text-left bg-slate-50 rounded-2xl p-4 border border-slate-100 hover:border-emerald-300 transition-colors cursor-pointer"
+              >
+                {tile}
+              </button>
+            ) : (
+              <div key={s.l} className="bg-slate-50 rounded-2xl p-4 border border-slate-100">
+                {tile}
+              </div>
+            )
+          })}
         </div>
       </PageBanner>
 
@@ -148,19 +162,6 @@ export function EducationView({ onOpen }: { onOpen: OpenEvidence }) {
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </Panel>
-
-      <Panel>
-        <PanelHead
-          eyebrow="Certified coursework"
-          title="University Courses & Certifications"
-          sub="Click any certificate card to inspect details and open the original credential."
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {certs.map((c) => (
-            <EvidenceCard key={c.id} item={c} onOpen={(x) => onOpen(x, certs)} />
           ))}
         </div>
       </Panel>
