@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Banknote, ChevronDown, ExternalLink, CheckCircle2, HeartHandshake, MapPin, Rocket, Users } from 'lucide-react'
 import type { Focus } from '../types'
 import { projects, volunteering, type ProjectT } from '../data/resume'
-import { EVIDENCE, photosFor, slug, type OpenEvidence } from '../data/evidence'
+import { EVIDENCE, photosFor, previewFor, slug, type OpenEvidence } from '../data/evidence'
 import { EvidenceCard, PhotoGallery } from '../components/EvidenceCard'
 import { AutoCarousel } from '../components/AutoCarousel'
 import { PersifolioSimulator } from '../components/PersifolioSimulator'
@@ -275,7 +275,8 @@ function CommunityImpact({ onOpen }: { onOpen: OpenEvidence }) {
                   </span>
                 </button>
               )}
-              <LinkButtons links={v.links} />
+              {/* The certificate is already shown above; skip its tile */}
+              <LinkButtons links={v.links?.filter((l) => !cert || previewFor(l) !== cert.images[0].src)} />
             </div>
           )
         })}

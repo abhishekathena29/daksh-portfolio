@@ -14,6 +14,7 @@ import {
   type LinkRef,
   type Photo,
 } from './resume'
+import { DRIVE_PREVIEWS } from './previews'
 
 export type EvidenceCategory =
   | 'honours'
@@ -78,12 +79,22 @@ const DOC_THUMBS: Record<string, string> = {
   'rsi-india-certificate': '/media/research/rsi-india-certificate.jpg',
 }
 
+// Preview image for a link to a local PDF or a Google Drive file, when one exists
+export function previewFor(l: LinkRef): string | undefined {
+  if (l.thumb) return l.thumb
+  const doc = l.href.match(/^\/docs\/(.+)\.pdf$/)
+  if (doc) return DOC_THUMBS[doc[1]]
+  const drive = l.href.match(/drive\.google\.com\/file\/d\/([\w-]+)/)
+  if (drive && DRIVE_PREVIEWS.has(drive[1])) return `/media/previews/${drive[1]}.jpg`
+}
+
 function withDocThumbs(e: Evidence): Evidence {
   if (e.images.length) return e
+  const seen = new Set<string>()
   const images = e.links.flatMap((l) => {
-    const m = l.href.match(/^\/docs\/(.+)\.pdf$/)
-    const src = l.thumb ?? (m && DOC_THUMBS[m[1]])
-    return src ? [{ src, caption: l.label }] : []
+    const src = previewFor(l)
+    // A Drive copy of a local PDF renders the same page; show it once
+    return src && !seen.has(src) && seen.add(src) ? [{ src, caption: l.label }] : []
   })
   return { ...e, images }
 }

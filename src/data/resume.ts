@@ -852,11 +852,26 @@ export const sportsPhotos: Photo[] = [
   { src: '/media/sports/basketball.jpg', caption: 'With the basketball team at the Head Start Friendship Games' },
 ]
 
-export const clubsAndMun = [
+export const clubsAndMun: { name: string; detail: string; date: string; links?: LinkRef[] }[] = [
   {
     name: 'Varsity Badminton Team — Captain & Team Strategist',
     detail: 'Inventure Academy varsity team on the inter-school and national school circuits. Coached the squad on smash technique and doubles tactics with no coach; won golds and silvers.',
     date: 'Grades 9–11',
+  },
+  {
+    name: 'School Basketball Team — Point Guard',
+    detail: 'Runs the offence as point guard for Inventure Academy; runners-up at the Head Start Friendship Games 2023/24.',
+    date: '2023 – 2026',
+    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/17tPqfPu16oCzfK4FQo3EspXqVnmQB-G2/view?usp=sharing' }],
+  },
+  {
+    name: 'School Shot Put Team — Captain',
+    detail: 'Captains the Inventure Academy shot put team; second place at both the Inventure Sports Fest and the Annual Athletics Meet, 2025.',
+    date: '2025',
+    links: [
+      { label: 'Sports Fest 2025', href: '/docs/shot-put-sports-fest-2025.pdf' },
+      { label: 'Athletics Meet 2025', href: 'https://drive.google.com/file/d/1O8wDrLp1YY1-mObKdJfGO8CWzCHTMH85/view?usp=sharing' },
+    ],
   },
   { name: 'INMUN — BBMP Committee', detail: 'Agenda: "Impact of unplanned urbanisation in the Whitefield area"', date: '2023' },
   { name: 'School Club: Tech for Change', detail: 'Created Pathforge; building an e-ballot platform for school elections', date: '2024 – 2026' },

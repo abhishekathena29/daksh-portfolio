@@ -104,7 +104,7 @@ export function PassionsView({ onOpen }: { onOpen: OpenEvidence }) {
         </Panel>
 
         <Panel>
-          <PanelHead eyebrow="Leadership" title="Clubs & MUN" />
+          <PanelHead eyebrow="Leadership" title="Teams, Clubs & MUN" />
           <div className="divide-y divide-slate-100">
             {clubsAndMun.map((c) => (
               <div key={c.name} className="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
@@ -115,6 +115,11 @@ export function PassionsView({ onOpen }: { onOpen: OpenEvidence }) {
                     <span className="text-sm font-mono text-slate-400 shrink-0">{c.date}</span>
                   </div>
                   <p className="text-sm text-slate-600 mt-1">{c.detail}</p>
+                  {c.links && (
+                    <div className="mt-3">
+                      <LinkButtons links={c.links} />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
