@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, Sparkles, Target, Wrench } from 'lucide-react'
+import { GraduationCap, MapPin, Sparkles, Wrench } from 'lucide-react'
 import type { PageTab } from '../types'
 import { courses, education, quickFacts, skills, type Subject } from '../data/resume'
 import { LinkButtons, PageBanner, Panel, PanelHead } from '../components/ui'
@@ -27,7 +27,6 @@ export function EducationView({ onNavigate }: { onNavigate: (tab: PageTab) => vo
     .filter((e) => e.level === 'IGCSE')
     .flatMap((e) => e.subjects)
     .filter((s) => s.grade === 'A*').length
-  const predictedTop = education.flatMap((e) => e.predicted ?? []).filter((s) => s.grade === 'A*').length
 
   return (
     <div className="space-y-8 pb-16">
@@ -35,12 +34,12 @@ export function EducationView({ onNavigate }: { onNavigate: (tab: PageTab) => vo
         icon={GraduationCap}
         eyebrow="ACADEMIC TRAJECTORY & ACCREDITATIONS"
         title="Education & Grades"
-        description={`Cambridge curriculum at ${education[0].institution.split(',')[0]}: A Level, AS Level and IGCSE results, with predicted grades for the year in progress.`}
+        description={`Cambridge curriculum at ${education[0].institution.split(',')[0]}: A Level, AS Level and IGCSE results.`}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { v: `${topGrades}`, l: 'IGCSE A* grades' },
-            { v: `${predictedTop} A*`, l: 'Predicted A Level grades' },
+            { v: `${education[0].subjects.length}`, l: 'A & AS Level subjects in progress' },
             { v: 'Distinction', l: 'Cambridge ICE' },
             { v: `${courses.length}`, l: 'Courses & certifications' },
           ].map((s) => {
@@ -99,27 +98,14 @@ export function EducationView({ onNavigate }: { onNavigate: (tab: PageTab) => vo
                 )}
               </div>
 
-              {e.predicted ? (
-                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/40 p-4 sm:p-5">
-                  <span className="text-sm font-mono text-emerald-800 font-semibold uppercase mb-3 flex items-center gap-1.5">
-                    <Target className="w-4 h-4" /> Predicted grades
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {e.predicted.map((s) => (
-                      <SubjectChip key={s.name} s={s} />
-                    ))}
-                  </div>
+              <div>
+                <span className="text-sm font-mono text-slate-500 font-semibold block uppercase mb-3">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
+                <div className="flex flex-wrap gap-2">
+                  {subjects.map((s) => (
+                    <SubjectChip key={s.name} s={s} />
+                  ))}
                 </div>
-              ) : (
-                <div>
-                  <span className="text-sm font-mono text-slate-500 font-semibold block uppercase mb-3">Subjects{subjects.some((s) => s.grade) ? ' & grades' : ''}</span>
-                  <div className="flex flex-wrap gap-2">
-                    {subjects.map((s) => (
-                      <SubjectChip key={s.name} s={s} />
-                    ))}
-                  </div>
-                </div>
-              )}
+              </div>
 
               <LinkButtons links={e.links} />
             </div>

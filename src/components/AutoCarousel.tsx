@@ -8,7 +8,7 @@ export function AutoCarousel({
   photos,
   onOpen,
   interval = 4500,
-  fit = 'cover',
+  fit = 'contain',
   children,
 }: {
   photos: Evidence[]

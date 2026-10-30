@@ -30,7 +30,7 @@ const CATEGORY_THEME: Record<EvidenceCategory, Theme> = {
 }
 
 // Shows the record's first image; falls back to a stylised document tile.
-export function EvidencePreview({ item, index = 0, fit = 'cover' }: { item: Evidence; index?: number; fit?: 'cover' | 'contain' }) {
+export function EvidencePreview({ item, index = 0, fit = 'contain' }: { item: Evidence; index?: number; fit?: 'cover' | 'contain' }) {
   const theme = CATEGORY_THEME[item.category]
   const Icon = theme.icon
   const img = item.images[index]
@@ -109,7 +109,7 @@ export function PhotoGallery({ items, onOpen }: { items: Evidence[]; onOpen: (it
           onClick={() => onOpen(p)}
           className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200/90 bg-slate-100 cursor-pointer text-left"
         >
-          <img src={p.images[0].src} alt={p.caption} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <img src={p.images[0].src} alt={p.caption} loading="lazy" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
           <div className="theme-fixed absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3 pt-8">
             <p className="text-xs sm:text-xs text-white font-medium leading-snug line-clamp-2">{p.caption}</p>
           </div>

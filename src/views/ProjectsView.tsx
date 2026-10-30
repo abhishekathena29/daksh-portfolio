@@ -268,7 +268,7 @@ function CommunityImpact({ onOpen }: { onOpen: OpenEvidence }) {
               {photos.length > 0 && <PhotoGallery items={photos} onOpen={(p) => onOpen(p, photos)} />}
               {cert && (
                 <button onClick={() => onOpen(cert)} className="group flex items-center gap-3 bg-white border border-slate-200 rounded-xl p-2 pr-4 hover:border-emerald-300 transition-colors cursor-pointer text-left">
-                  <img src={cert.images[0].src} alt="" className="w-24 h-16 object-cover rounded-lg" />
+                  <img src={cert.images[0].src} alt="" className="w-24 h-16 object-contain bg-slate-100 rounded-lg" />
                   <span>
                     <span className="text-xs font-mono text-emerald-700 font-bold uppercase block">Certificate</span>
                     <span className="text-sm text-slate-700 font-medium">{cert.images[0].caption}</span>

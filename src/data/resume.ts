@@ -104,8 +104,6 @@ export type Education = {
   period: string
   level: string
   subjects: Subject[]
-  // Teacher-predicted final grades, shown while a stage is in progress
-  predicted?: Subject[]
   grades?: string
   current?: boolean
   links?: LinkRef[]
@@ -124,14 +122,6 @@ export const education: Education[] = [
       { name: 'Computer Science', qualification: 'A Level' },
       { name: 'English', qualification: 'AS Level' },
     ],
-    predicted: [
-      { name: 'Further Mathematics', grade: 'A*', qualification: 'A Level' },
-      { name: 'Mathematics', grade: 'A*', qualification: 'A Level' },
-      { name: 'Chemistry', grade: 'A*', qualification: 'A Level' },
-      { name: 'Physics', grade: 'A*', qualification: 'A Level' },
-      { name: 'Computer Science', grade: 'A*', qualification: 'A Level' },
-      { name: 'English', grade: 'A', qualification: 'AS Level' },
-    ],
     current: true,
   },
   {
@@ -145,7 +135,6 @@ export const education: Education[] = [
       { name: 'Computer Science', grade: 'A', qualification: 'AS Level' },
     ],
     grades: 'A',
-    links: [{ label: 'AS Maths result', href: 'https://drive.google.com/file/d/1Im3ibCb2XCFehqCHD4XcfQNGhADSxNXy/view?usp=drive_link' }],
   },
   {
     institution: 'Inventure Academy, Bangalore, India',
@@ -163,7 +152,6 @@ export const education: Education[] = [
       { name: 'Computer Science', grade: 'A*' },
       { name: 'Spanish', grade: 'A' },
     ],
-    links: [{ label: 'IGCSE transcript', href: 'https://drive.google.com/file/d/1W1F8rVmEUo-SmG-obtuvAHWX0qTTnhys/view?usp=drive_link' }],
   },
 ]
 
@@ -313,8 +301,7 @@ export const projects: ProjectT[] = [
       { label: 'Pre-seed + self-funded from trading profit', value: '$50,000 + $25,000' },
     ],
     links: [
-      { label: 'Patent journal', href: '/docs/persifolio-patent-journal.pdf' },
-      { label: 'Patent certificate', href: 'https://drive.google.com/file/d/1kg8lx8TX5Fw6qo7_mMGpcxSRizaRH2xL/view?usp=sharing' },
+      { label: "Letter of recommendation — St. Jerome's PU College", href: '/docs/persifolio-recommendation-letter.pdf' },
       { label: 'Product images', href: 'https://drive.google.com/drive/folders/1rj9KWKJbemy3yHc6fxm78pLY_Bx7al5W?usp=sharing', thumb: '/media/persifolio/workshop-5.jpg' },
     ],
     images: [
@@ -346,7 +333,6 @@ export const projects: ProjectT[] = [
     ],
     links: [
       { label: 'Outlook article', href: 'https://www.outlookindia.com/xhub/featured-insights/teen-developer-daksh-sawhney-builds-scamslayer-fraud-detection-app-protecting-1000-senior-citizens-from-digital-scams', thumb: '/media/scam-slayer/outlook-feature.jpg' },
-      { label: 'Patent publication', href: '/docs/scam-slayer-patent-journal.pdf' },
       { label: 'Government of Karnataka LOR', href: 'https://drive.google.com/file/d/1_1ORyucFaWquhrn9qrLyZ0sfBMXHCKfm/view?usp=sharing', thumb: '/media/scam-slayer/karnataka-mla-lor.jpg' },
     ],
     images: [
@@ -376,9 +362,6 @@ export const projects: ProjectT[] = [
       { label: 'Students enrolled, 15+ workshops', value: '300+' },
       { label: 'Gap tasks completed', value: '1,800+' },
       { label: 'HackHarvard India', value: '1st Place' },
-    ],
-    links: [
-      { label: "Letter of recommendation — St. Jerome's PU College", href: 'https://drive.google.com/file/d/15OQqsNnKIWvXW0ROZoHGO5cKhPPAc7gA/view?usp=sharing', thumb: '/media/polaris/st-jeromes-lor.jpg' },
     ],
     images: [
       { src: '/media/polaris/session-1.jpg', caption: 'Presenting Polaris to a college classroom' },
@@ -422,26 +405,6 @@ export const projects: ProjectT[] = [
     ],
   },
   {
-    name: 'Moneyball: AI, Sports & Business',
-    role: 'Passion project — Inspirit AI (Stanford graduates)',
-    period: 'May 2024 – Jun 2024',
-    tagline: 'Machine learning for undervalued-player discovery, in the spirit of Moneyball.',
-    description: [
-      'Applied Moneyball methodology to baseball player valuation, using ML clustering to identify undervalued players.',
-      'Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the metrics with the highest predictive power.',
-    ],
-    stack: ['Python', 'ML clustering', 'Statistics'],
-    highlights: [
-      { label: 'Programme', value: 'Inspirit AI' },
-      { label: 'Domain', value: 'Sports analytics' },
-    ],
-    links: [{ label: 'AI Scholars Program certificate', href: '/docs/inspirit-ai-moneyball-certificate.pdf' }],
-    images: [
-      { src: '/media/moneyball/stadium-analytics.jpg', caption: 'AI meets professional sport' },
-      { src: '/media/moneyball/sports-data.jpg', caption: 'Turning performance data into player valuations' },
-    ],
-  },
-  {
     name: 'Macrospective',
     role: 'Co-developer — HackHarvard, Harvard University',
     period: 'Oct 2026',
@@ -469,6 +432,26 @@ export const projects: ProjectT[] = [
       { src: '/media/macrospective/judging.jpg', caption: 'Demoing Macrospective to judges and participants' },
       { src: '/media/macrospective/building.jpg', caption: 'Building Macrospective during the hackathon' },
       { src: '/media/macrospective/harvard-campus.jpg', caption: 'Planning between sessions on the Harvard campus' },
+    ],
+  },
+  {
+    name: 'Moneyball: AI, Sports & Business',
+    role: 'Passion project — Inspirit AI (Stanford graduates)',
+    period: 'May 2024 – Jun 2024',
+    tagline: 'Machine learning for undervalued-player discovery, in the spirit of Moneyball.',
+    description: [
+      'Applied Moneyball methodology to baseball player valuation, using ML clustering to identify undervalued players.',
+      'Ran statistical analysis on historical performance data (OBP, SLG, WAR derivatives) to isolate the metrics with the highest predictive power.',
+    ],
+    stack: ['Python', 'ML clustering', 'Statistics'],
+    highlights: [
+      { label: 'Programme', value: 'Inspirit AI' },
+      { label: 'Domain', value: 'Sports analytics' },
+    ],
+    links: [{ label: 'AI Scholars Program certificate', href: '/docs/inspirit-ai-moneyball-certificate.pdf' }],
+    images: [
+      { src: '/media/moneyball/stadium-analytics.jpg', caption: 'AI meets professional sport' },
+      { src: '/media/moneyball/sports-data.jpg', caption: 'Turning performance data into player valuations' },
     ],
   },
 ]
@@ -656,11 +639,6 @@ export const honors: Award[] = [
     date: '2026',
     tier: 'national',
     org: 'Government of India',
-    links: [
-      { label: 'Scam Slayer patent', href: '/docs/scam-slayer-patent-journal.pdf' },
-      { label: 'Persifolio patent', href: '/docs/persifolio-patent-journal.pdf' },
-    ],
-    images: [{ src: '/media/scam-slayer/scam-slayer-patent-journal.jpg', caption: 'Scam Slayer patent publication, Indian Patent Journal' }],
   },
   {
     title: 'Featured in Outlook India',
@@ -679,6 +657,8 @@ export const honors: Award[] = [
     date: '2026',
     tier: 'national',
     org: 'Veyil Foundation',
+    links: [{ label: 'Certificate', href: '/docs/rabindra-ratna-puraskar-2026.pdf' }],
+    images: [{ src: '/media/awards/rabindra-ratna-puraskar-2026.jpg', caption: 'Rabindra Ratna Puraskar 2026 — Science & Technology, Karnataka State' }],
   },
   {
     title: 'Crest Gold',
@@ -808,22 +788,6 @@ export const sports: Activity[] = [
     tier: 'silver',
     links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
     images: [{ src: '/media/athletics/headstart-basketball-runners-up.jpg', caption: 'Runners-up, Basketball (Grade 9 & below) — Head Start Friendship Games 2023/24' }],
-  },
-  {
-    name: 'Interschool Athletic Relay',
-    level: 'Interschool',
-    achievement: 'Bronze',
-    date: '2024',
-    tier: 'bronze',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
-  },
-  {
-    name: 'Inventure Shot Put Throw',
-    level: 'Interschool',
-    achievement: 'Gold',
-    date: '2024',
-    tier: 'gold',
-    links: [{ label: 'Certificate', href: 'https://drive.google.com/file/d/1ZV3EQYo01c1FThprnR348U2JZCxcKt6X/view?usp=sharing' }],
   },
   {
     name: 'Inventure Shot Put Throw',
@@ -966,7 +930,7 @@ export const milestones: Milestone[] = [
   { date: '2024-05', year: '2024', label: 'Moneyball: AI, Sports & Business — Inspirit AI, Stanford', category: 'research' },
   { date: '2024-05', year: '2024', label: 'Empower-Fin financial-literacy workshops, Tribes for Good', category: 'service' },
   { date: '2024-06', year: '2024', label: 'Began 2-year tutoring program at RGH Government School', category: 'service' },
-  { date: '2024-09', year: '2024', label: 'Inventure Shot Put — Gold; Basketball — Silver; Relay — Bronze', category: 'recognition' },
+  { date: '2024-09', year: '2024', label: 'Head Start Interschool Basketball — Silver', category: 'recognition' },
   { date: '2025-07', year: '2025', label: 'UPI research published in IJSSER (peer-reviewed)', category: 'research' },
   { date: '2025-04', year: '2025', label: 'Summer internship — Nine Leaps / Noviro.ai AI Centre of Excellence', category: 'build' },
   { date: '2025-05', year: '2025', label: 'Software development internship — Address Makers Pvt Ltd', category: 'build' },
